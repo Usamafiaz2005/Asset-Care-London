@@ -18,7 +18,7 @@ import SkeletonLoader from '../components/SkeletonLoader';
 import PhotoFrame from '../components/PhotoFrame';
 import SEOHead from '../components/SEOHead';
 import useScrollReveal from '../hooks/useScrollReveal';
-import { servicesData, futureRenewablesData } from '../data/servicesData';
+import { servicesData } from '../data/servicesData';
 import { serviceAreasData } from '../data/serviceAreasData';
 import { faqData } from '../data/faqData';
 import { reviewsData, googleRatingMeta } from '../data/reviewsData';
@@ -29,15 +29,36 @@ export default function HomePage() {
   const [activeFaqIndex, setActiveFaqIndex] = useState(null);
 
   // Scroll reveal observers for homepage sections
-  const [heroRef, heroVisible] = useScrollReveal(0.1);
-  const [solutionsRef, solutionsVisible] = useScrollReveal(0.15);
-  const [servicesRef, servicesVisible] = useScrollReveal(0.15);
-  const [renewablesRef, renewablesVisible] = useScrollReveal(0.15);
-  const [trustRef, trustVisible] = useScrollReveal(0.15);
-  const [basildonRef, basildonVisible] = useScrollReveal(0.15);
+  const [heroRef] = useScrollReveal(0.1);
+  const [solutionsRef] = useScrollReveal(0.15);
+  const [servicesRef] = useScrollReveal(0.15);
+  const [renewablesRef] = useScrollReveal(0.15);
+  const [trustRef] = useScrollReveal(0.15);
+  const [basildonRef] = useScrollReveal(0.15);
 
   const toggleFaq = (index) => {
     setActiveFaqIndex(activeFaqIndex === index ? null : index);
+  };
+
+  // Robust Icon Renderer mapping directly to illustration/service type
+  const renderServiceIcon = (illustration) => {
+    switch (illustration) {
+      case 'SolarPVIllustration':
+        return <Sun className="w-6 h-6 text-copper" />;
+      case 'BatteryStorageIllustration':
+        return <Battery className="w-6 h-6 text-teal" />;
+      case 'EVChargerIllustration':
+      case 'HeatPumpIllustration':
+        return <Zap className="w-6 h-6 text-teal" />;
+      case 'AirConIllustration':
+        return <Wind className="w-6 h-6 text-teal" />;
+      case 'SmartHomeIllustration':
+        return <Thermometer className="w-6 h-6 text-copper" />;
+      case 'PlumbingIllustration':
+        return <Wrench className="w-6 h-6 text-copper" />;
+      default:
+        return <Flame className="w-6 h-6 text-copper" />;
+    }
   };
 
   return (
@@ -49,14 +70,12 @@ export default function HomePage() {
 
       {/* 1. ASYMMETRIC HERO SECTION WITH PHOTO-ILLUSTRATION BLENDING */}
       <section ref={heroRef} className="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden border-b border-obsidian-border">
-        {/* Background Mesh Gradient Lighting */}
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-copper/15 rounded-full blur-[140px] pointer-events-none"></div>
         <div className="absolute top-1/3 right-10 w-[500px] h-[500px] bg-teal/15 rounded-full blur-[120px] pointer-events-none"></div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
-            {/* Hero Left Content */}
             <div className="lg:col-span-7 space-y-6 text-left">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-obsidian-card border border-copper/30 text-xs font-mono text-paper-subtle shadow-md">
                 <span className="w-2 h-2 rounded-full bg-copper animate-ping"></span>
@@ -85,7 +104,6 @@ export default function HomePage() {
                 </a>
               </div>
 
-              {/* Factual Animated Stats Bar */}
               <div className="pt-6 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-obsidian-border text-xs text-paper-subtle font-mono">
                 <AnimatedStat endValue={2026} label="Incorporated" subtext="Companies House Reg: 16377721" />
                 <AnimatedStat endValue={8} label="Towns Covered" subtext="Basildon & South Essex Radius" />
@@ -94,7 +112,6 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Hero Right Visual Showcase with PhotoFrame Blending */}
             <div className="lg:col-span-5 relative">
               <PhotoFrame 
                 badge="Precision Engineering"
@@ -208,7 +225,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. CORE SERVICES BENTO GRID WITH ACCURATE BADGES */}
+      {/* 4. CORE SERVICES BENTO GRID WITH CLEAN DYNAMIC ICONS */}
       <section ref={servicesRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center max-w-2xl mx-auto space-y-2">
           <span className="text-xs font-mono font-bold text-copper uppercase tracking-widest block">FULL SERVICE SCOPE</span>
@@ -225,20 +242,12 @@ export default function HomePage() {
             <Link
               key={srv.id}
               to={`/services/${srv.id}`}
-              className="glass-panel glass-panel-hover rounded-2xl p-6 border border-obsidian-border flex flex-col justify-between space-y-4 group block relative overflow-hidden"
+              className="glass-panel glass-panel-hover rounded-2xl p-6 border border-obsidian-border flex flex-col justify-between space-y-4 group block relative overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-copper focus-visible:ring-offset-2 focus-visible:ring-offset-obsidian-dark"
             >
               <div className="space-y-3">
                 <div className="flex justify-between items-start">
                   <div className="w-12 h-12 rounded-xl bg-obsidian-dark border border-copper/30 flex items-center justify-center text-copper group-hover:border-copper transition-colors">
-                    {srv.id.includes('boiler') && <Flame className="w-6 h-6" />}
-                    {srv.id.includes('solar') && <Sun className="w-6 h-6 text-copper" />}
-                    {srv.id.includes('battery') && <Battery className="w-6 h-6 text-teal" />}
-                    {srv.id.includes('ev') && <Zap className="w-6 h-6 text-teal" />}
-                    {srv.id.includes('air') && <Wind className="w-6 h-6 text-teal" />}
-                    {srv.id.includes('heat-pump') && <Zap className="w-6 h-6 text-teal" />}
-                    {srv.id.includes('plumbing') && <Wrench className="w-6 h-6" />}
-                    {srv.id.includes('central') && <Thermometer className="w-6 h-6" />}
-                    {srv.id.includes('gas') && <ShieldCheck className="w-6 h-6 text-copper" />}
+                    {renderServiceIcon(srv.illustration)}
                   </div>
                   {srv.badge && (
                     <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-full bg-copper/10 text-copper border border-copper/30">
@@ -411,7 +420,7 @@ export default function HomePage() {
               <Link
                 key={area.slug}
                 to={`/service-areas/${area.slug}`}
-                className="p-3.5 rounded-xl bg-obsidian-dark hover:bg-obsidian-card border border-obsidian-border hover:border-copper text-left transition-all flex items-center justify-between group block"
+                className="p-3.5 rounded-xl bg-obsidian-dark hover:bg-obsidian-card border border-obsidian-border hover:border-copper text-left transition-all flex items-center justify-between group block focus:outline-none focus-visible:ring-2 focus-visible:ring-copper"
               >
                 <div>
                   <div className="text-xs font-bold text-paper group-hover:text-copper transition-colors">{area.name}</div>
@@ -424,7 +433,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 10. FAQ ACCORDION & FINAL CTA */}
+      {/* 10. ACCESSIBLE FAQ ACCORDION & FINAL CTA */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         <div className="text-center space-y-2">
           <span className="text-xs font-mono font-bold text-copper uppercase tracking-widest block">FREQUENTLY ASKED QUESTIONS</span>
@@ -444,7 +453,7 @@ export default function HomePage() {
                   onClick={() => toggleFaq(idx)}
                   aria-expanded={isExpanded}
                   aria-controls={contentId}
-                  className="w-full p-4 text-left font-semibold text-sm text-paper flex justify-between items-center focus:outline-none"
+                  className="w-full p-4 text-left font-semibold text-sm text-paper flex justify-between items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-copper focus-visible:ring-offset-2 focus-visible:ring-offset-obsidian-dark"
                 >
                   <span>{faq.question}</span>
                   <span className="text-copper font-mono font-bold text-base">{isExpanded ? '−' : '+'}</span>

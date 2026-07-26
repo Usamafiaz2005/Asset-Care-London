@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { Phone, ChevronDown, Menu, X, ShieldCheck, Flame, Wrench, Thermometer, Wind, Zap, AlertTriangle, Calculator, Sun, Battery } from 'lucide-react';
+import { Phone, ChevronDown, Menu, X, ShieldCheck, Flame, Wrench, Thermometer, Wind, Zap, Calculator, Sun, Battery, AlertTriangle } from 'lucide-react';
 import { COMPANY_DETAILS } from '../data/constants';
+import { servicesData } from '../data/servicesData';
+import { serviceAreasData } from '../data/serviceAreasData';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -29,9 +31,30 @@ export default function Navbar() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [location]);
 
+  // Dynamic icon helper for services dropdown
+  const renderNavServiceIcon = (illustration) => {
+    switch (illustration) {
+      case 'SolarPVIllustration':
+        return <Sun className="w-4 h-4 text-copper" />;
+      case 'BatteryStorageIllustration':
+        return <Battery className="w-4 h-4 text-teal" />;
+      case 'EVChargerIllustration':
+      case 'HeatPumpIllustration':
+        return <Zap className="w-4 h-4 text-teal" />;
+      case 'AirConIllustration':
+        return <Wind className="w-4 h-4 text-teal" />;
+      case 'SmartHomeIllustration':
+        return <Thermometer className="w-4 h-4 text-copper" />;
+      case 'PlumbingIllustration':
+        return <Wrench className="w-4 h-4 text-copper" />;
+      default:
+        return <Flame className="w-4 h-4 text-copper" />;
+    }
+  };
+
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'glass-nav py-3' : 'bg-obsidian-dark/90 border-b border-obsidian-border py-4'}`}>
-      {/* Emergency Callout Top Notification Banner */}
+      {/* Top Notification Bar */}
       <div className="bg-obsidian-card border-b border-obsidian-border px-4 py-1 text-xs font-medium text-paper-muted hidden md:block">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-3">
@@ -58,7 +81,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link 
             to="/"
-            className="flex items-center gap-3 group text-left focus:outline-none"
+            className="flex items-center gap-3 group text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-copper focus-visible:ring-offset-2 focus-visible:ring-offset-obsidian-dark rounded-xl"
             aria-label="Asset Care London Homepage"
           >
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-obsidian-card to-obsidian-dark border border-copper/40 flex items-center justify-center group-hover:border-copper transition-colors shadow-lg">
@@ -87,22 +110,22 @@ export default function Navbar() {
               Home
             </NavLink>
 
-            {/* Services Dropdown */}
-            <div className="relative">
+            {/* Services Dropdown (Single Parent Container Hover Tunnel) */}
+            <div 
+              className="relative py-2"
+              onMouseEnter={() => setServicesDropdownOpen(true)}
+              onMouseLeave={() => setServicesDropdownOpen(false)}
+            >
               <button
                 onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
-                onMouseEnter={() => setServicesDropdownOpen(true)}
-                className={`flex items-center gap-1 hover:text-copper transition-colors py-2 ${location.pathname.startsWith('/services') ? 'text-copper font-bold' : 'text-paper-subtle'}`}
+                className={`flex items-center gap-1 hover:text-copper transition-colors ${location.pathname.startsWith('/services') ? 'text-copper font-bold' : 'text-paper-subtle'}`}
                 aria-expanded={servicesDropdownOpen}
               >
                 Services <ChevronDown className="w-4 h-4" />
               </button>
 
               {servicesDropdownOpen && (
-                <div 
-                  onMouseLeave={() => setServicesDropdownOpen(false)}
-                  className="absolute top-full left-0 w-80 glass-panel rounded-xl p-3 shadow-2xl border border-obsidian-border space-y-1 mt-1 z-50 max-h-96 overflow-y-auto"
-                >
+                <div className="absolute top-full left-0 w-80 glass-panel rounded-xl p-3 shadow-2xl border border-obsidian-border space-y-1 mt-0 z-50 max-h-96 overflow-y-auto">
                   <Link to="/services" className="w-full text-left p-2 rounded-lg hover:bg-obsidian-dark flex items-center gap-3 transition-colors block">
                     <Wrench className="w-4 h-4 text-copper" />
                     <div>
@@ -111,38 +134,18 @@ export default function Navbar() {
                     </div>
                   </Link>
                   <div className="h-[1px] bg-obsidian-border my-1"></div>
-                  <Link to="/services/boiler-installation" className="w-full text-left p-2 rounded-lg hover:bg-obsidian-dark flex items-center gap-3 transition-colors block">
-                    <Flame className="w-4 h-4 text-copper" />
-                    <span className="text-xs text-paper-subtle hover:text-copper">Boiler Installation</span>
-                  </Link>
-                  <Link to="/services/solar-pv" className="w-full text-left p-2 rounded-lg hover:bg-obsidian-dark flex items-center gap-3 transition-colors block">
-                    <Sun className="w-4 h-4 text-copper" />
-                    <span className="text-xs text-paper-subtle hover:text-copper">Solar PV Installations</span>
-                  </Link>
-                  <Link to="/services/battery-storage" className="w-full text-left p-2 rounded-lg hover:bg-obsidian-dark flex items-center gap-3 transition-colors block">
-                    <Battery className="w-4 h-4 text-teal" />
-                    <span className="text-xs text-paper-subtle hover:text-teal">Home Battery Storage</span>
-                  </Link>
-                  <Link to="/services/ev-chargers" className="w-full text-left p-2 rounded-lg hover:bg-obsidian-dark flex items-center gap-3 transition-colors block">
-                    <Zap className="w-4 h-4 text-teal" />
-                    <span className="text-xs text-paper-subtle hover:text-teal">Smart EV Chargers</span>
-                  </Link>
-                  <Link to="/services/boiler-repair" className="w-full text-left p-2 rounded-lg hover:bg-obsidian-dark flex items-center gap-3 transition-colors block">
-                    <Wrench className="w-4 h-4 text-copper" />
-                    <span className="text-xs text-paper-subtle hover:text-copper">Boiler Repair</span>
-                  </Link>
-                  <Link to="/services/air-conditioning" className="w-full text-left p-2 rounded-lg hover:bg-obsidian-dark flex items-center gap-3 transition-colors block">
-                    <Wind className="w-4 h-4 text-teal" />
-                    <span className="text-xs text-paper-subtle hover:text-teal">Air Conditioning (AC)</span>
-                  </Link>
-                  <Link to="/services/heat-pumps" className="w-full text-left p-2 rounded-lg hover:bg-obsidian-dark flex items-center gap-3 transition-colors block">
-                    <Zap className="w-4 h-4 text-teal" />
-                    <span className="text-xs text-paper-subtle hover:text-teal">Heat Pumps (£7.5k Grant)</span>
-                  </Link>
-                  <Link to="/services/gas-safety-certificates" className="w-full text-left p-2 rounded-lg hover:bg-obsidian-dark flex items-center gap-3 transition-colors block">
-                    <ShieldCheck className="w-4 h-4 text-copper" />
-                    <span className="text-xs text-paper-subtle hover:text-copper">Gas Safety CP12</span>
-                  </Link>
+
+                  {/* Dynamic DRY Mapping over servicesData */}
+                  {servicesData.map((srv) => (
+                    <Link 
+                      key={srv.id} 
+                      to={`/services/${srv.id}`} 
+                      className="w-full text-left p-2 rounded-lg hover:bg-obsidian-dark flex items-center gap-3 transition-colors block"
+                    >
+                      {renderNavServiceIcon(srv.illustration)}
+                      <span className="text-xs text-paper-subtle hover:text-copper">{srv.title}</span>
+                    </Link>
+                  ))}
                 </div>
               )}
             </div>
@@ -155,40 +158,33 @@ export default function Navbar() {
               Pricing
             </NavLink>
 
-            {/* Service Areas Dropdown */}
-            <div className="relative">
+            {/* Service Areas Dropdown (Single Parent Container Hover Tunnel) */}
+            <div 
+              className="relative py-2"
+              onMouseEnter={() => setAreasDropdownOpen(true)}
+              onMouseLeave={() => setAreasDropdownOpen(false)}
+            >
               <button
                 onClick={() => setAreasDropdownOpen(!areasDropdownOpen)}
-                onMouseEnter={() => setAreasDropdownOpen(true)}
-                className={`flex items-center gap-1 hover:text-copper transition-colors py-2 ${location.pathname.startsWith('/service-areas') ? 'text-copper font-bold' : 'text-paper-subtle'}`}
+                className={`flex items-center gap-1 hover:text-copper transition-colors ${location.pathname.startsWith('/service-areas') ? 'text-copper font-bold' : 'text-paper-subtle'}`}
                 aria-expanded={areasDropdownOpen}
               >
                 Service Areas <ChevronDown className="w-4 h-4" />
               </button>
 
               {areasDropdownOpen && (
-                <div 
-                  onMouseLeave={() => setAreasDropdownOpen(false)}
-                  className="absolute top-full left-0 w-64 glass-panel rounded-xl p-3 shadow-2xl border border-obsidian-border grid grid-cols-1 gap-1 mt-1 z-50"
-                >
-                  <Link to="/service-areas/basildon" className="text-left p-2 rounded-lg hover:bg-obsidian-dark text-xs text-paper-subtle flex justify-between">
-                    <span>Basildon (HQ)</span> <span className="text-copper text-[10px]">SS14</span>
-                  </Link>
-                  <Link to="/service-areas/wickford" className="text-left p-2 rounded-lg hover:bg-obsidian-dark text-xs text-paper-subtle flex justify-between">
-                    <span>Wickford</span> <span className="text-paper-muted text-[10px]">SS11</span>
-                  </Link>
-                  <Link to="/service-areas/billericay" className="text-left p-2 rounded-lg hover:bg-obsidian-dark text-xs text-paper-subtle flex justify-between">
-                    <span>Billericay</span> <span className="text-paper-muted text-[10px]">CM12</span>
-                  </Link>
-                  <Link to="/service-areas/pitsea" className="text-left p-2 rounded-lg hover:bg-obsidian-dark text-xs text-paper-subtle flex justify-between">
-                    <span>Pitsea</span> <span className="text-paper-muted text-[10px]">SS13</span>
-                  </Link>
-                  <Link to="/service-areas/laindon" className="text-left p-2 rounded-lg hover:bg-obsidian-dark text-xs text-paper-subtle flex justify-between">
-                    <span>Laindon</span> <span className="text-paper-muted text-[10px]">SS15</span>
-                  </Link>
-                  <Link to="/service-areas/southend-on-sea" className="text-left p-2 rounded-lg hover:bg-obsidian-dark text-xs text-paper-subtle flex justify-between">
-                    <span>Southend-on-Sea</span> <span className="text-paper-muted text-[10px]">SS0-SS9</span>
-                  </Link>
+                <div className="absolute top-full left-0 w-64 glass-panel rounded-xl p-3 shadow-2xl border border-obsidian-border grid grid-cols-1 gap-1 mt-0 z-50">
+                  {/* Dynamic DRY Mapping over serviceAreasData */}
+                  {serviceAreasData.map((area) => (
+                    <Link 
+                      key={area.slug} 
+                      to={`/service-areas/${area.slug}`} 
+                      className="text-left p-2 rounded-lg hover:bg-obsidian-dark text-xs text-paper-subtle flex justify-between items-center"
+                    >
+                      <span>{area.name} {area.isHQ && '(HQ)'}</span>
+                      <span className="text-copper text-[10px] font-mono">{area.postcodes}</span>
+                    </Link>
+                  ))}
                 </div>
               )}
             </div>
@@ -239,7 +235,7 @@ export default function Navbar() {
           {/* Mobile Hamburger Toggle */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-paper hover:text-copper focus:outline-none"
+            className="lg:hidden p-2 text-paper hover:text-copper focus:outline-none focus-visible:ring-2 focus-visible:ring-copper rounded-lg"
             aria-label="Toggle navigation drawer"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}

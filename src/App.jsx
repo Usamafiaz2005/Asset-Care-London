@@ -2,7 +2,6 @@ import React, { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import SEOHead from './components/SEOHead';
 import CookieConsent from './components/CookieConsent';
 import SkeletonLoader from './components/SkeletonLoader';
 import { Phone } from 'lucide-react';
@@ -36,9 +35,6 @@ export default function App() {
   return (
     <BrowserRouter>
       <div className="min-h-screen bg-obsidian-dark text-paper flex flex-col font-sans relative selection:bg-copper selection:text-obsidian">
-        {/* Dynamic SEO Head Management with Per-Page Canonical Links */}
-        <SEOHead />
-
         {/* Sticky Header Navigation */}
         <Navbar />
 
