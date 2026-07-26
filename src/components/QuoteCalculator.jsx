@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { servicesData } from '../data/servicesData';
 import IconRenderer from './IconRenderer';
 import { calculateEstimate } from '../utils/pricingEngine';
-import { ArrowRight, ArrowLeft, CheckCircle2, Phone, ShieldCheck, Clock, FileCheck } from 'lucide-react';
+import { submitLeadToCRM } from '../services/crmService';
+import { ArrowRight, ArrowLeft, CheckCircle2, Phone, ShieldCheck, Clock, FileCheck, Loader2 } from 'lucide-react';
 import { COMPANY_DETAILS } from '../data/constants';
 
 export default function QuoteCalculator({ onComplete = () => {} }) {
   const [step, setStep] = useState(1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     serviceType: 'boiler-installation',
     propertyType: 'semi',
@@ -20,14 +22,24 @@ export default function QuoteCalculator({ onComplete = () => {} }) {
 
   const selectedServiceObj = servicesData.find(s => s.id === formData.serviceType) || servicesData[0];
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (step < 3) {
       setStep(step + 1);
     } else if (step === 3) {
+      setIsSubmitting(true);
       const result = calculateEstimate(formData);
       setEstimateResult(result);
-      setStep(4);
-      onComplete(result);
+
+      try {
+        // Asynchronously push payload to CRM network service
+        await submitLeadToCRM(formData, result);
+      } catch (err) {
+        console.error('CRM lead push error:', err);
+      } finally {
+        setIsSubmitting(false);
+        setStep(4);
+        onComplete(result);
+      }
     }
   };
 
@@ -335,8 +347,9 @@ export default function QuoteCalculator({ onComplete = () => {} }) {
           {step > 1 ? (
             <button
               type="button"
+              disabled={isSubmitting}
               onClick={handlePrev}
-              className="btn-secondary text-xs px-4 py-2 flex items-center gap-1.5"
+              className="btn-secondary text-xs px-4 py-2 flex items-center gap-1.5 disabled:opacity-50"
             >
               <ArrowLeft className="w-3.5 h-3.5" /> Back
             </button>
@@ -346,11 +359,21 @@ export default function QuoteCalculator({ onComplete = () => {} }) {
 
           <button
             type="button"
+            disabled={isSubmitting}
             onClick={handleNext}
-            className="btn-primary text-xs px-6 py-2.5 flex items-center gap-2"
+            className="btn-primary text-xs px-6 py-2.5 flex items-center gap-2 disabled:opacity-50"
           >
-            <span>{step === 3 ? "Calculate Estimate" : "Next Step"}</span>
-            <ArrowRight className="w-3.5 h-3.5" />
+            {isSubmitting ? (
+              <>
+                <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                <span>Processing CRM Lead...</span>
+              </>
+            ) : (
+              <>
+                <span>{step === 3 ? "Calculate Estimate" : "Next Step"}</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </>
+            )}
           </button>
         </div>
       )}
