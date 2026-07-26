@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { ArrowLeftRight, CheckCircle2 } from 'lucide-react';
 
 export default function BeforeAfterSlider({ project }) {
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
+  const containerRef = useRef(null);
 
-  const handleMove = (clientX, rect) => {
+  const handleMove = (clientX) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
     const x = clientX - rect.left;
     let position = (x / rect.width) * 100;
     if (position < 0) position = 0;
@@ -14,14 +17,12 @@ export default function BeforeAfterSlider({ project }) {
   };
 
   const handleTouchMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    handleMove(e.touches[0].clientX, rect);
+    handleMove(e.touches[0].clientX);
   };
 
   const handleMouseMove = (e) => {
     if (!isDragging) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    handleMove(e.clientX, rect);
+    handleMove(e.clientX);
   };
 
   const beforeImgSrc = project.beforeImage || "/images/boiler-before.webp";
@@ -39,17 +40,20 @@ export default function BeforeAfterSlider({ project }) {
         </div>
       </div>
 
-      {/* Interactive Drag Before/After Image Container with Optimized WebP Photography */}
+      {/* Interactive Drag Before/After Image Container */}
       <div
-        className="relative w-full h-72 rounded-2xl overflow-hidden cursor-ew-resize select-none border border-obsidian-border"
-        onMouseDown={() => setIsDragging(true)}
+        ref={containerRef}
+        className="relative w-full h-72 rounded-2xl overflow-hidden cursor-ew-resize select-none border border-obsidian-border bg-obsidian-dark"
+        onMouseDown={(e) => { setIsDragging(true); handleMove(e.clientX); }}
         onMouseUp={() => setIsDragging(false)}
         onMouseLeave={() => setIsDragging(false)}
         onMouseMove={handleMouseMove}
+        onTouchStart={(e) => { setIsDragging(true); handleMove(e.touches[0].clientX); }}
+        onTouchEnd={() => setIsDragging(false)}
         onTouchMove={handleTouchMove}
       >
-        {/* AFTER Image (Base Layer - Modern Installation) */}
-        <div className="absolute inset-0 w-full h-full">
+        {/* AFTER Image (Base Layer - Right Side) */}
+        <div className="absolute inset-0 w-full h-full z-10">
           <img
             src={afterImgSrc}
             alt={`${project.title} - After Installation`}
@@ -57,34 +61,35 @@ export default function BeforeAfterSlider({ project }) {
             decoding="async"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-obsidian-dark/80 via-transparent to-transparent"></div>
-          <div className="absolute bottom-3 left-3 bg-teal/90 text-obsidian text-[10px] font-extrabold font-mono px-2.5 py-1 rounded-md shadow-lg flex items-center gap-1">
+          <div className="absolute inset-0 bg-gradient-to-t from-obsidian-dark/85 via-transparent to-transparent pointer-events-none"></div>
+          <div className="absolute bottom-3 right-3 bg-teal/90 text-obsidian text-[10px] font-extrabold font-mono px-2.5 py-1 rounded-md shadow-lg flex items-center gap-1 z-30">
             <CheckCircle2 className="w-3 h-3" /> AFTER (Completed System)
           </div>
         </div>
 
-        {/* BEFORE Image (Clipped Overlay Layer - Pre-Installation) */}
+        {/* BEFORE Image (Clipped Overlay Layer - Left Side) */}
         <div
-          className="absolute inset-0 w-full h-full overflow-hidden"
+          className="absolute top-0 bottom-0 left-0 h-full overflow-hidden z-20"
           style={{ width: `${sliderPosition}%` }}
         >
-          <img
-            src={beforeImgSrc}
-            alt={`${project.title} - Before Installation`}
-            loading="lazy"
-            decoding="async"
-            className="w-full h-full object-cover max-w-none"
-            style={{ width: '100%', height: '100%' }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-obsidian-dark/80 via-transparent to-transparent"></div>
-          <div className="absolute bottom-3 left-3 bg-danger/90 text-white text-[10px] font-extrabold font-mono px-2.5 py-1 rounded-md shadow-lg">
-            BEFORE (Pre-Install)
+          <div className="relative h-full" style={{ width: containerRef.current ? `${containerRef.current.offsetWidth}px` : '100%' }}>
+            <img
+              src={beforeImgSrc}
+              alt={`${project.title} - Before Installation`}
+              loading="lazy"
+              decoding="async"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-obsidian-dark/85 via-transparent to-transparent pointer-events-none"></div>
+            <div className="absolute bottom-3 left-3 bg-danger/90 text-white text-[10px] font-extrabold font-mono px-2.5 py-1 rounded-md shadow-lg z-30">
+              BEFORE (Pre-Install)
+            </div>
           </div>
         </div>
 
-        {/* Divider Bar & Grab Handle */}
+        {/* Divider Line & Center Grab Handle */}
         <div
-          className="absolute top-0 bottom-0 w-1 bg-copper shadow-[0_0_12px_#D68A3C] z-30"
+          className="absolute top-0 bottom-0 w-1 bg-copper shadow-[0_0_12px_#D68A3C] z-40 pointer-events-none"
           style={{ left: `calc(${sliderPosition}% - 2px)` }}
         >
           <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-copper text-obsidian flex items-center justify-center shadow-2xl border-2 border-paper">
