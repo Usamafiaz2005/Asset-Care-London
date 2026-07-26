@@ -25,12 +25,12 @@ export const projectsData = [
   },
   {
     id: "cp12-overhaul",
-    title: "Landlord CP12 & Safety Inspection",
+    title: "Landlord CP12 & Digital Compliance",
     category: "Gas Safety & Compliance",
     location: "Basildon, Essex",
     badge: "CP12 Certified",
     beforeImage: "/images/cp12-before.webp",
-    afterImage: "/images/smart-thermostat-ac.webp",
+    afterImage: "/images/cp12-after.webp",
     description: "Remediated corroded heating valves, conducted full gas tightness testing, and issued instant digital CP12 Gas Safety Compliance certificates for a 4-bedroom rented property.",
     specs: "Corrosion Remediation + Flue Gas Analysis + Same-Day PDF CP12",
     outcome: "100% Landlord Legal Compliance Guarantee"
