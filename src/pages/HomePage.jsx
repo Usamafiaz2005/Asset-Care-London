@@ -69,7 +69,7 @@ export default function HomePage() {
         description="Basildon's modern heating, plumbing, air conditioning, and solar energy engineers. Upfront transparent pricing, certified workmanship, and emergency callouts in South Essex."
       />
 
-      {/* 1. HERO SECTION WITH LUXURY COPPER PIPEWORK PHOTOGRAPHY */}
+      {/* 1. HERO SECTION WITH OPTIMIZED WEBP LUXURY COPPER PIPEWORK PHOTOGRAPHY */}
       <section ref={heroRef} className="relative pt-32 pb-16 md:pt-44 md:pb-24 overflow-hidden border-b border-obsidian-border">
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-copper/15 rounded-full blur-[140px] pointer-events-none"></div>
         <div className="absolute top-1/3 right-10 w-[500px] h-[500px] bg-teal/15 rounded-full blur-[120px] pointer-events-none"></div>
@@ -120,7 +120,7 @@ export default function HomePage() {
 
             <div className="lg:col-span-5 relative">
               <PhotoFrame 
-                imageSrc="/images/hero-copper-pipework.jpg"
+                imageSrc="/images/hero-copper-pipework.webp"
                 imageAlt="Precision Copper Pipework Engineering"
                 badge="Gas Safe & MCS Certified"
                 caption={{ title: "Precision Copper Pipework Engineering", subtitle: "A-Rated Systems • Up to 10 Year Warranty" }}
@@ -135,7 +135,7 @@ export default function HomePage() {
       {/* 2. AUTHORIZED BRAND PARTNERSHIP CAROUSEL */}
       <BrandCarousel />
 
-      {/* 3. OUTCOME-FOCUSED SOLUTIONS SECTION WITH SMART TECH PHOTOGRAPHY */}
+      {/* 3. OUTCOME-FOCUSED SOLUTIONS SECTION WITH WEBP SMART TECH PHOTOGRAPHY */}
       <section ref={solutionsRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
@@ -177,7 +177,7 @@ export default function HomePage() {
 
           <div className="lg:col-span-6">
             <PhotoFrame 
-              imageSrc="/images/smart-thermostat-ac.jpg"
+              imageSrc="/images/smart-thermostat-ac.webp"
               imageAlt="Smart Home Climate Control Technology"
               badge="13 Active Services"
               caption={{ title: "Smart Home Climate & Multi-Zone Control", subtitle: "Basildon, Wickford, Billericay & Southend Coverage" }}
@@ -193,7 +193,7 @@ export default function HomePage() {
         <ProcessTimeline />
       </section>
 
-      {/* 5. FULL-WIDTH RENEWABLE CLEAN ENERGY SPOTLIGHT WITH HIGH-RES LUXURY PHOTOGRAPHY */}
+      {/* 5. FULL-WIDTH RENEWABLE CLEAN ENERGY SPOTLIGHT WITH HIGH-RES WEBP PHOTOGRAPHY */}
       <section ref={renewablesRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="glass-panel rounded-3xl p-8 border border-teal/40 bg-gradient-to-br from-obsidian-card via-obsidian-dark to-obsidian-card space-y-8">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-obsidian-border pb-6">
@@ -213,7 +213,7 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <PhotoFrame 
-              imageSrc="/images/solar-pv-array.jpg"
+              imageSrc="/images/solar-pv-array.webp"
               imageAlt="Matte Black Solar PV Roof Array"
               badge="0% UK VAT Relief"
               caption={{ title: "Solar PV Panel Installations", subtitle: "Cut electricity bills by up to 70% with 0% VAT" }}
@@ -221,7 +221,7 @@ export default function HomePage() {
             />
 
             <PhotoFrame 
-              imageSrc="/images/home-battery-storage.jpg"
+              imageSrc="/images/home-battery-storage.webp"
               imageAlt="LFP Home Battery Storage Unit"
               badge="Grid Independent"
               caption={{ title: "Home Battery Storage Systems", subtitle: "Charge overnight on 7p/kWh off-peak tariffs" }}
@@ -229,7 +229,7 @@ export default function HomePage() {
             />
 
             <PhotoFrame 
-              imageSrc="/images/ev-wallbox-charger.jpg"
+              imageSrc="/images/ev-wallbox-charger.webp"
               imageAlt="Smart EV Wallbox Charger Unit"
               badge="Smart EV Charging"
               caption={{ title: "Smart EV Wallbox Chargers", subtitle: "7.4kW fast charging with PEN protection" }}

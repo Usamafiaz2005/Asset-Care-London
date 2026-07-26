@@ -24,9 +24,8 @@ export default function BeforeAfterSlider({ project }) {
     handleMove(e.clientX, rect);
   };
 
-  // Fallback image mapping if specific project doesn't define custom images
-  const beforeImgSrc = project.beforeImage || "/images/boiler-before.jpg";
-  const afterImgSrc = project.afterImage || (project.id === 'ac-loft' ? "/images/ac-after.jpg" : "/images/boiler-after.jpg");
+  const beforeImgSrc = project.beforeImage || "/images/boiler-before.webp";
+  const afterImgSrc = project.afterImage || (project.id === 'ac-loft' ? "/images/ac-after.webp" : "/images/boiler-after.webp");
 
   return (
     <div className="glass-panel rounded-3xl p-6 border border-obsidian-border space-y-4 shadow-xl">
@@ -40,7 +39,7 @@ export default function BeforeAfterSlider({ project }) {
         </div>
       </div>
 
-      {/* Interactive Drag Before/After Image Container */}
+      {/* Interactive Drag Before/After Image Container with Optimized WebP Photography */}
       <div
         className="relative w-full h-72 rounded-2xl overflow-hidden cursor-ew-resize select-none border border-obsidian-border"
         onMouseDown={() => setIsDragging(true)}
@@ -54,6 +53,8 @@ export default function BeforeAfterSlider({ project }) {
           <img
             src={afterImgSrc}
             alt={`${project.title} - After Installation`}
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-obsidian-dark/80 via-transparent to-transparent"></div>
@@ -70,6 +71,8 @@ export default function BeforeAfterSlider({ project }) {
           <img
             src={beforeImgSrc}
             alt={`${project.title} - Before Installation`}
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover max-w-none"
             style={{ width: '100%', height: '100%' }}
           />
