@@ -1,62 +1,67 @@
 import React from 'react';
-import { ShieldCheck, CheckCircle2, Award, Clock } from 'lucide-react';
+import { ShieldCheck, Award, FileCheck, CheckCircle2, Lock, Percent, CreditCard } from 'lucide-react';
 import { COMPANY_DETAILS } from '../data/constants';
 
-export default function TrustGuarantees({ compact = false }) {
+export default function TrustGuarantees() {
+  const trustItems = [
+    {
+      icon: ShieldCheck,
+      title: "Gas Safe & MCS Compliance",
+      desc: "All gas work is conducted by certified engineers, and solar/heat pump advisory adheres to MCS microgeneration standards.",
+      accent: "text-copper"
+    },
+    {
+      icon: Percent,
+      title: "0% UK VAT on Renewables",
+      desc: "Benefit from 0% UK Government VAT on all Solar PV panels, home battery storage, and heat pump installations until March 2027.",
+      accent: "text-teal"
+    },
+    {
+      icon: CreditCard,
+      title: "0% APR Trade Financing",
+      desc: "Spread the cost of your boiler or solar installation with flexible monthly payment plans via certified trade finance partners.",
+      accent: "text-copper"
+    },
+    {
+      icon: FileCheck,
+      title: "100% Upfront Fixed Price",
+      desc: "Itemized written quotes provided before work starts. Zero unexpected callout surprises or hidden invoice charges.",
+      accent: "text-teal"
+    }
+  ];
+
   return (
-    <div className={`glass-panel rounded-2xl border border-obsidian-border shadow-xl ${compact ? 'p-4' : 'p-6 md:p-8'} space-y-6`}>
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-obsidian-border pb-4">
+    <div className="glass-panel rounded-3xl p-8 border border-obsidian-border space-y-6">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-obsidian-border pb-4">
         <div>
-          <span className="text-xs font-mono font-bold text-teal uppercase tracking-widest block">VERIFIED STANDARDS & COMPLIANCE</span>
-          <h3 className="text-xl font-bold text-paper font-mono">Our Customer Quality Commitments</h3>
+          <span className="text-xs font-mono font-bold text-copper uppercase tracking-widest block">CERTIFIED ACCREDITATION & TRUST</span>
+          <h3 className="text-2xl font-bold text-paper">
+            Why Essex Homeowners Choose Asset Care London
+          </h3>
         </div>
-        <span className="text-xs font-mono text-copper bg-copper/10 px-3 py-1 rounded-full border border-copper/30 font-bold">
+        <div className="text-xs font-mono text-paper-muted bg-obsidian-dark px-3.5 py-1.5 rounded-full border border-obsidian-border">
           Companies House Reg: {COMPANY_DETAILS.regNumber}
-        </span>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        
-        {/* Guarantee 1: Companies House Registration */}
-        <div className="p-4 rounded-xl bg-obsidian-dark border border-obsidian-border space-y-2">
-          <div className="flex items-center gap-2 text-teal font-bold text-xs font-mono">
-            <ShieldCheck className="w-4 h-4 text-teal shrink-0" /> Verified Legal Registration
-          </div>
-          <p className="text-xs text-paper-muted leading-relaxed">
-            Incorporated 19 April 2026 under Companies House Reg <strong className="text-paper">{COMPANY_DETAILS.regNumber}</strong> (Director: {COMPANY_DETAILS.director}). Office: {COMPANY_DETAILS.street}, Basildon.
-          </p>
-        </div>
-
-        {/* Guarantee 2: Upfront Fixed Pricing */}
-        <div className="p-4 rounded-xl bg-obsidian-dark border border-obsidian-border space-y-2">
-          <div className="flex items-center gap-2 text-copper font-bold text-xs font-mono">
-            <CheckCircle2 className="w-4 h-4 text-copper shrink-0" /> 100% Fixed Upfront Pricing
-          </div>
-          <p className="text-xs text-paper-muted leading-relaxed">
-            Every job quote is itemized and agreed in writing before any installation work begins. Zero unexpected add-ons or hidden callout charges.
-          </p>
-        </div>
-
-        {/* Guarantee 3: Workmanship Warranty */}
-        <div className="p-4 rounded-xl bg-obsidian-dark border border-obsidian-border space-y-2">
-          <div className="flex items-center gap-2 text-teal font-bold text-xs font-mono">
-            <Award className="w-4 h-4 text-teal shrink-0" /> 12-Month Installation Guarantee
-          </div>
-          <p className="text-xs text-paper-muted leading-relaxed">
-            All pipework, valve fittings, and installation labor are backed by our 12-month Basildon HQ workmanship guarantee alongside manufacturer warranties.
-          </p>
-        </div>
-
-        {/* Guarantee 4: Certified Workmanship Scope */}
-        <div className="p-4 rounded-xl bg-obsidian-dark border border-obsidian-border space-y-2">
-          <div className="flex items-center gap-2 text-copper font-bold text-xs font-mono">
-            <Clock className="w-4 h-4 text-copper shrink-0" /> Qualified & Insured Engineers
-          </div>
-          <p className="text-xs text-paper-muted leading-relaxed">
-            All gas, plumbing, and air conditioning works are executed under Companies House SIC 43220 scope by fully trained, insured engineers.
-          </p>
-        </div>
-
+        {trustItems.map((item, idx) => {
+          const IconComponent = item.icon;
+          return (
+            <div key={idx} className="p-5 rounded-2xl bg-obsidian-dark border border-obsidian-border space-y-3 flex flex-col justify-between">
+              <div className="space-y-2">
+                <div className={`p-2.5 rounded-xl bg-obsidian-card w-fit border border-obsidian-border ${item.accent}`}>
+                  <IconComponent className="w-5 h-5" />
+                </div>
+                <h4 className="text-sm font-bold text-paper font-mono">{item.title}</h4>
+                <p className="text-xs text-paper-muted leading-relaxed">{item.desc}</p>
+              </div>
+              <div className="pt-2 border-t border-obsidian-border/50 text-[10px] font-mono text-paper-subtle flex items-center gap-1">
+                <CheckCircle2 className="w-3 h-3 text-teal" /> Verified Standard
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

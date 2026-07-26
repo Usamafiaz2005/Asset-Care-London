@@ -1,6 +1,6 @@
 import React, { useState, Suspense } from 'react';
 import { Link } from 'react-router-dom';
-import { Flame, Wrench, Wind, Zap, ShieldCheck, CheckCircle2, ArrowRight, Phone, MapPin, Star, Calculator, Clock, Award, HelpCircle, Thermometer, Info, HeartHandshake, FileCheck, Sun, Battery, Sparkles } from 'lucide-react';
+import { Flame, Wrench, Wind, Zap, ShieldCheck, CheckCircle2, ArrowRight, Phone, MapPin, Star, Calculator, Clock, Award, HelpCircle, Thermometer, Info, HeartHandshake, FileCheck, Sun, Battery, Sparkles, Percent, CreditCard } from 'lucide-react';
 import BoilerIllustration from '../components/illustrations/BoilerIllustration';
 import HeatPumpIllustration from '../components/illustrations/HeatPumpIllustration';
 import AirConIllustration from '../components/illustrations/AirConIllustration';
@@ -16,6 +16,8 @@ import TrustGuarantees from '../components/TrustGuarantees';
 import AnimatedStat from '../components/AnimatedStat';
 import SkeletonLoader from '../components/SkeletonLoader';
 import PhotoFrame from '../components/PhotoFrame';
+import BrandCarousel from '../components/BrandCarousel';
+import ProcessTimeline from '../components/ProcessTimeline';
 import SEOHead from '../components/SEOHead';
 import useScrollReveal from '../hooks/useScrollReveal';
 import { servicesData } from '../data/servicesData';
@@ -40,7 +42,6 @@ export default function HomePage() {
     setActiveFaqIndex(activeFaqIndex === index ? null : index);
   };
 
-  // Robust Icon Renderer mapping directly to illustration/service type
   const renderServiceIcon = (illustration) => {
     switch (illustration) {
       case 'SolarPVIllustration':
@@ -68,8 +69,8 @@ export default function HomePage() {
         description="Basildon's modern heating, plumbing, air conditioning, and solar energy engineers. Upfront transparent pricing, certified workmanship, and emergency callouts in South Essex."
       />
 
-      {/* 1. ASYMMETRIC HERO SECTION WITH PHOTO-ILLUSTRATION BLENDING */}
-      <section ref={heroRef} className="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden border-b border-obsidian-border">
+      {/* 1. HERO SECTION WITH HIGH-TRUST INCENTIVE BADGES */}
+      <section ref={heroRef} className="relative pt-32 pb-16 md:pt-44 md:pb-24 overflow-hidden border-b border-obsidian-border">
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-copper/15 rounded-full blur-[140px] pointer-events-none"></div>
         <div className="absolute top-1/3 right-10 w-[500px] h-[500px] bg-teal/15 rounded-full blur-[120px] pointer-events-none"></div>
 
@@ -77,9 +78,14 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             <div className="lg:col-span-7 space-y-6 text-left">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-obsidian-card border border-copper/30 text-xs font-mono text-paper-subtle shadow-md">
-                <span className="w-2 h-2 rounded-full bg-copper animate-ping"></span>
-                <span>Basildon HQ (SS14) • Heating, Plumbing & Solar Engineers</span>
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-obsidian-card border border-copper/30 text-xs font-mono text-paper-subtle shadow-md">
+                  <span className="w-2 h-2 rounded-full bg-copper animate-ping"></span>
+                  Basildon HQ (SS14) • Heating, Plumbing & Solar Engineers
+                </span>
+                <span className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-teal/20 text-teal border border-teal/40 text-xs font-mono font-bold">
+                  <Percent className="w-3.5 h-3.5" /> 0% UK VAT on Renewables
+                </span>
               </div>
 
               <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-paper leading-[1.08]">
@@ -88,7 +94,7 @@ export default function HomePage() {
               </h1>
 
               <p className="text-base sm:text-lg text-paper-muted max-w-2xl leading-relaxed">
-                Basildon’s modern alternative to traditional trade calls. Upfront fixed pricing, certified workmanship, and complete energy solutions for boilers, AC, solar PV, and heat pumps.
+                Basildon’s modern alternative to traditional trade calls. Upfront fixed pricing, certified Gas Safe & MCS engineering, and 0% APR trade finance options.
               </p>
 
               <div className="flex flex-wrap items-center gap-4 pt-2">
@@ -114,8 +120,8 @@ export default function HomePage() {
 
             <div className="lg:col-span-5 relative">
               <PhotoFrame 
-                badge="Precision Engineering"
-                caption={{ title: "A-Rated High Efficiency Systems", subtitle: "Up to 10 Year Manufacturer Warranty Protection" }}
+                badge="Gas Safe & MCS Certified"
+                caption={{ title: "A-Rated High Efficiency Systems", subtitle: "0% VAT on Solar & Heat Pumps • 0% Finance Options Available" }}
                 aspectRatio="aspect-[4/3]"
               >
                 <BoilerIllustration className="w-full h-auto max-w-[320px] mx-auto" />
@@ -126,7 +132,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. OUTCOME-FOCUSED ASYMMETRIC SOLUTIONS SECTION */}
+      {/* 2. AUTHORIZED BRAND PARTNERSHIP CAROUSEL */}
+      <BrandCarousel />
+
+      {/* 3. OUTCOME-FOCUSED SOLUTIONS SECTION */}
       <section ref={solutionsRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
@@ -136,7 +145,7 @@ export default function HomePage() {
               Clear Communication. Upfront Fixed Pricing. Professional Workmanship.
             </h2>
             <p className="text-sm text-paper-muted leading-relaxed">
-              Generate your own clean solar electricity, cool your bedroom during summer heatwaves, or upgrade to an A-rated combi boiler with zero hidden surprises.
+              Generate your own clean solar electricity with 0% UK VAT, cool your bedroom during summer heatwaves, or upgrade to an A-rated combi boiler with flexible financing options.
             </p>
 
             <div className="space-y-4 pt-2">
@@ -157,10 +166,10 @@ export default function HomePage() {
               </div>
 
               <div className="flex items-start gap-3.5 p-4 rounded-2xl bg-obsidian-card border border-obsidian-border">
-                <HeartHandshake className="w-5 h-5 text-copper shrink-0 mt-0.5" />
+                <CreditCard className="w-5 h-5 text-copper shrink-0 mt-0.5" />
                 <div>
-                  <h3 className="text-sm font-bold text-paper font-mono">Clean Respectful Cleanup</h3>
-                  <p className="text-xs text-paper-muted">We protect your home with floor coverings and leave your property spotlessly clean upon completion.</p>
+                  <h3 className="text-sm font-bold text-paper font-mono">Spread the Cost with Trade Finance</h3>
+                  <p className="text-xs text-paper-muted">Flexible monthly repayment options on all major boiler and solar PV panel installations.</p>
                 </div>
               </div>
             </div>
@@ -179,18 +188,23 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 3. FULL-WIDTH RENEWABLE CLEAN ENERGY SPOTLIGHT */}
+      {/* 4. "WHAT HAPPENS NEXT?" 3-STEP PROCESS TIMELINE */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <ProcessTimeline />
+      </section>
+
+      {/* 5. FULL-WIDTH RENEWABLE CLEAN ENERGY SPOTLIGHT WITH 0% VAT INCENTIVES */}
       <section ref={renewablesRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="glass-panel rounded-3xl p-8 border border-teal/40 bg-gradient-to-br from-obsidian-card via-obsidian-dark to-obsidian-card space-y-8">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-obsidian-border pb-6">
             <div>
               <span className="text-xs font-mono font-bold text-teal uppercase tracking-widest block flex items-center gap-1.5">
-                <Sparkles className="w-4 h-4 text-teal" /> CLEAN RENEWABLE ENERGY
+                <Sparkles className="w-4 h-4 text-teal" /> UK GOVERNMENT 0% VAT RELIEF UNTIL MARCH 2027
               </span>
               <h2 className="text-2xl sm:text-4xl font-extrabold text-paper">
-                Generate, Store & Power Your Home Cleanly
+                Generate & Store Solar Electricity with 0% UK VAT
               </h2>
-              <p className="text-xs sm:text-sm text-paper-muted">Active Solar PV, Home Battery Storage, and Smart EV Charger installations tailored to your property.</p>
+              <p className="text-xs sm:text-sm text-paper-muted">Active Solar PV, Home Battery Storage, and Smart EV Charger installations with zero VAT charges.</p>
             </div>
             <Link to="/services/solar-pv" className="btn-primary text-xs py-2.5 px-5">
               Explore Solar Solutions <ArrowRight className="w-3.5 h-3.5" />
@@ -199,8 +213,8 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <PhotoFrame 
-              badge="Clean Energy"
-              caption={{ title: "Solar PV Installations", subtitle: "Cut electricity bills by up to 70%" }}
+              badge="0% UK VAT Relief"
+              caption={{ title: "Solar PV Installations", subtitle: "Cut electricity bills by up to 70% with 0% VAT" }}
               aspectRatio="aspect-square"
             >
               <SolarPVIllustration className="w-full h-auto max-w-[220px] mx-auto text-copper" />
@@ -225,7 +239,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. CORE SERVICES BENTO GRID WITH CLEAN DYNAMIC ICONS */}
+      {/* 6. CORE SERVICES BENTO GRID */}
       <section ref={servicesRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center max-w-2xl mx-auto space-y-2">
           <span className="text-xs font-mono font-bold text-copper uppercase tracking-widest block">FULL SERVICE SCOPE</span>
@@ -278,7 +292,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. INTERACTIVE CALCULATORS SECTION WITH SKELETON LOADERS */}
+      {/* 7. INTERACTIVE CALCULATORS SECTION */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <div className="text-center max-w-2xl mx-auto space-y-2">
           <span className="text-xs font-mono font-bold text-copper uppercase tracking-widest block">TRANSPARENT TOOLS</span>
@@ -300,12 +314,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 6. VERIFIED STANDARDS & TRUST COMPLIANCE */}
+      {/* 8. VERIFIED STANDARDS & TRUST COMPLIANCE */}
       <section ref={trustRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <TrustGuarantees />
       </section>
 
-      {/* 7. WORKMANSHIP SHOWCASE WITH CASE STUDY CONTEXT */}
+      {/* 9. WORKMANSHIP SHOWCASE */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
           <div>
@@ -334,7 +348,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 8. REVIEWS & TRANSPARENT DISCLOSURE */}
+      {/* 10. REVIEWS & TRANSPARENT DISCLOSURE */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center max-w-2xl mx-auto space-y-2">
           <span className="text-xs font-mono font-bold text-teal uppercase tracking-widest block">CUSTOMER REVIEWS & STANDARDS</span>
@@ -377,7 +391,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 9. LOCAL BASILDON & SOUTH ESSEX SPOTLIGHT */}
+      {/* 11. LOCAL BASILDON & SOUTH ESSEX SPOTLIGHT */}
       <section ref={basildonRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         <div className="glass-panel rounded-3xl p-8 border border-obsidian-border space-y-6">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-obsidian-border pb-4">
@@ -433,7 +447,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 10. ACCESSIBLE FAQ ACCORDION & FINAL CTA */}
+      {/* 12. ACCESSIBLE FAQ ACCORDION & FINAL CTA */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         <div className="text-center space-y-2">
           <span className="text-xs font-mono font-bold text-copper uppercase tracking-widest block">FREQUENTLY ASKED QUESTIONS</span>

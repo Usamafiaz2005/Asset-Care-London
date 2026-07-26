@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import CookieConsent from './components/CookieConsent';
 import SkeletonLoader from './components/SkeletonLoader';
+import WhatsAppWidget from './components/WhatsAppWidget';
 import { Phone } from 'lucide-react';
 import { COMPANY_DETAILS } from './data/constants';
 
@@ -72,7 +73,10 @@ export default function App() {
           </Suspense>
         </main>
 
-        {/* Persistent Floating Emergency Button (Mobile Viewports) */}
+        {/* Persistent Floating WhatsApp Lead Generation Widget (Bottom Left) */}
+        <WhatsAppWidget />
+
+        {/* Persistent Floating Emergency Button (Bottom Right, Mobile Viewports) */}
         <div className="fixed bottom-4 right-4 z-40 md:hidden">
           <a
             href={COMPANY_DETAILS.phoneHref}
