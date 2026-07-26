@@ -1,77 +1,98 @@
 import React, { useState } from 'react';
-import BoilerIllustration from './illustrations/BoilerIllustration';
+import { ArrowLeftRight, CheckCircle2 } from 'lucide-react';
 
-export default function BeforeAfterSlider({ project = null }) {
-  const [sliderPos, setSliderPos] = useState(50);
+export default function BeforeAfterSlider({ project }) {
+  const [sliderPosition, setSliderPosition] = useState(50);
+  const [isDragging, setIsDragging] = useState(false);
 
-  const handleSliderMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const pos = Math.max(0, Math.min(100, (x / rect.width) * 100));
-    setSliderPos(pos);
+  const handleMove = (clientX, rect) => {
+    const x = clientX - rect.left;
+    let position = (x / rect.width) * 100;
+    if (position < 0) position = 0;
+    if (position > 100) position = 100;
+    setSliderPosition(position);
   };
 
+  const handleTouchMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    handleMove(e.touches[0].clientX, rect);
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    handleMove(e.clientX, rect);
+  };
+
+  // Fallback image mapping if specific project doesn't define custom images
+  const beforeImgSrc = project.beforeImage || "/images/boiler-before.jpg";
+  const afterImgSrc = project.afterImage || (project.id === 'ac-loft' ? "/images/ac-after.jpg" : "/images/boiler-after.jpg");
+
   return (
-    <div className="glass-panel rounded-2xl p-6 border border-obsidian-border space-y-4">
-      <div className="flex justify-between items-center">
+    <div className="glass-panel rounded-3xl p-6 border border-obsidian-border space-y-4 shadow-xl">
+      <div className="flex justify-between items-center border-b border-obsidian-border pb-3">
         <div>
-          <span className="text-[10px] text-teal font-mono uppercase tracking-widest font-bold block">
-            {project?.category || "Boiler System Transformation"}
-          </span>
-          <h4 className="text-base font-bold text-paper">
-            {project?.title || "18-Year System Conversion to Combi"}
-          </h4>
+          <span className="text-[10px] font-mono text-copper font-bold uppercase tracking-wider block">{project.category}</span>
+          <h3 className="text-lg font-bold text-paper">{project.title}</h3>
         </div>
-        <span className="text-xs font-mono text-copper bg-copper/10 px-3 py-1 rounded-full border border-copper/30 font-bold">
-          {project?.badge || "10 Year Warranty"}
-        </span>
+        <div className="text-xs font-mono font-bold text-teal bg-teal/10 px-3 py-1 rounded-full border border-teal/30">
+          {project.badge || "Verified Installation"}
+        </div>
       </div>
 
-      {/* Interactive Draggable Viewport */}
+      {/* Interactive Drag Before/After Image Container */}
       <div
-        className="relative w-full h-80 rounded-xl overflow-hidden cursor-ew-resize bg-obsidian-dark border border-obsidian-border select-none"
-        onMouseMove={(e) => {
-          if (e.buttons === 1) handleSliderMove(e);
-        }}
-        onClick={handleSliderMove}
+        className="relative w-full h-72 rounded-2xl overflow-hidden cursor-ew-resize select-none border border-obsidian-border"
+        onMouseDown={() => setIsDragging(true)}
+        onMouseUp={() => setIsDragging(false)}
+        onMouseLeave={() => setIsDragging(false)}
+        onMouseMove={handleMouseMove}
+        onTouchMove={handleTouchMove}
       >
-        {/* Before View (Background) */}
-        <div className="absolute inset-0 bg-gradient-to-br from-obsidian-card to-obsidian-dark flex flex-col items-center justify-center p-6 text-center">
-          <div className="opacity-40 grayscale blur-[1px]">
-            <BoilerIllustration className="w-48 h-48 opacity-40" />
-          </div>
-          <div className="mt-2 text-xs font-mono font-bold text-danger bg-danger/20 border border-danger/40 px-3 py-1 rounded-full">
-            {project?.beforeLabel || "BEFORE: Corrosion, Noisy Pump & Inefficient (G-Rated)"}
-          </div>
-        </div>
-
-        {/* After View (Foreground Clipped) */}
-        <div
-          className="absolute inset-y-0 left-0 bg-gradient-to-br from-obsidian-dark via-obsidian-card to-obsidian-dark border-r-2 border-copper flex flex-col items-center justify-center p-6 text-center overflow-hidden transition-all duration-75"
-          style={{ width: `${sliderPos}%` }}
-        >
-          <div className="w-full flex flex-col items-center justify-center">
-            <BoilerIllustration className="w-52 h-52 text-copper" />
-            <div className="mt-2 text-xs font-mono font-bold text-teal bg-teal/20 border border-teal/40 px-3 py-1 rounded-full whitespace-nowrap">
-              {project?.afterLabel || "AFTER: Clean A-Rated Combi + Powerflushed System"}
-            </div>
+        {/* AFTER Image (Base Layer - Modern Installation) */}
+        <div className="absolute inset-0 w-full h-full">
+          <img
+            src={afterImgSrc}
+            alt={`${project.title} - After Installation`}
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-obsidian-dark/80 via-transparent to-transparent"></div>
+          <div className="absolute bottom-3 left-3 bg-teal/90 text-obsidian text-[10px] font-extrabold font-mono px-2.5 py-1 rounded-md shadow-lg flex items-center gap-1">
+            <CheckCircle2 className="w-3 h-3" /> AFTER (Completed System)
           </div>
         </div>
 
-        {/* Handle Line */}
+        {/* BEFORE Image (Clipped Overlay Layer - Pre-Installation) */}
         <div
-          className="absolute top-0 bottom-0 w-1 bg-copper shadow-[0_0_12px_#D68A3C] pointer-events-none flex items-center justify-center"
-          style={{ left: `${sliderPos}%` }}
+          className="absolute inset-0 w-full h-full overflow-hidden"
+          style={{ width: `${sliderPosition}%` }}
         >
-          <div className="w-8 h-8 rounded-full bg-copper text-obsidian font-bold flex items-center justify-center text-xs shadow-lg font-mono">
-            ↔
+          <img
+            src={beforeImgSrc}
+            alt={`${project.title} - Before Installation`}
+            className="w-full h-full object-cover max-w-none"
+            style={{ width: '100%', height: '100%' }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-obsidian-dark/80 via-transparent to-transparent"></div>
+          <div className="absolute bottom-3 left-3 bg-danger/90 text-white text-[10px] font-extrabold font-mono px-2.5 py-1 rounded-md shadow-lg">
+            BEFORE (Pre-Install)
+          </div>
+        </div>
+
+        {/* Divider Bar & Grab Handle */}
+        <div
+          className="absolute top-0 bottom-0 w-1 bg-copper shadow-[0_0_12px_#D68A3C] z-30"
+          style={{ left: `calc(${sliderPosition}% - 2px)` }}
+        >
+          <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-copper text-obsidian flex items-center justify-center shadow-2xl border-2 border-paper">
+            <ArrowLeftRight className="w-4 h-4" />
           </div>
         </div>
       </div>
 
-      <div className="flex justify-between items-center text-xs text-paper-muted font-mono">
+      <div className="flex justify-between items-center text-[11px] font-mono text-paper-muted">
         <span>← Drag slider to compare transformation →</span>
-        <span className="text-copper">{project?.location || "Billericay, Essex"}</span>
+        <span className="text-copper">{project.location || "South Essex"}</span>
       </div>
     </div>
   );
