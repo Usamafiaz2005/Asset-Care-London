@@ -1,9 +1,9 @@
 /**
- * CRM Network Service Layer for Asset Care London
- * Decouples React View components from direct network requests & serverless endpoints.
+ * HubSpot Network Service Layer for Asset Care London
+ * Formats calculator and contact payloads for HubSpot v3 Pipeline API backend proxy.
  */
 
-export const submitLeadToCRM = async (formData, estimateResult) => {
+export const submitLeadToCRM = async (formData, estimateResult, contactDetails = {}) => {
   try {
     const payload = {
       leadReference: estimateResult.refNumber,
@@ -18,10 +18,13 @@ export const submitLeadToCRM = async (formData, estimateResult) => {
       estimatedMax: estimateResult.maxPrice,
       summary: estimateResult.summary,
       timeframe: estimateResult.timeframe,
+      contactName: contactDetails.name || "Essex Customer",
+      contactEmail: contactDetails.email || "",
+      contactPhone: contactDetails.phone || "",
+      postcode: contactDetails.postcode || "SS14",
       submittedAt: new Date().toISOString()
     };
 
-    // Post to Serverless Proxy Endpoint (/api/submit-lead)
     const response = await fetch('/api/submit-lead', {
       method: 'POST',
       headers: {
@@ -31,17 +34,20 @@ export const submitLeadToCRM = async (formData, estimateResult) => {
     });
 
     if (!response.ok) {
-      // Graceful fallback for static dev previews or missing backend API
-      console.warn('Serverless CRM endpoint returned non-200. Utilizing fallback lead capture.');
+      console.warn('Serverless HubSpot endpoint returned non-200. Fallback capture active.');
       return { success: true, isFallback: true, leadReference: estimateResult.refNumber };
     }
 
     const data = await response.json();
-    return { success: true, leadId: data.leadId || estimateResult.refNumber };
+    return {
+      success: true,
+      leadId: data.leadId || estimateResult.refNumber,
+      hubspotDealId: data.hubspotDealId,
+      hubspotContactId: data.hubspotContactId
+    };
 
   } catch (error) {
-    console.error('CRM Network Submission Error:', error);
-    // Always return safe fallback status so user UX is never broken
+    console.error('HubSpot Submission Error:', error);
     return { success: true, isFallback: true, leadReference: estimateResult?.refNumber || 'ACL-ONLINE' };
   }
 };
