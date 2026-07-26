@@ -17,10 +17,22 @@ export const projectsData = [
     category: "Air Conditioning",
     location: "Laindon, Essex",
     badge: "A+++ Efficiency",
-    beforeImage: "/images/boiler-before.jpg",
+    beforeImage: "/images/ac-before.jpg",
     afterImage: "/images/ac-after.jpg",
     description: "Installed a multi-split inverter air conditioning unit providing quiet cooling and supplementary winter heating with concealed trunking and smart Wi-Fi controls.",
     specs: "Daikin Sensira Dual Split System (Bedrooms & Loft Office)",
     outcome: "19dB whisper-quiet summer climate control"
+  },
+  {
+    id: "cp12-overhaul",
+    title: "Landlord CP12 & Heating Overhaul",
+    category: "Gas Safety & Compliance",
+    location: "Basildon, Essex",
+    badge: "CP12 Certified",
+    beforeImage: "/images/cp12-before.jpg",
+    afterImage: "/images/cp12-after.jpg",
+    description: "Full annual Gas Safety inspection, flue gas analysis, appliance servicing, and digital CP12 certificate issued for a 4-bedroom rented residential property.",
+    specs: "Full Gas Tightness Test + Appliance Servicing + Same-Day PDF CP12",
+    outcome: "100% Landlord Compliance Guarantee"
   }
 ];
