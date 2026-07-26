@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { servicesData, futureRenewablesData } from '../data/servicesData';
-import { Flame, Wrench, Wind, Zap, ShieldCheck, Thermometer, ArrowRight, Sun, Battery } from 'lucide-react';
+import { servicesData } from '../data/servicesData';
+import IconRenderer from '../components/IconRenderer';
+import { ArrowRight } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import { COMPANY_DETAILS } from '../data/constants';
 
@@ -35,20 +36,12 @@ export default function ServicesPage() {
             <Link
               key={srv.id}
               to={`/services/${srv.id}`}
-              className="glass-panel glass-panel-hover rounded-2xl p-6 border border-obsidian-border flex flex-col justify-between space-y-4 group block relative overflow-hidden"
+              className="glass-panel glass-panel-hover rounded-2xl p-6 border border-obsidian-border flex flex-col justify-between space-y-4 group block relative overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-copper"
             >
               <div className="space-y-3">
                 <div className="flex justify-between items-start">
                   <div className="w-12 h-12 rounded-xl bg-obsidian-dark border border-copper/30 flex items-center justify-center text-copper group-hover:border-copper transition-colors">
-                    {srv.id.includes('boiler') && <Flame className="w-6 h-6" />}
-                    {srv.id.includes('solar') && <Sun className="w-6 h-6 text-copper" />}
-                    {srv.id.includes('battery') && <Battery className="w-6 h-6 text-teal" />}
-                    {srv.id.includes('ev') && <Zap className="w-6 h-6 text-teal" />}
-                    {srv.id.includes('air') && <Wind className="w-6 h-6 text-teal" />}
-                    {srv.id.includes('heat-pump') && <Zap className="w-6 h-6 text-teal" />}
-                    {srv.id.includes('plumbing') && <Wrench className="w-6 h-6" />}
-                    {srv.id.includes('central') && <Thermometer className="w-6 h-6" />}
-                    {srv.id.includes('gas') && <ShieldCheck className="w-6 h-6 text-copper" />}
+                    <IconRenderer name={srv.iconName} className="w-6 h-6" />
                   </div>
                   {srv.badge && (
                     <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-full bg-copper/10 text-copper border border-copper/30">

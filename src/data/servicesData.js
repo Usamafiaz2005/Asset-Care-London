@@ -276,30 +276,3 @@ export const servicesData = [
     features: ["Water Leak Isolation", "Gas Leak Containment", "Boiler Breakdown Response", "Temporary Heating Support", "Safe Re-commissioning"]
   }
 ];
-
-export const futureRenewablesData = [
-  {
-    id: "solar-pv",
-    title: "Solar PV Installations",
-    tagline: "Generate your own clean electricity and reduce grid dependence.",
-    illustration: "SolarPVIllustration",
-    status: "Active Service",
-    desc: "Residential and commercial solar photovoltaic arrays installed across South Essex."
-  },
-  {
-    id: "battery-storage",
-    title: "Home Battery Storage",
-    tagline: "Store excess solar power and charge on cheap off-peak tariffs.",
-    illustration: "BatteryStorageIllustration",
-    status: "Active Service",
-    desc: "Seamless integration with smart home batteries (Tesla Powerwall, GivEnergy) to maximize energy independence."
-  },
-  {
-    id: "ev-chargers",
-    title: "Smart EV Chargers",
-    tagline: "Fast 7.4kW to 22kW home electric vehicle charging wallboxes.",
-    illustration: "EVChargerIllustration",
-    status: "Active Service",
-    desc: "Dedicated smart EV wallbox installation for fast, safe home vehicle charging."
-  }
-];

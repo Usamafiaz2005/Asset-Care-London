@@ -1,341 +1,357 @@
 import React, { useState } from 'react';
-import { Calculator, CheckCircle2, ArrowRight, ArrowLeft, ShieldCheck, Flame, Wrench, Wind } from 'lucide-react';
+import { servicesData } from '../data/servicesData';
+import IconRenderer from './IconRenderer';
+import { calculateEstimate } from '../utils/pricingEngine';
+import { ArrowRight, ArrowLeft, CheckCircle2, Phone, ShieldCheck, Clock, FileCheck } from 'lucide-react';
 import { COMPANY_DETAILS } from '../data/constants';
 
-export default function QuoteCalculator({ onComplete = null }) {
+export default function QuoteCalculator({ onComplete = () => {} }) {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     serviceType: 'boiler-installation',
-    propertyType: 'semi-detached',
+    propertyType: 'semi',
     bedrooms: '3',
     currentFuel: 'mains-gas',
-    urgency: 'within-week',
-    name: '',
-    phone: '',
-    email: '',
-    postcode: 'SS14'
+    serviceOption: 'standard',
+    urgency: 'flexible'
   });
-  const [submitted, setSubmitted] = useState(false);
 
-  const calculateEstimate = () => {
-    let baseMin = 1650;
-    let baseMax = 2250;
+  const [estimateResult, setEstimateResult] = useState(null);
 
-    if (formData.serviceType === 'boiler-repair') {
-      return { min: 75, max: 180, label: 'Fixed Diagnostic + Parts Estimate' };
-    }
-    if (formData.serviceType === 'air-conditioning') {
-      baseMin = 1250;
-      baseMax = 1850;
-      if (parseInt(formData.bedrooms) > 3) {
-        baseMin += 600;
-        baseMax += 900;
-      }
-      return { min: baseMin, max: baseMax, label: 'Split-System AC Install' };
-    }
-    if (formData.serviceType === 'gas-safety-certificates') {
-      return { min: 70, max: 95, label: 'CP12 Landlord Inspection' };
-    }
-
-    if (formData.bedrooms === '4' || formData.bedrooms === '5+') {
-      baseMin += 400;
-      baseMax += 650;
-    }
-    if (formData.currentFuel === 'oil' || formData.currentFuel === 'electric') {
-      baseMin += 350;
-      baseMax += 500;
-    }
-
-    return { min: baseMin, max: baseMax, label: 'A-Rated Boiler Installation (inc. VAT)' };
-  };
+  const selectedServiceObj = servicesData.find(s => s.id === formData.serviceType) || servicesData[0];
 
   const handleNext = () => {
-    if (step < 4) setStep(step + 1);
+    if (step < 3) {
+      setStep(step + 1);
+    } else if (step === 3) {
+      const result = calculateEstimate(formData);
+      setEstimateResult(result);
+      setStep(4);
+      onComplete(result);
+    }
   };
 
-  const handleBack = () => {
-    if (step > 1) setStep(step - 1);
+  const handlePrev = () => {
+    if (step > 1) {
+      setStep(step - 1);
+    }
   };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
-    if (onComplete) onComplete(formData);
-  };
-
-  const estimate = calculateEstimate();
 
   return (
-    <div className="glass-panel rounded-2xl p-6 md:p-8 border border-obsidian-border shadow-2xl relative overflow-hidden">
-      {/* Ambient Background Glow */}
-      <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-copper/10 blur-3xl pointer-events-none"></div>
+    <div className="glass-panel rounded-3xl p-6 sm:p-8 border border-obsidian-border space-y-6 shadow-2xl relative overflow-hidden">
+      {/* Background Accent Lighting */}
+      <div className="absolute -top-24 -right-24 w-64 h-64 bg-copper/10 rounded-full blur-3xl pointer-events-none"></div>
 
       {/* Header */}
-      <div className="flex items-center justify-between mb-6 pb-4 border-b border-obsidian-border">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-copper/20 border border-copper/40 flex items-center justify-center text-copper font-bold">
-            <Calculator className="w-5 h-5" />
-          </div>
-          <div>
-            <h3 className="text-lg font-bold text-paper font-mono">Instant Quote Calculator</h3>
-            <p className="text-xs text-paper-muted">Transparent fixed estimates for South Essex homeowners</p>
-          </div>
+      <div className="flex justify-between items-center border-b border-obsidian-border pb-4">
+        <div>
+          <span className="text-[11px] font-mono text-copper font-bold uppercase tracking-wider block">
+            INSTANT ESTIMATOR • STEP {step} OF 4
+          </span>
+          <h3 className="text-xl sm:text-2xl font-bold text-paper">
+            {step === 1 && "Select Required Service"}
+            {step === 2 && "Property & Occupancy Details"}
+            {step === 3 && `Service Specifics for ${selectedServiceObj.title}`}
+            {step === 4 && "Your Fixed Price Estimate & Summary"}
+          </h3>
         </div>
-
-        <div className="text-xs font-mono font-bold text-copper bg-copper/10 px-3 py-1.5 rounded-full border border-copper/30">
-          Step {step} of 4
+        <div className="text-xs font-mono font-bold text-paper-muted">
+          {step === 4 ? "COMPLETE" : `${Math.round((step / 4) * 100)}%`}
         </div>
       </div>
 
-      {submitted ? (
-        <div className="py-10 text-center space-y-4">
-          <div className="w-16 h-16 rounded-full bg-teal/20 border border-teal flex items-center justify-center mx-auto text-teal">
-            <CheckCircle2 className="w-8 h-8" />
-          </div>
-          <h4 className="text-2xl font-bold text-paper">Quote Request Received!</h4>
-          <p className="text-sm text-paper-muted max-w-md mx-auto">
-            Thank you, <span className="text-paper font-bold">{formData.name}</span>. Estimated range: <span className="text-copper font-bold">£{estimate.min} – £{estimate.max}</span>. Our Basildon engineering desk will review your details and send your official fixed quote via email/SMS.
-          </p>
-          <div className="p-4 rounded-xl bg-obsidian-card border border-obsidian-border text-xs text-paper-subtle max-w-sm mx-auto font-mono">
-            Reference: ACL-{Math.floor(100000 + Math.random() * 900000)} • Postcode: {formData.postcode}
-          </div>
-        </div>
-      ) : (
-        <div>
-          {/* Progress Bar */}
-          <div className="w-full bg-obsidian-card h-1.5 rounded-full mb-8 overflow-hidden">
-            <div 
-              className="bg-gradient-to-r from-copper to-teal h-full transition-all duration-300" 
-              style={{ width: `${(step / 4) * 100}%` }}
-            ></div>
-          </div>
-
-          {/* STEP 1: Service Type */}
-          {step === 1 && (
-            <div className="space-y-4">
-              <h4 className="text-sm font-bold text-paper uppercase tracking-wider font-mono">Select Service Needed:</h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {[
-                  { id: 'boiler-installation', label: 'New Boiler Installation', desc: 'A-rated replacement with up to 10yr warranty', icon: Flame, color: 'text-copper' },
-                  { id: 'boiler-repair', label: 'Boiler Repair & Diagnosis', desc: 'Fast emergency repair & diagnostic', icon: Wrench, color: 'text-copper' },
-                  { id: 'air-conditioning', label: 'Air Conditioning (AC)', desc: 'Silent split system cooling & heating', icon: Wind, color: 'text-teal' },
-                  { id: 'gas-safety-certificates', label: 'Landlord CP12 Safety Check', desc: 'Annual compliance inspection & PDF cert', icon: ShieldCheck, color: 'text-copper' },
-                ].map((item) => {
-                  const IconComp = item.icon;
-                  const isSelected = formData.serviceType === item.id;
-                  return (
-                    <button
-                      key={item.id}
-                      type="button"
-                      onClick={() => setFormData({ ...formData, serviceType: item.id })}
-                      className={`p-4 rounded-xl text-left border transition-all ${isSelected ? 'bg-obsidian-card border-copper shadow-lg' : 'bg-obsidian-dark/50 border-obsidian-border hover:border-paper-muted'}`}
-                    >
-                      <div className="flex items-center gap-3 mb-1">
-                        <IconComp className={`w-5 h-5 ${item.color}`} />
-                        <span className="text-sm font-bold text-paper">{item.label}</span>
-                      </div>
-                      <p className="text-xs text-paper-muted">{item.desc}</p>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          )}
-
-          {/* STEP 2: Property Type & Bedrooms */}
-          {step === 2 && (
-            <div className="space-y-5">
-              <div>
-                <h4 className="text-sm font-bold text-paper uppercase tracking-wider font-mono mb-3">Property Type:</h4>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                  {['Detached', 'Semi-Detached', 'Terraced', 'Apartment/Flat'].map((prop) => {
-                    const slug = prop.toLowerCase().replace('/', '-');
-                    const isSelected = formData.propertyType === slug;
-                    return (
-                      <button
-                        key={prop}
-                        type="button"
-                        onClick={() => setFormData({ ...formData, propertyType: slug })}
-                        className={`p-3 rounded-lg text-xs font-semibold border text-center transition-all ${isSelected ? 'bg-copper text-obsidian font-bold border-copper' : 'bg-obsidian-card text-paper-subtle border-obsidian-border hover:border-copper'}`}
-                      >
-                        {prop}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
-              <div>
-                <h4 className="text-sm font-bold text-paper uppercase tracking-wider font-mono mb-3">Number of Bedrooms:</h4>
-                <div className="grid grid-cols-5 gap-2">
-                  {['1', '2', '3', '4', '5+'].map((beds) => (
-                    <button
-                      key={beds}
-                      type="button"
-                      onClick={() => setFormData({ ...formData, bedrooms: beds })}
-                      className={`p-3 rounded-lg text-xs font-bold border text-center transition-all ${formData.bedrooms === beds ? 'bg-copper text-obsidian border-copper' : 'bg-obsidian-card text-paper-subtle border-obsidian-border hover:border-copper'}`}
-                    >
-                      {beds} Beds
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* STEP 3: Fuel Type & Urgency */}
-          {step === 3 && (
-            <div className="space-y-5">
-              <div>
-                <h4 className="text-sm font-bold text-paper uppercase tracking-wider font-mono mb-3">Current Fuel Source:</h4>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                  {[
-                    { id: 'mains-gas', label: 'Mains Gas' },
-                    { id: 'oil', label: 'Oil Tank' },
-                    { id: 'electric', label: 'Electric' },
-                    { id: 'lpg', label: 'LPG Bottle' }
-                  ].map((fuel) => (
-                    <button
-                      key={fuel.id}
-                      type="button"
-                      onClick={() => setFormData({ ...formData, currentFuel: fuel.id })}
-                      className={`p-3 rounded-lg text-xs font-semibold border text-center transition-all ${formData.currentFuel === fuel.id ? 'bg-teal text-paper font-bold border-teal' : 'bg-obsidian-card text-paper-subtle border-obsidian-border hover:border-teal'}`}
-                    >
-                      {fuel.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <h4 className="text-sm font-bold text-paper uppercase tracking-wider font-mono mb-3">Required Timeframe:</h4>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                  {[
-                    { id: 'emergency', label: 'Emergency (24-48 Hours)' },
-                    { id: 'within-week', label: 'Next 7 Days' },
-                    { id: 'planning', label: 'Planning / Researching' }
-                  ].map((urg) => (
-                    <button
-                      key={urg.id}
-                      type="button"
-                      onClick={() => setFormData({ ...formData, urgency: urg.id })}
-                      className={`p-3 rounded-lg text-xs font-semibold border text-center transition-all ${formData.urgency === urg.id ? 'bg-copper text-obsidian font-bold border-copper' : 'bg-obsidian-card text-paper-subtle border-obsidian-border hover:border-copper'}`}
-                    >
-                      {urg.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* STEP 4: Live Estimate & Contact Submission */}
-          {step === 4 && (
-            <form onSubmit={handleSubmit} className="space-y-5">
-              {/* Live Estimate Display Card */}
-              <div className="p-4 rounded-xl bg-gradient-to-r from-obsidian-card to-obsidian-dark border border-copper/40 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div>
-                  <span className="text-[11px] text-paper-muted uppercase tracking-wider font-mono block">Estimated Cost Range ({estimate.label}):</span>
-                  <span className="text-2xl sm:text-3xl font-extrabold text-gradient-copper">
-                    £{estimate.min} – £{estimate.max}
-                  </span>
-                  <span className="text-[10px] text-paper-muted block">Includes VAT, fitting & full system flush</span>
-                </div>
-                <div className="text-right sm:text-right text-xs text-teal font-medium">
-                  ✓ Fixed-Price Guarantee<br />
-                  ✓ 100% No Hidden Costs
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div>
-                  <label htmlFor="quote-name" className="block text-xs font-semibold text-paper-subtle mb-1">Your Full Name *</label>
-                  <input
-                    id="quote-name"
-                    type="text"
-                    required
-                    placeholder="e.g. John Smith"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full bg-obsidian-dark border border-obsidian-border rounded-lg px-3 py-2.5 text-xs text-paper focus:border-copper focus:outline-none"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="quote-phone" className="block text-xs font-semibold text-paper-subtle mb-1">Phone Number (For Quote SMS) *</label>
-                  <input
-                    id="quote-phone"
-                    type="tel"
-                    required
-                    placeholder="07123 456789"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full bg-obsidian-dark border border-obsidian-border rounded-lg px-3 py-2.5 text-xs text-paper focus:border-copper focus:outline-none"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="quote-email" className="block text-xs font-semibold text-paper-subtle mb-1">Email Address *</label>
-                  <input
-                    id="quote-email"
-                    type="email"
-                    required
-                    placeholder="john@example.co.uk"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full bg-obsidian-dark border border-obsidian-border rounded-lg px-3 py-2.5 text-xs text-paper focus:border-copper focus:outline-none"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="quote-postcode" className="block text-xs font-semibold text-paper-subtle mb-1">Essex Postcode *</label>
-                  <input
-                    id="quote-postcode"
-                    type="text"
-                    required
-                    placeholder="e.g. SS14 1PR"
-                    value={formData.postcode}
-                    onChange={(e) => setFormData({ ...formData, postcode: e.target.value })}
-                    className="w-full bg-obsidian-dark border border-obsidian-border rounded-lg px-3 py-2.5 text-xs text-paper focus:border-copper focus:outline-none uppercase"
-                  />
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2 text-[11px] text-paper-muted">
-                <input type="checkbox" id="quote-consent" required className="accent-copper" />
-                <label htmlFor="quote-consent">I agree to receive my official itemized quote via email/phone. (UK GDPR Compliant)</label>
-              </div>
-
-              <button type="submit" className="w-full btn-primary justify-center text-sm py-3 font-bold">
-                Lock In Fixed Quote Estimate <ArrowRight className="w-4 h-4" />
-              </button>
-            </form>
-          )}
-
-          {/* Navigation Controls */}
-          {step < 4 && (
-            <div className="mt-8 flex justify-between items-center pt-4 border-t border-obsidian-border">
-              {step > 1 ? (
-                <button
-                  type="button"
-                  onClick={handleBack}
-                  className="btn-secondary text-xs px-4 py-2"
-                >
-                  <ArrowLeft className="w-3.5 h-3.5" /> Back
-                </button>
-              ) : (
-                <div></div>
-              )}
-
+      {/* Step 1: Select Service (Mapped dynamically from servicesData) */}
+      {step === 1 && (
+        <div className="space-y-4">
+          <label className="text-xs font-mono text-paper-subtle block">
+            Which service are you looking to quote?
+          </label>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-80 overflow-y-auto pr-1">
+            {servicesData.slice(0, 8).map((srv) => (
               <button
                 type="button"
-                onClick={handleNext}
-                className="btn-primary text-xs px-6 py-2.5"
+                key={srv.id}
+                onClick={() => setFormData({ ...formData, serviceType: srv.id })}
+                className={`p-4 rounded-xl border text-left transition-all flex items-start gap-3 ${
+                  formData.serviceType === srv.id
+                    ? 'bg-copper/15 border-copper text-paper shadow-lg'
+                    : 'bg-obsidian-dark border-obsidian-border text-paper-subtle hover:border-copper/50'
+                }`}
               >
-                Next Step <ArrowRight className="w-3.5 h-3.5" />
+                <div className={`p-2 rounded-lg ${formData.serviceType === srv.id ? 'bg-copper text-obsidian' : 'bg-obsidian-card text-copper'}`}>
+                  <IconRenderer name={srv.iconName} className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="text-xs font-bold font-mono text-paper">{srv.title}</div>
+                  <div className="text-[11px] text-paper-muted line-clamp-1">{srv.tagline}</div>
+                </div>
               </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Step 2: Property Type & Bedrooms */}
+      {step === 2 && (
+        <div className="space-y-6">
+          <div className="space-y-3">
+            <label className="text-xs font-mono text-paper-subtle block">
+              1. What type of property is this for?
+            </label>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              {[
+                { id: 'flat', label: 'Flat / Apartment' },
+                { id: 'terraced', label: 'Terraced' },
+                { id: 'semi', label: 'Semi-Detached' },
+                { id: 'detached', label: 'Detached' }
+              ].map((prop) => (
+                <button
+                  type="button"
+                  key={prop.id}
+                  onClick={() => setFormData({ ...formData, propertyType: prop.id })}
+                  className={`p-3.5 rounded-xl border text-center text-xs font-mono transition-all ${
+                    formData.propertyType === prop.id
+                      ? 'bg-copper/20 border-copper text-copper font-bold'
+                      : 'bg-obsidian-dark border-obsidian-border text-paper-subtle hover:border-copper/40'
+                  }`}
+                >
+                  {prop.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="space-y-3">
+            <label className="text-xs font-mono text-paper-subtle block">
+              2. Number of bedrooms / zones?
+            </label>
+            <div className="grid grid-cols-4 gap-3">
+              {['1-2', '3', '4+', '5+'].map((beds) => (
+                <button
+                  type="button"
+                  key={beds}
+                  onClick={() => setFormData({ ...formData, bedrooms: beds })}
+                  className={`p-3 rounded-xl border text-center text-xs font-mono font-bold transition-all ${
+                    formData.bedrooms === beds
+                      ? 'bg-teal/20 border-teal text-teal'
+                      : 'bg-obsidian-dark border-obsidian-border text-paper-subtle hover:border-teal/40'
+                  }`}
+                >
+                  {beds} Bed
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Step 3: DYNAMIC BRANCHING SPECIFICS BASED ON SERVICE TYPE */}
+      {step === 3 && (
+        <div className="space-y-6">
+          {/* Branch A: Heating & Boilers */}
+          {(formData.serviceType === 'boiler-installation' || formData.serviceType === 'boiler-repair' || formData.serviceType === 'central-heating') && (
+            <div className="space-y-3">
+              <label className="text-xs font-mono text-paper-subtle block">
+                Current Heating Fuel Source:
+              </label>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                {[
+                  { id: 'mains-gas', label: 'Mains Natural Gas' },
+                  { id: 'lpg', label: 'LPG Gas' },
+                  { id: 'oil', label: 'Oil Tank' },
+                  { id: 'electric', label: 'Electric / Storage' }
+                ].map((fuel) => (
+                  <button
+                    type="button"
+                    key={fuel.id}
+                    onClick={() => setFormData({ ...formData, currentFuel: fuel.id })}
+                    className={`p-3 rounded-xl border text-center text-xs font-mono transition-all ${
+                      formData.currentFuel === fuel.id
+                        ? 'bg-copper/20 border-copper text-copper font-bold'
+                        : 'bg-obsidian-dark border-obsidian-border text-paper-subtle hover:border-copper/40'
+                    }`}
+                  >
+                    {fuel.label}
+                  </button>
+                ))}
+              </div>
             </div>
           )}
+
+          {/* Branch B: Solar PV & Batteries & EV Chargers */}
+          {(formData.serviceType === 'solar-pv' || formData.serviceType === 'battery-storage' || formData.serviceType === 'ev-chargers') && (
+            <div className="space-y-3">
+              <label className="text-xs font-mono text-paper-subtle block">
+                Primary Target Goal:
+              </label>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {[
+                  { id: 'grid-cut', label: 'Cut Electricity Grid Bills' },
+                  { id: 'overnight-tariff', label: 'Charge Overnight on Cheap Tariffs (7p/kWh)' },
+                  { id: 'power-cut-backup', label: 'Emergency Backup During Power Cuts' },
+                  { id: 'fast-ev-charging', label: 'Fast 7.4kW Driveway Vehicle Charging' }
+                ].map((opt) => (
+                  <button
+                    type="button"
+                    key={opt.id}
+                    onClick={() => setFormData({ ...formData, serviceOption: opt.id })}
+                    className={`p-3.5 rounded-xl border text-left text-xs font-mono transition-all ${
+                      formData.serviceOption === opt.id
+                        ? 'bg-teal/20 border-teal text-teal font-bold'
+                        : 'bg-obsidian-dark border-obsidian-border text-paper-subtle hover:border-teal/40'
+                    }`}
+                  >
+                    {opt.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Branch C: Air Conditioning */}
+          {formData.serviceType === 'air-conditioning' && (
+            <div className="space-y-3">
+              <label className="text-xs font-mono text-paper-subtle block">
+                Primary Cooling Target Location:
+              </label>
+              <div className="grid grid-cols-2 gap-3">
+                {[
+                  { id: 'bedroom', label: 'Master Bedroom' },
+                  { id: 'home-office', label: 'Home Office / Loft' },
+                  { id: 'living-room', label: 'Living Room / Conservatory' },
+                  { id: 'multi-room', label: 'Full Home Multi-Split System' }
+                ].map((rm) => (
+                  <button
+                    type="button"
+                    key={rm.id}
+                    onClick={() => setFormData({ ...formData, serviceOption: rm.id })}
+                    className={`p-3 rounded-xl border text-center text-xs font-mono transition-all ${
+                      formData.serviceOption === rm.id
+                        ? 'bg-teal/20 border-teal text-teal font-bold'
+                        : 'bg-obsidian-dark border-obsidian-border text-paper-subtle hover:border-teal/40'
+                    }`}
+                  >
+                    {rm.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Urgency Dispatch Selection for All Services */}
+          <div className="space-y-3 pt-2">
+            <label className="text-xs font-mono text-paper-subtle block">
+              Desired Installation / Service Timeframe:
+            </label>
+            <div className="grid grid-cols-2 gap-3">
+              {[
+                { id: 'immediate', label: 'Urgent / Same-Day (24-48 Hrs)' },
+                { id: 'flexible', label: 'Standard (Next 1-2 Weeks)' }
+              ].map((urg) => (
+                <button
+                  type="button"
+                  key={urg.id}
+                  onClick={() => setFormData({ ...formData, urgency: urg.id })}
+                  className={`p-3.5 rounded-xl border text-center text-xs font-mono transition-all ${
+                    formData.urgency === urg.id
+                      ? 'bg-copper/20 border-copper text-copper font-bold'
+                      : 'bg-obsidian-dark border-obsidian-border text-paper-subtle hover:border-copper/40'
+                  }`}
+                >
+                  {urg.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Step 4: RECEIPT STYLE SUMMARY & INSTANT DISPATCH DISCLOSURE */}
+      {step === 4 && estimateResult && (
+        <div className="space-y-6">
+          {/* Itemized Receipt Panel */}
+          <div className="p-6 rounded-2xl bg-obsidian-dark border border-copper/50 space-y-4 shadow-xl">
+            <div className="flex justify-between items-center border-b border-obsidian-border pb-3">
+              <div>
+                <span className="text-[10px] font-mono text-paper-muted uppercase tracking-widest block">QUOTE REFERENCE</span>
+                <span className="text-sm font-mono font-bold text-copper">{estimateResult.refNumber}</span>
+              </div>
+              <div className="text-right">
+                <span className="text-[10px] font-mono text-paper-muted uppercase tracking-widest block">SERVICE TYPE</span>
+                <span className="text-xs font-mono font-bold text-paper">{selectedServiceObj.title}</span>
+              </div>
+            </div>
+
+            <div className="space-y-2 text-xs">
+              <div className="flex justify-between text-paper-subtle">
+                <span>Scope Overview:</span>
+                <span className="text-paper font-semibold">{estimateResult.summary}</span>
+              </div>
+              <div className="flex justify-between text-paper-subtle">
+                <span>Dispatch Window:</span>
+                <span className="text-teal font-mono font-semibold">{estimateResult.timeframe}</span>
+              </div>
+              <div className="flex justify-between text-paper-subtle">
+                <span>Guarantee:</span>
+                <span className="text-copper font-mono font-semibold">Upfront Fixed Price Guarantee</span>
+              </div>
+            </div>
+
+            <div className="pt-3 border-t border-obsidian-border flex justify-between items-center">
+              <div>
+                <span className="text-xs text-paper-muted block">Estimated Price Range</span>
+                <span className="text-2xl font-extrabold text-copper font-mono">{estimateResult.formattedRange}</span>
+              </div>
+              <div className="text-right text-[10px] text-paper-muted font-mono">
+                Inc. VAT & Materials
+              </div>
+            </div>
+          </div>
+
+          {/* Dispatch CTAs */}
+          <div className="space-y-3">
+            <a
+              href={`https://wa.me/${COMPANY_DETAILS.phoneRaw}?text=Hello%20Asset%20Care%20London,%20I%20would%20like%20to%20confirm%20my%20quote%20reference%20${estimateResult.refNumber}%20for%20${encodeURIComponent(selectedServiceObj.title)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full btn-primary justify-center text-sm py-3.5 flex items-center gap-2"
+            >
+              <Phone className="w-4 h-4" /> Confirm & Dispatch via WhatsApp / Phone
+            </a>
+
+            <button
+              onClick={() => setStep(1)}
+              className="w-full btn-secondary justify-center text-xs py-2.5 flex"
+            >
+              Recalculate Estimate
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Navigation Footer */}
+      {step < 4 && (
+        <div className="flex justify-between items-center pt-4 border-t border-obsidian-border">
+          {step > 1 ? (
+            <button
+              type="button"
+              onClick={handlePrev}
+              className="btn-secondary text-xs px-4 py-2 flex items-center gap-1.5"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" /> Back
+            </button>
+          ) : (
+            <div></div>
+          )}
+
+          <button
+            type="button"
+            onClick={handleNext}
+            className="btn-primary text-xs px-6 py-2.5 flex items-center gap-2"
+          >
+            <span>{step === 3 ? "Calculate Estimate" : "Next Step"}</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </button>
         </div>
       )}
     </div>
