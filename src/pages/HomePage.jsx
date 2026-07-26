@@ -193,7 +193,7 @@ export default function HomePage() {
         <ProcessTimeline />
       </section>
 
-      {/* 5. FULL-WIDTH RENEWABLE CLEAN ENERGY SPOTLIGHT WITH SOLAR ARRAY PHOTOGRAPHY */}
+      {/* 5. FULL-WIDTH RENEWABLE CLEAN ENERGY SPOTLIGHT WITH HIGH-RES LUXURY PHOTOGRAPHY */}
       <section ref={renewablesRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="glass-panel rounded-3xl p-8 border border-teal/40 bg-gradient-to-br from-obsidian-card via-obsidian-dark to-obsidian-card space-y-8">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-obsidian-border pb-6">
@@ -216,25 +216,25 @@ export default function HomePage() {
               imageSrc="/images/solar-pv-array.jpg"
               imageAlt="Matte Black Solar PV Roof Array"
               badge="0% UK VAT Relief"
-              caption={{ title: "Solar PV Installations", subtitle: "Cut electricity bills by up to 70% with 0% VAT" }}
+              caption={{ title: "Solar PV Panel Installations", subtitle: "Cut electricity bills by up to 70% with 0% VAT" }}
               aspectRatio="aspect-square"
             />
 
             <PhotoFrame 
+              imageSrc="/images/home-battery-storage.jpg"
+              imageAlt="LFP Home Battery Storage Unit"
               badge="Grid Independent"
-              caption={{ title: "Home Battery Storage", subtitle: "Charge overnight on 7p/kWh off-peak tariffs" }}
+              caption={{ title: "Home Battery Storage Systems", subtitle: "Charge overnight on 7p/kWh off-peak tariffs" }}
               aspectRatio="aspect-square"
-            >
-              <BatteryStorageIllustration className="w-full h-auto max-w-[220px] mx-auto text-teal" />
-            </PhotoFrame>
+            />
 
             <PhotoFrame 
+              imageSrc="/images/ev-wallbox-charger.jpg"
+              imageAlt="Smart EV Wallbox Charger Unit"
               badge="Smart EV Charging"
               caption={{ title: "Smart EV Wallbox Chargers", subtitle: "7.4kW fast charging with PEN protection" }}
               aspectRatio="aspect-square"
-            >
-              <EVChargerIllustration className="w-full h-auto max-w-[220px] mx-auto text-copper" />
-            </PhotoFrame>
+            />
           </div>
         </div>
       </section>
