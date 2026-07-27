@@ -6,7 +6,7 @@ import { COMPANY_DETAILS } from '../data/constants';
 
 export default function Footer() {
   return (
-    <footer className="bg-obsidian-dark border-t border-obsidian-border pt-16 pb-8 text-paper-subtle text-sm">
+    <footer className="bg-obsidian-dark border-t border-obsidian-border pt-16 pb-20 md:pb-8 text-paper-subtle text-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Top Grid */}
@@ -37,6 +37,14 @@ export default function Footer() {
               <div className="text-paper-muted text-[11px]">
                 Director: {COMPANY_DETAILS.director} • Status: {COMPANY_DETAILS.status} (Inc. {COMPANY_DETAILS.incDate})
               </div>
+            </div>
+
+            {/* Regulatory FCA Credit Broker Status Disclosure */}
+            <div className="p-3 rounded-lg bg-obsidian-dark border border-copper/30 text-[11px] text-paper-muted space-y-1 font-mono">
+              <span className="font-bold text-copper block">Regulatory Financial Disclosure:</span>
+              <p className="leading-tight">
+                Asset Care London Ltd acts as a credit broker, not a lender. 0% APR trade finance options are subject to status, affordability, and lender credit approval.
+              </p>
             </div>
           </div>
 

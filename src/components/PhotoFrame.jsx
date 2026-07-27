@@ -7,6 +7,7 @@ export default function PhotoFrame({
   badge = null, 
   caption = null, 
   aspectRatio = "aspect-[4/3]",
+  priority = false,
   className = "" 
 }) {
   return (
@@ -18,6 +19,9 @@ export default function PhotoFrame({
           <img 
             src={imageSrc} 
             alt={imageAlt} 
+            loading={priority ? "eager" : "lazy"}
+            fetchPriority={priority ? "high" : "auto"}
+            decoding="async"
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
           />
           {/* Obsidian Gradient Brand Overlay for Luxury Vibe */}

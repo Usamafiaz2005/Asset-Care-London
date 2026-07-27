@@ -110,6 +110,7 @@ export default function HomePage() {
                 badge="Gas Safe ID: 16377721"
                 caption={{ title: "Certified Trade Engineering", subtitle: "A-Rated Systems Installed by Uniformed Specialists" }}
                 aspectRatio="aspect-[4/3]"
+                priority={true}
               />
             </div>
 
