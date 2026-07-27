@@ -1,6 +1,6 @@
 import React, { useState, Suspense } from 'react';
 import { Link } from 'react-router-dom';
-import { Flame, Wrench, Wind, Zap, ShieldCheck, CheckCircle2, ArrowRight, Phone, MapPin, Star, Calculator, Clock, Award, HelpCircle, Thermometer, Info, HeartHandshake, FileCheck, Sun, Battery, Sparkles, Percent, CreditCard, ShieldAlert, Truck, UserCheck } from 'lucide-react';
+import { Flame, Wrench, Wind, Zap, ShieldCheck, CheckCircle2, ArrowRight, Phone, MapPin, Star, Calculator, Clock, Award, HelpCircle, Thermometer, Info, HeartHandshake, FileCheck, Sun, Battery, Sparkles, Percent, CreditCard, ShieldAlert, Truck, UserCheck, Layers, Eye } from 'lucide-react';
 import QuoteCalculator from '../components/QuoteCalculator';
 import HeatPumpCalculator from '../components/HeatPumpCalculator';
 import BeforeAfterSlider from '../components/BeforeAfterSlider';
@@ -10,6 +10,7 @@ import SkeletonLoader from '../components/SkeletonLoader';
 import PhotoFrame from '../components/PhotoFrame';
 import BrandCarousel from '../components/BrandCarousel';
 import ProcessTimeline from '../components/ProcessTimeline';
+import CaseStudyModal from '../components/CaseStudyModal';
 import SEOHead from '../components/SEOHead';
 import useScrollReveal from '../hooks/useScrollReveal';
 import { servicesData } from '../data/servicesData';
@@ -21,6 +22,7 @@ import { COMPANY_DETAILS, REVIEW_DISCLAIMER_TEXT } from '../data/constants';
 
 export default function HomePage() {
   const [activeFaqIndex, setActiveFaqIndex] = useState(null);
+  const [selectedCaseStudy, setSelectedCaseStudy] = useState(null);
 
   // Scroll reveal observers for homepage sections
   const [heroRef] = useScrollReveal(0.1);
@@ -34,6 +36,9 @@ export default function HomePage() {
   const toggleFaq = (index) => {
     setActiveFaqIndex(activeFaqIndex === index ? null : index);
   };
+
+  const featuredProject = projectsData.find(p => p.featured) || projectsData[0];
+  const secondaryProjects = projectsData.filter(p => p.id !== featuredProject.id);
 
   return (
     <div className="space-y-28 pb-20">
@@ -270,9 +275,9 @@ export default function HomePage() {
         <ProcessTimeline />
       </section>
 
-      {/* 6. WORKMANSHIP SHOWCASE & DEEP CASE STUDIES */}
-      <section ref={caseStudyRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+      {/* 6. WORKMANSHIP SHOWCASE: ASYMMETRICAL FEATURED HERO CASE STUDY + SECONDARY GRID */}
+      <section ref={caseStudyRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-obsidian-border pb-6">
           <div>
             <span className="text-xs font-mono font-bold text-copper uppercase tracking-widest block font-mono">WORKMANSHIP SHOWCASE</span>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-paper">
@@ -285,14 +290,66 @@ export default function HomePage() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {projectsData.map((proj) => (
-            <div key={proj.id} className="space-y-3">
-              <BeforeAfterSlider project={proj} />
-              <div className="p-4 rounded-xl bg-obsidian-card border border-obsidian-border text-xs text-paper-subtle space-y-1">
-                <div className="font-bold text-paper font-mono">Case Study Context: {proj.title}</div>
-                <p className="text-paper-muted text-[11px] leading-relaxed">{proj.description}</p>
-                <div className="text-copper font-mono text-[10px] pt-1">Technical Specs: {proj.specs}</div>
+        {/* Asymmetrical Layout: Featured Project Hero Card (Large) */}
+        <div className="glass-panel rounded-3xl p-8 border border-copper/50 bg-gradient-to-br from-obsidian-card via-obsidian-dark to-obsidian-card space-y-6 shadow-2xl">
+          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
+            <div>
+              <span className="text-xs font-mono font-bold text-copper uppercase tracking-widest block">FEATURED TRANSFORMATIONAL CASE STUDY</span>
+              <h3 className="text-2xl sm:text-4xl font-extrabold text-paper">{featuredProject.title}</h3>
+              <div className="text-xs font-mono text-paper-muted pt-1">📍 {featuredProject.location}</div>
+            </div>
+
+            {/* Micro-Overlays: Duration, Warranty & Energy Savings */}
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="px-3 py-1.5 rounded-full bg-copper/20 text-copper border border-copper/40 text-xs font-mono font-bold">
+                ⏱️ {featuredProject.duration}
+              </span>
+              <span className="px-3 py-1.5 rounded-full bg-teal/20 text-teal border border-teal/40 text-xs font-mono font-bold">
+                💰 {featuredProject.energySavings}
+              </span>
+              <span className="px-3 py-1.5 rounded-full bg-obsidian-dark text-paper border border-obsidian-border text-xs font-mono font-bold">
+                ⭐ {featuredProject.rating}
+              </span>
+            </div>
+          </div>
+
+          {/* Large Slider Component */}
+          <BeforeAfterSlider project={featuredProject} />
+
+          <div className="p-6 rounded-2xl bg-obsidian-dark border border-obsidian-border flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div className="space-y-1 text-xs text-paper-subtle">
+              <div className="font-bold text-paper font-mono text-sm">{featuredProject.specs}</div>
+              <p className="text-paper-muted text-xs leading-relaxed max-w-3xl">{featuredProject.description}</p>
+            </div>
+            <button
+              onClick={() => setSelectedCaseStudy(featuredProject)}
+              className="btn-primary text-xs py-3 px-6 shrink-0 flex items-center gap-2"
+            >
+              <Eye className="w-4 h-4" /> Read Full Case Study
+            </button>
+          </div>
+        </div>
+
+        {/* Secondary Projects Grid (3 Cards) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {secondaryProjects.map((proj) => (
+            <div key={proj.id} className="glass-panel glass-panel-hover rounded-3xl p-6 border border-obsidian-border space-y-4 flex flex-col justify-between group transition-all duration-300 hover:scale-[1.02] hover:border-copper/40">
+              <div className="space-y-4">
+                <BeforeAfterSlider project={proj} />
+                <div className="space-y-2 text-xs">
+                  <div className="font-bold text-paper font-mono text-sm group-hover:text-copper transition-colors">{proj.title}</div>
+                  <p className="text-paper-muted text-[11px] leading-relaxed line-clamp-2">{proj.description}</p>
+                </div>
+              </div>
+
+              <div className="pt-3 border-t border-obsidian-border/50 flex justify-between items-center text-xs">
+                <span className="text-copper font-mono text-[10px] font-bold">{proj.duration}</span>
+                <button
+                  onClick={() => setSelectedCaseStudy(proj)}
+                  className="text-xs font-semibold text-teal hover:text-copper flex items-center gap-1 transition-colors"
+                >
+                  View Case Study <ArrowRight className="w-3.5 h-3.5" />
+                </button>
               </div>
             </div>
           ))}
@@ -487,6 +544,14 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* DEEP INTERACTIVE CASE STUDY MODAL */}
+      {selectedCaseStudy && (
+        <CaseStudyModal
+          project={selectedCaseStudy}
+          onClose={() => setSelectedCaseStudy(null)}
+        />
+      )}
 
     </div>
   );
