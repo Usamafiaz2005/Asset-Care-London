@@ -1,6 +1,6 @@
 import React, { useState, Suspense } from 'react';
 import { Link } from 'react-router-dom';
-import { Flame, Wrench, Wind, Zap, ShieldCheck, CheckCircle2, ArrowRight, Phone, MapPin, Star, Calculator, Clock, Award, HelpCircle, Thermometer, Info, HeartHandshake, FileCheck, Sun, Battery, Sparkles, Percent, CreditCard, ShieldAlert, Truck, UserCheck } from 'lucide-react';
+import { Flame, Wrench, Wind, Zap, ShieldCheck, CheckCircle2, ArrowRight, Phone, MapPin, Star, Calculator, Clock, Award, HelpCircle, Thermometer, Info, HeartHandshake, FileCheck, Sun, Battery, Sparkles, Percent, CreditCard, ShieldAlert, Truck, UserCheck, Layers } from 'lucide-react';
 import QuoteCalculator from '../components/QuoteCalculator';
 import HeatPumpCalculator from '../components/HeatPumpCalculator';
 import BeforeAfterSlider from '../components/BeforeAfterSlider';
@@ -36,43 +36,45 @@ export default function HomePage() {
   };
 
   return (
-    <div className="space-y-28 pb-20">
+    <div className="space-y-28 pb-20 bg-[#0D1117] text-paper">
       <SEOHead 
-        title={`${COMPANY_DETAILS.shortName} | Luxury Heating, Cooling & Solar Engineers Basildon`}
-        description="Basildon's premier heating, plumbing, air conditioning, and solar energy engineers. Upfront transparent pricing, certified trade workmanship, and emergency dispatch in South Essex."
+        title={`${COMPANY_DETAILS.shortName} | Architectural Heating, AC & Solar Engineering Basildon`}
+        description="Basildon's premier heating, plumbing, air conditioning, and solar energy engineers. Upfront transparent pricing, architectural trade workmanship, and emergency dispatch in South Essex."
       />
 
-      {/* 1. HERO SECTION: APPLE PRESENTATION EDITORIAL OVERLAY */}
-      <section ref={heroRef} className="relative pt-32 pb-20 md:pt-44 md:pb-28 border-b border-obsidian-border bg-gradient-to-b from-obsidian-dark via-obsidian-card to-obsidian-dark overflow-hidden">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[750px] bg-copper/15 rounded-full blur-[140px] pointer-events-none"></div>
-        <div className="absolute top-1/3 right-10 w-[550px] h-[550px] bg-teal/15 rounded-full blur-[130px] pointer-events-none"></div>
+      {/* 1. HERO SECTION: FOSTER + PARTNERS ARCHITECTURAL COMPOSITION */}
+      <section ref={heroRef} className="relative pt-32 pb-24 md:pt-44 md:pb-32 border-b border-obsidian-border bg-gradient-to-b from-[#0D1117] via-[#12181C] to-[#182128] overflow-hidden">
+        {/* Layered Background Depth: Technical Blueprint Grid & Soft Copper Glow */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#1E273015_1px,transparent_1px),linear-gradient(to_bottom,#1E273015_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none"></div>
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-copper/15 rounded-full blur-[150px] pointer-events-none"></div>
+        <div className="absolute top-1/3 right-10 w-[600px] h-[600px] bg-teal/15 rounded-full blur-[140px] pointer-events-none"></div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
-            {/* Left Narrative Column */}
+            {/* Left Column: Heading, Supporting Text, CTAs, Static Trust Bar */}
             <div className="lg:col-span-7 space-y-6 text-left">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-obsidian-dark border border-copper/40 text-xs font-mono text-paper shadow-md">
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#12181C] border border-copper/40 text-xs font-mono text-paper shadow-md">
                   <span className="w-2.5 h-2.5 rounded-full bg-copper animate-pulse"></span>
-                  Basildon Dispatch Desk (SS14) • Gas Safe & MCS Certified
+                  Basildon HQ (SS14) • Architectural Engineering
                 </span>
                 <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-teal/20 text-teal border border-teal/40 text-xs font-mono font-bold">
-                  <Percent className="w-3.5 h-3.5" /> 0% UK VAT on Solar & Battery
+                  <Percent className="w-3.5 h-3.5" /> 0% UK VAT on Solar &amp; Battery
                 </span>
               </div>
 
-              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-paper leading-[1.06]">
+              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-paper leading-[1.05]">
                 Precision Engineering <br />
-                <span className="text-gradient-copper">For South Essex Homes</span>
+                <span className="text-gradient-copper">For Essex Architecture</span>
               </h1>
 
               <p className="text-base sm:text-xl text-paper-muted max-w-2xl leading-relaxed font-light">
-                No high-pressure sales calls. No unvetted sub-contractors. Just certified heating, air conditioning, and solar energy installed with mathematical precision.
+                No high-pressure sales calls. No unvetted sub-contractors. Just certified heating, air conditioning, and solar energy installed with Foster + Partners level engineering precision.
               </p>
 
               <div className="flex flex-wrap items-center gap-4 pt-2">
-                <Link to="/quote" className="btn-primary text-sm py-4 px-8 shadow-xl">
+                <Link to="/quote" className="btn-primary text-sm py-4 px-8 shadow-2xl">
                   <Calculator className="w-4.5 h-4.5" />
                   <span>Calculate Upfront Fixed Quote</span>
                   <ArrowRight className="w-4 h-4" />
@@ -80,32 +82,43 @@ export default function HomePage() {
 
                 <a href={COMPANY_DETAILS.phoneHref} className="btn-secondary text-sm py-4 px-7">
                   <Phone className="w-4 h-4 text-copper" />
-                  <span>Speak to Dispatch: {COMPANY_DETAILS.phone}</span>
+                  <span>Dispatch Desk: {COMPANY_DETAILS.phone}</span>
                 </a>
               </div>
 
-              {/* Editorial Stat Highlights */}
+              {/* Static Architectural Trust Bar */}
               <div className="pt-8 grid grid-cols-2 sm:grid-cols-4 gap-6 border-t border-obsidian-border text-xs text-paper-subtle font-mono">
                 <div className="space-y-0.5">
                   <div className="text-2xl sm:text-3xl font-extrabold text-paper font-mono">2026</div>
                   <div className="font-bold text-copper uppercase tracking-wider">Incorporated</div>
                   <div className="text-[10px] text-paper-muted">Reg: 16377721</div>
                 </div>
-                <AnimatedStat endValue={8} label="Towns Covered" subtext="Basildon & Radius" />
+                <AnimatedStat endValue={8} label="Towns Covered" subtext="Basildon &amp; South Essex Radius" />
                 <AnimatedStat endValue={100} suffix="%" label="Fixed Price" subtext="Zero Unexpected Add-ons" />
                 <AnimatedStat endValue={7500} prefix="£" label="Max Grant Value" subtext="UK Heat Pump Grant" />
               </div>
             </div>
 
-            {/* Right Hero Photo Frame Overlay */}
+            {/* Right Column: Focal Modern UK Home at Dusk Architectural Image with Floating Glass Cards */}
             <div className="lg:col-span-5 relative">
               <PhotoFrame 
-                imageSrc="/images/engineer-at-work.webp"
-                imageAlt="Certified Asset Care London Heating Engineer at Work"
-                badge="Gas Safe ID: 16377721"
-                caption={{ title: "Certified Trade Engineering", subtitle: "A-Rated Systems Installed by Uniformed Specialists" }}
+                imageSrc="/images/modern-uk-home-dusk.webp"
+                imageAlt="Luxury Modern UK Detached Residence at Dusk in South Essex"
+                badge="Gas Safe &amp; MCS Certified"
+                caption={{ title: "South Essex Residential Architecture", subtitle: "A-Rated Systems Installed by Certified Engineers" }}
                 aspectRatio="aspect-[4/3]"
               />
+
+              {/* Floating UI Card Overlay 1 (Bottom Left Accent) */}
+              <div className="absolute -bottom-6 -left-6 z-30 glass-panel rounded-2xl p-4 border border-copper/50 shadow-2xl bg-obsidian-dark/95 hidden sm:flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-copper/20 border border-copper/40 flex items-center justify-center text-copper">
+                  <ShieldCheck className="w-5 h-5" />
+                </div>
+                <div className="text-xs">
+                  <div className="font-bold text-paper font-mono">10 Year System Warranty</div>
+                  <div className="text-[10px] text-paper-muted">Worcester Bosch &amp; Vaillant Accredited</div>
+                </div>
+              </div>
             </div>
 
           </div>
@@ -115,9 +128,9 @@ export default function HomePage() {
       {/* 2. AUTHORIZED BRAND PARTNERSHIP CAROUSEL */}
       <BrandCarousel />
 
-      {/* 3. PHASE 3 NARRATIVE: THE HOMEOWNER PROBLEM VS ASSET CARE SOLUTION */}
+      {/* 3. NARRATIVE: THE HOMEOWNER PROBLEM VS ASSET CARE GUARANTEE */}
       <section ref={narrativeRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="p-8 sm:p-12 rounded-3xl bg-obsidian-card border border-obsidian-border space-y-10">
+        <div className="p-8 sm:p-12 rounded-3xl bg-[#12181C] border border-obsidian-border space-y-10">
           <div className="text-center max-w-3xl mx-auto space-y-3">
             <span className="text-xs font-mono font-bold text-copper uppercase tracking-widest block">WHY WE BUILT ASSET CARE</span>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-paper leading-tight">
@@ -129,7 +142,7 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="p-6 rounded-2xl bg-obsidian-dark border border-obsidian-border space-y-3">
+            <div className="p-6 rounded-2xl bg-[#0D1117] border border-obsidian-border space-y-3">
               <div className="w-10 h-10 rounded-xl bg-copper/10 border border-copper/30 flex items-center justify-center text-copper font-bold font-mono">01</div>
               <h3 className="text-lg font-bold text-paper">Itemized Upfront Quotes</h3>
               <p className="text-xs text-paper-muted leading-relaxed">
@@ -137,17 +150,17 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-obsidian-dark border border-obsidian-border space-y-3">
+            <div className="p-6 rounded-2xl bg-[#0D1117] border border-obsidian-border space-y-3">
               <div className="w-10 h-10 rounded-xl bg-teal/10 border border-teal/30 flex items-center justify-center text-teal font-bold font-mono">02</div>
-              <h3 className="text-lg font-bold text-paper">Punctual Dispatch & SMS Tracking</h3>
+              <h3 className="text-lg font-bold text-paper">Punctual Dispatch &amp; SMS Tracking</h3>
               <p className="text-xs text-paper-muted leading-relaxed">
                 We arrive in agreed 4-hour time slots with a 30-minute advance arrival SMS notice so you never waste a day waiting.
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-obsidian-dark border border-obsidian-border space-y-3">
+            <div className="p-6 rounded-2xl bg-[#0D1117] border border-obsidian-border space-y-3">
               <div className="w-10 h-10 rounded-xl bg-copper/10 border border-copper/30 flex items-center justify-center text-copper font-bold font-mono">03</div>
-              <h3 className="text-lg font-bold text-paper">Clean Floor Protection & Guarantee</h3>
+              <h3 className="text-lg font-bold text-paper">Clean Floor Protection &amp; Guarantee</h3>
               <p className="text-xs text-paper-muted leading-relaxed">
                 Our engineers wear boot covers, use protective floor mats, clean up completely, and provide manufacturer warranties.
               </p>
@@ -156,13 +169,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. PHASE 4: EDITORIAL SERVICES SHOWCASE WITH LARGE AUTHENTIC PHOTOGRAPHY */}
+      {/* 4. EDITORIAL SERVICES SHOWCASE WITH LARGE AUTHENTIC PHOTOGRAPHY */}
       <section ref={servicesRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-obsidian-border pb-6">
           <div>
             <span className="text-xs font-mono font-bold text-copper uppercase tracking-widest block">OUR CORE SPECIALISMS</span>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-paper">
-              Engineered Climate & Power Solutions
+              Engineered Climate &amp; Power Solutions
             </h2>
             <p className="text-xs sm:text-sm text-paper-muted">Real trade photography showing complete system transformations across South Essex homes.</p>
           </div>
@@ -172,11 +185,11 @@ export default function HomePage() {
         </div>
 
         {/* Feature Block 1: Heating & Boilers (Text Left, Photo Right) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center p-8 rounded-3xl bg-obsidian-card border border-obsidian-border">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center p-8 rounded-3xl bg-[#12181C] border border-obsidian-border">
           <div className="lg:col-span-6 space-y-4">
-            <span className="text-xs font-mono text-copper font-bold uppercase tracking-wider block">01 • BOILER & HEATING INSTALLATION</span>
+            <span className="text-xs font-mono text-copper font-bold uppercase tracking-wider block">01 • BOILER &amp; HEATING INSTALLATION</span>
             <h3 className="text-2xl sm:text-3xl font-extrabold text-paper">
-              A-Rated Combi Boilers & System Upgrades
+              A-Rated Combi Boilers &amp; System Upgrades
             </h3>
             <p className="text-xs sm:text-sm text-paper-muted leading-relaxed">
               Lower your gas bills with high-efficiency Worcester Bosch or Vaillant combi boilers. Installed with powerflushing, magnetic central heating filters, and up to 10-year manufacturer warranties.
@@ -195,7 +208,7 @@ export default function HomePage() {
             <PhotoFrame 
               imageSrc="/images/hero-copper-pipework.webp"
               imageAlt="Precision Copper Pipework Boiler Upgrade"
-              badge="Worcester Bosch & Vaillant Accredited"
+              badge="Worcester Bosch &amp; Vaillant Accredited"
               caption={{ title: "Precision Copper Pipework", subtitle: "Neat, efficient central heating pipework installations" }}
               aspectRatio="aspect-[16/9]"
             />
@@ -203,7 +216,7 @@ export default function HomePage() {
         </div>
 
         {/* Feature Block 2: Rooftop Solar & Clean Energy (Photo Left, Text Right) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center p-8 rounded-3xl bg-obsidian-card border border-teal/40">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center p-8 rounded-3xl bg-[#12181C] border border-teal/40">
           <div className="lg:col-span-6 order-2 lg:order-1">
             <PhotoFrame 
               imageSrc="/images/solar-rooftop-engineer.webp"
@@ -216,7 +229,7 @@ export default function HomePage() {
           <div className="lg:col-span-6 order-1 lg:order-2 space-y-4">
             <span className="text-xs font-mono text-teal font-bold uppercase tracking-wider block">02 • CLEAN RENEWABLE ENERGY</span>
             <h3 className="text-2xl sm:text-3xl font-extrabold text-paper">
-              Solar PV Panels & Home Battery Storage
+              Solar PV Panels &amp; Home Battery Storage
             </h3>
             <p className="text-xs sm:text-sm text-paper-muted leading-relaxed">
               Cut grid electricity bills by up to 70% with sleek matte-black solar panels and LFP battery storage. Take advantage of 0% UK VAT on energy relief until March 2027.
@@ -227,14 +240,14 @@ export default function HomePage() {
             </div>
             <div className="pt-2">
               <Link to="/services/solar-pv" className="btn-primary text-xs py-3 px-6 inline-flex bg-teal hover:bg-teal-light text-obsidian font-bold">
-                Explore Solar PV & Batteries <ArrowRight className="w-3.5 h-3.5" />
+                Explore Solar PV &amp; Batteries <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
           </div>
         </div>
 
         {/* Feature Block 3: Air Conditioning Climate Control (Text Left, Photo Right) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center p-8 rounded-3xl bg-obsidian-card border border-obsidian-border">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center p-8 rounded-3xl bg-[#12181C] border border-obsidian-border">
           <div className="lg:col-span-6 space-y-4">
             <span className="text-xs font-mono text-copper font-bold uppercase tracking-wider block">03 • AIR CONDITIONING COOLING</span>
             <h3 className="text-2xl sm:text-3xl font-extrabold text-paper">
@@ -270,7 +283,7 @@ export default function HomePage() {
         <ProcessTimeline />
       </section>
 
-      {/* 6. PHASE 5: WORKMANSHIP SHOWCASE & DEEP CASE STUDIES */}
+      {/* 6. WORKMANSHIP SHOWCASE & DEEP CASE STUDIES */}
       <section ref={caseStudyRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
           <div>
@@ -289,7 +302,7 @@ export default function HomePage() {
           {projectsData.map((proj) => (
             <div key={proj.id} className="space-y-3">
               <BeforeAfterSlider project={proj} />
-              <div className="p-4 rounded-xl bg-obsidian-card border border-obsidian-border text-xs text-paper-subtle space-y-1">
+              <div className="p-4 rounded-xl bg-[#12181C] border border-obsidian-border text-xs text-paper-subtle space-y-1">
                 <div className="font-bold text-paper font-mono">Case Study Context: {proj.title}</div>
                 <p className="text-paper-muted text-[11px] leading-relaxed">{proj.description}</p>
                 <div className="text-copper font-mono text-[10px] pt-1">Technical Specs: {proj.specs}</div>
@@ -321,18 +334,18 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 8. PHASE 9: LOCAL BASILDON & SOUTH ESSEX DISPATCH HIGHLIGHT */}
+      {/* 8. LOCAL BASILDON & SOUTH ESSEX DISPATCH HIGHLIGHT */}
       <section ref={basildonRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-        <div className="glass-panel rounded-3xl p-8 sm:p-12 border border-obsidian-border space-y-8">
+        <div className="glass-panel rounded-3xl p-8 sm:p-12 border border-obsidian-border space-y-8 bg-[#12181C]">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             
             <div className="lg:col-span-6 space-y-6">
               <div className="space-y-2">
                 <span className="text-xs font-mono font-bold text-teal uppercase tracking-widest block flex items-center gap-2">
-                  <MapPin className="w-4 h-4 text-teal" /> LOCAL BASILDON HQ & DISPATCH RADIUS
+                  <MapPin className="w-4 h-4 text-teal" /> LOCAL BASILDON HQ &amp; DISPATCH RADIUS
                 </span>
                 <h2 className="text-3xl sm:text-4xl font-extrabold text-paper">
-                  Serving Basildon, Billericay & South Essex
+                  Serving Basildon, Billericay &amp; South Essex
                 </h2>
                 <p className="text-xs sm:text-sm text-paper-muted leading-relaxed">
                   Based at 118 Gordon Road, Basildon (SS14), our certified engineers are strategically dispatched across South Essex with rapid response times and zero travel surcharges.
@@ -340,11 +353,11 @@ export default function HomePage() {
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-                <div className="p-4 rounded-xl bg-obsidian-dark border border-obsidian-border space-y-1">
+                <div className="p-4 rounded-xl bg-[#0D1117] border border-obsidian-border space-y-1">
                   <span className="font-bold text-copper font-mono block">Registered Office</span>
                   <span className="text-paper-muted block">118 Gordon Road, Basildon, SS14 1PR</span>
                 </div>
-                <div className="p-4 rounded-xl bg-obsidian-dark border border-obsidian-border space-y-1">
+                <div className="p-4 rounded-xl bg-[#0D1117] border border-obsidian-border space-y-1">
                   <span className="font-bold text-teal font-mono block">Company Compliance</span>
                   <span className="text-paper-muted block">Companies House Reg: 16377721</span>
                 </div>
@@ -355,7 +368,7 @@ export default function HomePage() {
                   <Link
                     key={area.slug}
                     to={`/service-areas/${area.slug}`}
-                    className="p-3 rounded-xl bg-obsidian-dark hover:bg-obsidian-card border border-obsidian-border hover:border-copper text-left transition-all block focus:outline-none focus-visible:ring-2 focus-visible:ring-copper"
+                    className="p-3 rounded-xl bg-[#0D1117] hover:bg-obsidian-card border border-obsidian-border hover:border-copper text-left transition-all block focus:outline-none focus-visible:ring-2 focus-visible:ring-copper"
                   >
                     <div className="text-xs font-bold text-paper">{area.name}</div>
                     <div className="text-[10px] font-mono text-paper-muted">{area.postcodes}</div>
@@ -369,7 +382,7 @@ export default function HomePage() {
                 imageSrc="/images/assetcare-van-dispatch.webp"
                 imageAlt="Asset Care London Service Dispatch Van in Basildon"
                 badge="Basildon SS14 HQ"
-                caption={{ title: "Local Dispatch Team & Service Fleet", subtitle: "Serving Basildon, Wickford, Billericay & Southend" }}
+                caption={{ title: "Local Dispatch Team &amp; Service Fleet", subtitle: "Serving Basildon, Wickford, Billericay &amp; Southend" }}
                 aspectRatio="aspect-[4/3]"
               />
             </div>
@@ -386,16 +399,16 @@ export default function HomePage() {
       {/* 10. REVIEWS & TRANSPARENT DISCLOSURE */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center max-w-2xl mx-auto space-y-2">
-          <span className="text-xs font-mono font-bold text-teal uppercase tracking-widest block">CUSTOMER REVIEWS & STANDARDS</span>
+          <span className="text-xs font-mono font-bold text-teal uppercase tracking-widest block">CUSTOMER REVIEWS &amp; STANDARDS</span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-paper">
-            Our Quality & Transparency Commitment
+            Our Quality &amp; Transparency Commitment
           </h2>
           <p className="text-xs text-paper-muted font-mono">
             {googleRatingMeta.badgeText}
           </p>
         </div>
 
-        <div className="p-4 rounded-xl bg-obsidian-card border border-copper/40 flex items-start gap-3 max-w-3xl mx-auto text-xs text-paper-subtle">
+        <div className="p-4 rounded-xl bg-[#12181C] border border-copper/40 flex items-start gap-3 max-w-3xl mx-auto text-xs text-paper-subtle">
           <Info className="w-5 h-5 text-copper shrink-0 mt-0.5" />
           <div>
             <span className="font-bold text-copper font-mono block">Disclosure Notice:</span>
@@ -405,7 +418,7 @@ export default function HomePage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {reviewsData.map((rev) => (
-            <div key={rev.id} className="glass-panel rounded-2xl p-5 border border-obsidian-border space-y-3 flex flex-col justify-between">
+            <div key={rev.id} className="glass-panel rounded-2xl p-5 border border-obsidian-border space-y-3 flex flex-col justify-between bg-[#12181C]">
               <div className="space-y-2">
                 <div className="flex items-center gap-1 text-copper">
                   {[...Array(rev.rating)].map((_, i) => (
@@ -440,7 +453,7 @@ export default function HomePage() {
             const isExpanded = activeFaqIndex === idx;
             const contentId = `faq-content-${idx}`;
             return (
-              <div key={idx} className="glass-panel rounded-xl border border-obsidian-border overflow-hidden">
+              <div key={idx} className="glass-panel rounded-xl border border-obsidian-border overflow-hidden bg-[#12181C]">
                 <button
                   type="button"
                   onClick={() => toggleFaq(idx)}
@@ -463,10 +476,10 @@ export default function HomePage() {
       </section>
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="glass-panel rounded-3xl p-8 sm:p-12 border border-copper/50 bg-gradient-to-r from-obsidian-card via-obsidian-dark to-obsidian-card text-center space-y-6 relative overflow-hidden">
+        <div className="glass-panel rounded-3xl p-8 sm:p-12 border border-copper/50 bg-gradient-to-r from-[#12181C] via-[#0D1117] to-[#12181C] text-center space-y-6 relative overflow-hidden">
           <div className="max-w-2xl mx-auto space-y-3">
             <h2 className="text-3xl sm:text-5xl font-extrabold text-paper">
-              Ready for Honest, Certified Heating, AC & Solar Work?
+              Ready for Honest, Certified Heating, AC &amp; Solar Work?
             </h2>
             <p className="text-sm text-paper-muted">
               Get an instant itemized quote range in 60 seconds, or speak directly to our Basildon dispatch desk.

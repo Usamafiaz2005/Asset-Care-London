@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ShieldCheck, ArrowUpRight } from 'lucide-react';
+import BrandLogo from './BrandLogo';
 import { COMPANY_DETAILS } from '../data/constants';
 
 export default function Footer() {
@@ -13,17 +14,7 @@ export default function Footer() {
           
           {/* Column 1: Brand & Verified Companies House Details */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-obsidian-card to-obsidian-dark border border-copper/40 flex items-center justify-center">
-                <svg className="w-5 h-5 text-copper" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M3 12L12 3L21 12" strokeLinecap="round" strokeLinejoin="round" />
-                  <path d="M12 8V21" strokeLinecap="round" stroke="#3E7C7A" />
-                </svg>
-              </div>
-              <span className="text-lg font-bold text-paper font-mono tracking-tight">
-                ASSET CARE <span className="text-copper">LONDON</span>
-              </span>
-            </div>
+            <BrandLogo />
 
             <p className="text-xs text-paper-muted leading-relaxed">
               Basildon’s modern heating, plumbing, air conditioning, and solar energy engineers. Transparent fixed pricing, certified workmanship, and future-ready energy architecture across South Essex.
@@ -58,7 +49,7 @@ export default function Footer() {
               <li><Link to="/services/battery-storage" className="hover:text-teal transition-colors">Home Battery Storage</Link></li>
               <li><Link to="/services/ev-chargers" className="hover:text-teal transition-colors">Smart EV Chargers</Link></li>
               <li><Link to="/services/air-conditioning" className="hover:text-teal transition-colors">Air Conditioning (AC)</Link></li>
-              <li><Link to="/services/boiler-repair" className="hover:text-copper transition-colors">Boiler Repair & Diagnosis</Link></li>
+              <li><Link to="/services/boiler-repair" className="hover:text-copper transition-colors">Boiler Repair &amp; Diagnosis</Link></li>
               <li><Link to="/services/heat-pumps" className="hover:text-teal transition-colors">Heat Pumps (£7.5k Grant)</Link></li>
               <li><Link to="/services/gas-safety-certificates" className="hover:text-copper transition-colors">Gas Safety CP12</Link></li>
               <li><Link to="/services/general-plumbing" className="hover:text-copper transition-colors">General Plumbing</Link></li>
@@ -82,15 +73,15 @@ export default function Footer() {
 
           {/* Column 4: Company & Legal */}
           <div className="space-y-3">
-            <h4 className="text-paper font-bold text-xs uppercase tracking-wider font-mono text-copper">Company & Legal</h4>
+            <h4 className="text-paper font-bold text-xs uppercase tracking-wider font-mono text-copper">Company &amp; Legal</h4>
             <ul className="space-y-2 text-xs">
-              <li><Link to="/about" className="hover:text-copper transition-colors">About & Founder Story</Link></li>
+              <li><Link to="/about" className="hover:text-copper transition-colors">About &amp; Founder Story</Link></li>
               <li><Link to="/pricing" className="hover:text-copper transition-colors">Transparent Pricing</Link></li>
               <li><Link to="/projects" className="hover:text-copper transition-colors">Project Showcase</Link></li>
               <li><Link to="/grants" className="hover:text-copper transition-colors">Boiler Upgrade Scheme</Link></li>
-              <li><Link to="/careers" className="hover:text-copper transition-colors">Careers & Apprenticeships</Link></li>
+              <li><Link to="/careers" className="hover:text-copper transition-colors">Careers &amp; Apprenticeships</Link></li>
               <li><Link to="/privacy" className="hover:text-copper transition-colors">Privacy Policy</Link></li>
-              <li><Link to="/terms" className="hover:text-copper transition-colors">Terms & Conditions</Link></li>
+              <li><Link to="/terms" className="hover:text-copper transition-colors">Terms &amp; Conditions</Link></li>
               <li><Link to="/cookies" className="hover:text-copper transition-colors">Cookie Policy</Link></li>
             </ul>
           </div>
@@ -100,7 +91,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-paper-muted">
           <div>
-            © {new Date().getFullYear()} {COMPANY_DETAILS.name}. All rights reserved. Registered in England & Wales ({COMPANY_DETAILS.regNumber}).
+            © {new Date().getFullYear()} {COMPANY_DETAILS.name}. All rights reserved. Registered in England &amp; Wales ({COMPANY_DETAILS.regNumber}).
           </div>
 
           <div className="flex items-center gap-6">

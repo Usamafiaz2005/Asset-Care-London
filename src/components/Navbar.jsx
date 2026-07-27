@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Phone, ChevronDown, Menu, X, ShieldCheck, Flame, Wrench, Thermometer, Wind, Zap, Calculator, Sun, Battery, AlertTriangle } from 'lucide-react';
+import BrandLogo from './BrandLogo';
 import { COMPANY_DETAILS } from '../data/constants';
 import { servicesData } from '../data/servicesData';
 import { serviceAreasData } from '../data/serviceAreasData';
@@ -57,13 +58,13 @@ export default function Navbar() {
       {/* Top Notification Bar */}
       <div className="bg-obsidian-card border-b border-obsidian-border px-4 py-1 text-xs font-medium text-paper-muted hidden md:block">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 font-mono">
             <span className="flex items-center gap-1.5 text-copper font-semibold">
               <span className="w-2 h-2 rounded-full bg-copper animate-pulse"></span>
-              Emergency Plumbing & Heating Standby
+              Emergency Heating Standby Desk
             </span>
             <span className="text-obsidian-border">|</span>
-            <span>Reg. Office: {COMPANY_DETAILS.address}</span>
+            <span>HQ: {COMPANY_DETAILS.address}</span>
             <span className="text-obsidian-border">|</span>
             <span className="text-teal font-semibold">Companies House Reg: {COMPANY_DETAILS.regNumber}</span>
           </div>
@@ -78,28 +79,8 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           
-          {/* Logo */}
-          <Link 
-            to="/"
-            className="flex items-center gap-3 group text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-copper focus-visible:ring-offset-2 focus-visible:ring-offset-obsidian-dark rounded-xl"
-            aria-label="Asset Care London Homepage"
-          >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-obsidian-card to-obsidian-dark border border-copper/40 flex items-center justify-center group-hover:border-copper transition-colors shadow-lg">
-              <svg className="w-6 h-6 text-copper" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <path d="M3 12L12 3L21 12" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M12 8V21" strokeLinecap="round" stroke="#3E7C7A" />
-                <path d="M7 16C9 14 11 18 13 16" strokeLinecap="round" />
-              </svg>
-            </div>
-            <div>
-              <span className="text-xl font-extrabold tracking-tight text-paper block font-mono">
-                ASSET CARE <span className="text-copper">LONDON</span>
-              </span>
-              <span className="text-[10px] text-paper-muted uppercase tracking-widest block font-medium -mt-1">
-                Heating • Plumbing • Renewables
-              </span>
-            </div>
-          </Link>
+          {/* Architectural AC Monogram Logo */}
+          <BrandLogo />
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-6 text-sm font-semibold">
@@ -129,7 +110,7 @@ export default function Navbar() {
                   <Link to="/services" className="w-full text-left p-2 rounded-lg hover:bg-obsidian-dark flex items-center gap-3 transition-colors block">
                     <Wrench className="w-4 h-4 text-copper" />
                     <div>
-                      <div className="text-paper text-xs font-bold">All 13 Active Services</div>
+                      <div className="text-paper text-xs font-bold font-mono">All 13 Active Services</div>
                       <div className="text-[10px] text-paper-muted">Complete heating, plumbing & solar scope</div>
                     </div>
                   </Link>
