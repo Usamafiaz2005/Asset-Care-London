@@ -317,15 +317,23 @@ export default function HomePage() {
           <BeforeAfterSlider project={featuredProject} />
 
           <div className="p-6 rounded-2xl bg-obsidian-dark border border-obsidian-border flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-            <div className="space-y-1 text-xs text-paper-subtle">
+            <div className="space-y-2 text-xs text-paper-subtle">
               <div className="font-bold text-paper font-mono text-sm">{featuredProject.specs}</div>
+              {/* Itemized QuickSpecs Chips */}
+              <div className="flex flex-wrap gap-2 py-1">
+                {featuredProject.quickSpecs && featuredProject.quickSpecs.map((spec, i) => (
+                  <span key={i} className="px-2.5 py-1 rounded-md bg-obsidian-card border border-copper/30 text-[11px] font-mono text-copper">
+                    ✔ {spec}
+                  </span>
+                ))}
+              </div>
               <p className="text-paper-muted text-xs leading-relaxed max-w-3xl">{featuredProject.description}</p>
             </div>
             <button
               onClick={() => setSelectedCaseStudy(featuredProject)}
               className="btn-primary text-xs py-3 px-6 shrink-0 flex items-center gap-2"
             >
-              <Eye className="w-4 h-4" /> Read Full Case Study
+              <Eye className="w-4 h-4" /> Explore Installation
             </button>
           </div>
         </div>
@@ -333,11 +341,21 @@ export default function HomePage() {
         {/* Secondary Projects Grid (3 Cards) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {secondaryProjects.map((proj) => (
-            <div key={proj.id} className="glass-panel glass-panel-hover rounded-3xl p-6 border border-obsidian-border space-y-4 flex flex-col justify-between group transition-all duration-300 hover:scale-[1.02] hover:border-copper/40">
+            <div key={proj.id} className="glass-panel glass-panel-hover rounded-3xl p-6 border border-obsidian-border space-y-4 flex flex-col justify-between group transition-all duration-300 hover:scale-[1.02] hover:border-copper/40 relative">
               <div className="space-y-4">
                 <BeforeAfterSlider project={proj} />
                 <div className="space-y-2 text-xs">
                   <div className="font-bold text-paper font-mono text-sm group-hover:text-copper transition-colors">{proj.title}</div>
+                  
+                  {/* Itemized QuickSpecs Chips on Secondary Cards */}
+                  <div className="flex flex-wrap gap-1.5 py-1">
+                    {proj.quickSpecs && proj.quickSpecs.slice(0, 3).map((spec, i) => (
+                      <span key={i} className="px-2 py-0.5 rounded bg-obsidian-dark border border-obsidian-border text-[10px] font-mono text-paper-subtle">
+                        ✔ {spec}
+                      </span>
+                    ))}
+                  </div>
+
                   <p className="text-paper-muted text-[11px] leading-relaxed line-clamp-2">{proj.description}</p>
                 </div>
               </div>
@@ -348,7 +366,7 @@ export default function HomePage() {
                   onClick={() => setSelectedCaseStudy(proj)}
                   className="text-xs font-semibold text-teal hover:text-copper flex items-center gap-1 transition-colors"
                 >
-                  View Case Study <ArrowRight className="w-3.5 h-3.5" />
+                  Explore Installation <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </div>
             </div>
