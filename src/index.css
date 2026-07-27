@@ -45,6 +45,22 @@
   }
 }
 
+/* Global Architectural Blueprint Grid Background Texture */
+.site-grid-bg {
+  background-image: 
+    linear-gradient(to right, rgba(42, 54, 63, 0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(42, 54, 63, 0.12) 1px, transparent 1px);
+  background-size: 3.5rem 3.5rem;
+}
+
+/* Ambient Radial Glow Lighting System */
+.site-radial-glow {
+  background: 
+    radial-gradient(circle at 15% 20%, rgba(214, 138, 60, 0.07) 0%, transparent 45%),
+    radial-gradient(circle at 85% 60%, rgba(62, 124, 122, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 50% 90%, rgba(214, 138, 60, 0.05) 0%, transparent 40%);
+}
+
 /* Glassmorphism System Components */
 .glass-nav {
   background: rgba(13, 17, 23, 0.85);

@@ -36,11 +36,14 @@ export default function App() {
   return (
     <BrowserRouter>
       <div className="min-h-screen bg-obsidian-dark text-paper flex flex-col font-sans relative selection:bg-copper selection:text-obsidian">
+        {/* Global Architectural Blueprint Grid & Ambient Lighting Background Layer */}
+        <div className="fixed inset-0 pointer-events-none z-0 site-grid-bg site-radial-glow opacity-80"></div>
+
         {/* Sticky Header Navigation */}
         <Navbar />
 
         {/* Main Lazy-Loaded Route Switcher with Suspense Fallback */}
-        <main id="main-content" className="flex-1">
+        <main id="main-content" className="flex-1 relative z-10">
           <Suspense fallback={
             <div className="pt-32 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <SkeletonLoader height="h-96" />
