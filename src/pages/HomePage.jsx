@@ -11,6 +11,7 @@ import PhotoFrame from '../components/PhotoFrame';
 import BrandCarousel from '../components/BrandCarousel';
 import ProcessTimeline from '../components/ProcessTimeline';
 import CaseStudyModal from '../components/CaseStudyModal';
+import FAQAccordion from '../components/FAQAccordion';
 import SEOHead from '../components/SEOHead';
 import useScrollReveal from '../hooks/useScrollReveal';
 import { servicesData } from '../data/servicesData';
@@ -504,38 +505,7 @@ export default function HomePage() {
 
       {/* 11. ACCESSIBLE FAQ ACCORDION & FINAL CTA */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-        <div className="text-center space-y-2">
-          <span className="text-xs font-mono font-bold text-copper uppercase tracking-widest block">FREQUENTLY ASKED QUESTIONS</span>
-          <h2 className="text-3xl font-extrabold text-paper">
-            Clear Answers to Common Questions
-          </h2>
-        </div>
-
-        <div className="space-y-3">
-          {faqData.slice(0, 6).map((faq, idx) => {
-            const isExpanded = activeFaqIndex === idx;
-            const contentId = `faq-content-${idx}`;
-            return (
-              <div key={idx} className="glass-panel rounded-xl border border-obsidian-border overflow-hidden">
-                <button
-                  type="button"
-                  onClick={() => toggleFaq(idx)}
-                  aria-expanded={isExpanded}
-                  aria-controls={contentId}
-                  className="w-full p-4 text-left font-semibold text-sm text-paper flex justify-between items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-copper focus-visible:ring-offset-2 focus-visible:ring-offset-obsidian-dark"
-                >
-                  <span>{faq.question}</span>
-                  <span className="text-copper font-mono font-bold text-base">{isExpanded ? '−' : '+'}</span>
-                </button>
-                {isExpanded && (
-                  <div id={contentId} className="px-4 pb-4 text-xs text-paper-muted leading-relaxed border-t border-obsidian-border/40 pt-3">
-                    {faq.answer}
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
+        <FAQAccordion items={faqData} limit={6} />
       </section>
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
