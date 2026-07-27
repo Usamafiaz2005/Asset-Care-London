@@ -1,7 +1,7 @@
 export const COMPANY_DETAILS = {
   name: "Asset Care London Ltd",
   shortName: "Asset Care London",
-  regNumber: "16377721",
+  regNumber: "17167498",
   address: "118 Gordon Road, Basildon, England, SS14 1PR",
   street: "118 Gordon Road",
   city: "Basildon",
@@ -18,7 +18,7 @@ export const COMPANY_DETAILS = {
   incDate: "19 April 2026",
   status: "Active",
   baseUrl: "https://assetcarelondon.co.uk",
-  companiesHouseUrl: "https://find-and-update.company-information.service.gov.uk/company/16377721"
+  companiesHouseUrl: "https://find-and-update.company-information.service.gov.uk/company/17167498"
 };
 
 export const REVIEW_DISCLAIMER_TEXT = "Illustrative Example Reviews — Real client reviews will populate automatically upon completion of early 2026 jobs.";

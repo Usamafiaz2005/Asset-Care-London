@@ -95,7 +95,7 @@ export default function HomePage() {
                 <div className="space-y-0.5">
                   <div className="text-2xl sm:text-3xl font-extrabold text-paper font-mono">2026</div>
                   <div className="font-bold text-copper uppercase tracking-wider">Incorporated</div>
-                  <div className="text-[10px] text-paper-muted">Reg: 16377721</div>
+                  <div className="text-[10px] text-paper-muted">Reg: {COMPANY_DETAILS.regNumber}</div>
                 </div>
                 <AnimatedStat endValue={8} label="Towns Covered" subtext="Basildon & Radius" />
                 <AnimatedStat endValue={100} suffix="%" label="Fixed Price" subtext="Zero Unexpected Add-ons" />
@@ -108,7 +108,7 @@ export default function HomePage() {
               <PhotoFrame 
                 imageSrc="/images/engineer-at-work.webp"
                 imageAlt="Certified Asset Care London Heating Engineer at Work"
-                badge="Gas Safe ID: 16377721"
+                badge={`Gas Safe ID: ${COMPANY_DETAILS.regNumber}`}
                 caption={{ title: "Certified Trade Engineering", subtitle: "A-Rated Systems Installed by Uniformed Specialists" }}
                 aspectRatio="aspect-[4/3]"
                 priority={true}
@@ -423,7 +423,7 @@ export default function HomePage() {
                 </div>
                 <div className="p-4 rounded-xl bg-obsidian-dark border border-obsidian-border space-y-1">
                   <span className="font-bold text-teal font-mono block">Company Compliance</span>
-                  <span className="text-paper-muted block">Companies House Reg: 16377721</span>
+                  <span className="text-paper-muted block">Companies House Reg: {COMPANY_DETAILS.regNumber}</span>
                 </div>
               </div>
 
