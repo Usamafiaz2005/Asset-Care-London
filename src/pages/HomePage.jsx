@@ -111,7 +111,11 @@ export default function HomePage() {
               </div>
 
               <div className="pt-6 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-obsidian-border text-xs text-paper-subtle font-mono">
-                <AnimatedStat endValue={2026} label="Incorporated" subtext="Companies House Reg: 16377721" />
+                <div className="space-y-0.5">
+                  <div className="text-xl sm:text-2xl font-extrabold text-paper font-mono">2026</div>
+                  <div className="font-bold text-copper uppercase tracking-wider">Incorporated</div>
+                  <div className="text-[10px] text-paper-muted">Companies House Reg: 16377721</div>
+                </div>
                 <AnimatedStat endValue={8} label="Towns Covered" subtext="Basildon & South Essex Radius" />
                 <AnimatedStat endValue={100} suffix="%" label="Fixed Quotes" subtext="Zero Unexpected Add-ons" />
                 <AnimatedStat endValue={7500} prefix="£" label="Max Grant Value" subtext="UK BUS Heat Pump Scheme" />

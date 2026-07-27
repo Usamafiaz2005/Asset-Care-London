@@ -75,13 +75,14 @@ export default function QuoteCalculator({ onComplete = () => {} }) {
       {/* Step 1: Select Service (Mapped dynamically from servicesData) */}
       {step === 1 && (
         <div className="space-y-4">
-          <label className="text-xs font-mono text-paper-subtle block">
+          <label htmlFor="service-type-selector" className="text-xs font-mono text-paper-subtle block">
             Which service are you looking to quote?
           </label>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-80 overflow-y-auto pr-1">
+          <div id="service-type-selector" role="group" aria-labelledby="service-type-selector" className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-80 overflow-y-auto pr-1">
             {servicesData.slice(0, 8).map((srv) => (
               <button
                 type="button"
+                id={`srv-opt-${srv.id}`}
                 key={srv.id}
                 onClick={() => setFormData({ ...formData, serviceType: srv.id })}
                 className={`p-4 rounded-xl border text-left transition-all flex items-start gap-3 ${
@@ -107,10 +108,10 @@ export default function QuoteCalculator({ onComplete = () => {} }) {
       {step === 2 && (
         <div className="space-y-6">
           <div className="space-y-3">
-            <label className="text-xs font-mono text-paper-subtle block">
+            <label htmlFor="property-type-group" className="text-xs font-mono text-paper-subtle block">
               1. What type of property is this for?
             </label>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div id="property-type-group" role="group" aria-labelledby="property-type-group" className="grid grid-cols-2 sm:grid-cols-4 gap-3">
               {[
                 { id: 'flat', label: 'Flat / Apartment' },
                 { id: 'terraced', label: 'Terraced' },
@@ -119,6 +120,7 @@ export default function QuoteCalculator({ onComplete = () => {} }) {
               ].map((prop) => (
                 <button
                   type="button"
+                  id={`prop-opt-${prop.id}`}
                   key={prop.id}
                   onClick={() => setFormData({ ...formData, propertyType: prop.id })}
                   className={`p-3.5 rounded-xl border text-center text-xs font-mono transition-all ${
@@ -134,13 +136,14 @@ export default function QuoteCalculator({ onComplete = () => {} }) {
           </div>
 
           <div className="space-y-3">
-            <label className="text-xs font-mono text-paper-subtle block">
+            <label htmlFor="bedrooms-count-group" className="text-xs font-mono text-paper-subtle block">
               2. Number of bedrooms / zones?
             </label>
-            <div className="grid grid-cols-4 gap-3">
+            <div id="bedrooms-count-group" role="group" aria-labelledby="bedrooms-count-group" className="grid grid-cols-4 gap-3">
               {['1-2', '3', '4+', '5+'].map((beds) => (
                 <button
                   type="button"
+                  id={`beds-opt-${beds.replace('+', '-plus')}`}
                   key={beds}
                   onClick={() => setFormData({ ...formData, bedrooms: beds })}
                   className={`p-3 rounded-xl border text-center text-xs font-mono font-bold transition-all ${
@@ -163,10 +166,10 @@ export default function QuoteCalculator({ onComplete = () => {} }) {
           {/* Branch A: Heating & Boilers */}
           {(formData.serviceType === 'boiler-installation' || formData.serviceType === 'boiler-repair' || formData.serviceType === 'central-heating') && (
             <div className="space-y-3">
-              <label className="text-xs font-mono text-paper-subtle block">
+              <label htmlFor="fuel-type-group" className="text-xs font-mono text-paper-subtle block">
                 Current Heating Fuel Source:
               </label>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <div id="fuel-type-group" role="group" aria-labelledby="fuel-type-group" className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 {[
                   { id: 'mains-gas', label: 'Mains Natural Gas' },
                   { id: 'lpg', label: 'LPG Gas' },
@@ -175,6 +178,7 @@ export default function QuoteCalculator({ onComplete = () => {} }) {
                 ].map((fuel) => (
                   <button
                     type="button"
+                    id={`fuel-opt-${fuel.id}`}
                     key={fuel.id}
                     onClick={() => setFormData({ ...formData, currentFuel: fuel.id })}
                     className={`p-3 rounded-xl border text-center text-xs font-mono transition-all ${
@@ -193,10 +197,10 @@ export default function QuoteCalculator({ onComplete = () => {} }) {
           {/* Branch B: Solar PV & Batteries & EV Chargers */}
           {(formData.serviceType === 'solar-pv' || formData.serviceType === 'battery-storage' || formData.serviceType === 'ev-chargers') && (
             <div className="space-y-3">
-              <label className="text-xs font-mono text-paper-subtle block">
+              <label htmlFor="solar-goal-group" className="text-xs font-mono text-paper-subtle block">
                 Primary Target Goal:
               </label>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div id="solar-goal-group" role="group" aria-labelledby="solar-goal-group" className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {[
                   { id: 'grid-cut', label: 'Cut Electricity Grid Bills' },
                   { id: 'overnight-tariff', label: 'Charge Overnight on Cheap Tariffs (7p/kWh)' },
@@ -205,6 +209,7 @@ export default function QuoteCalculator({ onComplete = () => {} }) {
                 ].map((opt) => (
                   <button
                     type="button"
+                    id={`goal-opt-${opt.id}`}
                     key={opt.id}
                     onClick={() => setFormData({ ...formData, serviceOption: opt.id })}
                     className={`p-3.5 rounded-xl border text-left text-xs font-mono transition-all ${
@@ -223,10 +228,10 @@ export default function QuoteCalculator({ onComplete = () => {} }) {
           {/* Branch C: Air Conditioning */}
           {formData.serviceType === 'air-conditioning' && (
             <div className="space-y-3">
-              <label className="text-xs font-mono text-paper-subtle block">
+              <label htmlFor="ac-target-group" className="text-xs font-mono text-paper-subtle block">
                 Primary Cooling Target Location:
               </label>
-              <div className="grid grid-cols-2 gap-3">
+              <div id="ac-target-group" role="group" aria-labelledby="ac-target-group" className="grid grid-cols-2 gap-3">
                 {[
                   { id: 'bedroom', label: 'Master Bedroom' },
                   { id: 'home-office', label: 'Home Office / Loft' },
@@ -235,6 +240,7 @@ export default function QuoteCalculator({ onComplete = () => {} }) {
                 ].map((rm) => (
                   <button
                     type="button"
+                    id={`ac-opt-${rm.id}`}
                     key={rm.id}
                     onClick={() => setFormData({ ...formData, serviceOption: rm.id })}
                     className={`p-3 rounded-xl border text-center text-xs font-mono transition-all ${
@@ -252,16 +258,17 @@ export default function QuoteCalculator({ onComplete = () => {} }) {
 
           {/* Urgency Dispatch Selection for All Services */}
           <div className="space-y-3 pt-2">
-            <label className="text-xs font-mono text-paper-subtle block">
+            <label htmlFor="urgency-dispatch-group" className="text-xs font-mono text-paper-subtle block">
               Desired Installation / Service Timeframe:
             </label>
-            <div className="grid grid-cols-2 gap-3">
+            <div id="urgency-dispatch-group" role="group" aria-labelledby="urgency-dispatch-group" className="grid grid-cols-2 gap-3">
               {[
                 { id: 'immediate', label: 'Urgent / Same-Day (24-48 Hrs)' },
                 { id: 'flexible', label: 'Standard (Next 1-2 Weeks)' }
               ].map((urg) => (
                 <button
                   type="button"
+                  id={`urgency-opt-${urg.id}`}
                   key={urg.id}
                   onClick={() => setFormData({ ...formData, urgency: urg.id })}
                   className={`p-3.5 rounded-xl border text-center text-xs font-mono transition-all ${
