@@ -1,14 +1,6 @@
 import React, { useState, Suspense } from 'react';
 import { Link } from 'react-router-dom';
-import { Flame, Wrench, Wind, Zap, ShieldCheck, CheckCircle2, ArrowRight, Phone, MapPin, Star, Calculator, Clock, Award, HelpCircle, Thermometer, Info, HeartHandshake, FileCheck, Sun, Battery, Sparkles, Percent, CreditCard } from 'lucide-react';
-import BoilerIllustration from '../components/illustrations/BoilerIllustration';
-import HeatPumpIllustration from '../components/illustrations/HeatPumpIllustration';
-import AirConIllustration from '../components/illustrations/AirConIllustration';
-import PlumbingIllustration from '../components/illustrations/PlumbingIllustration';
-import SmartHomeIllustration from '../components/illustrations/SmartHomeIllustration';
-import SolarPVIllustration from '../components/illustrations/SolarPVIllustration';
-import BatteryStorageIllustration from '../components/illustrations/BatteryStorageIllustration';
-import EVChargerIllustration from '../components/illustrations/EVChargerIllustration';
+import { Flame, Wrench, Wind, Zap, ShieldCheck, CheckCircle2, ArrowRight, Phone, MapPin, Star, Calculator, Clock, Award, HelpCircle, Thermometer, Info, HeartHandshake, FileCheck, Sun, Battery, Sparkles, Percent, CreditCard, ShieldAlert, Truck, UserCheck } from 'lucide-react';
 import QuoteCalculator from '../components/QuoteCalculator';
 import HeatPumpCalculator from '../components/HeatPumpCalculator';
 import BeforeAfterSlider from '../components/BeforeAfterSlider';
@@ -32,9 +24,10 @@ export default function HomePage() {
 
   // Scroll reveal observers for homepage sections
   const [heroRef] = useScrollReveal(0.1);
-  const [solutionsRef] = useScrollReveal(0.15);
+  const [narrativeRef] = useScrollReveal(0.15);
   const [servicesRef] = useScrollReveal(0.15);
   const [renewablesRef] = useScrollReveal(0.15);
+  const [caseStudyRef] = useScrollReveal(0.15);
   const [trustRef] = useScrollReveal(0.15);
   const [basildonRef] = useScrollReveal(0.15);
 
@@ -42,92 +35,75 @@ export default function HomePage() {
     setActiveFaqIndex(activeFaqIndex === index ? null : index);
   };
 
-  const renderServiceIcon = (illustration) => {
-    switch (illustration) {
-      case 'SolarPVIllustration':
-        return <Sun className="w-6 h-6 text-copper" />;
-      case 'BatteryStorageIllustration':
-        return <Battery className="w-6 h-6 text-teal" />;
-      case 'EVChargerIllustration':
-      case 'HeatPumpIllustration':
-        return <Zap className="w-6 h-6 text-teal" />;
-      case 'AirConIllustration':
-        return <Wind className="w-6 h-6 text-teal" />;
-      case 'SmartHomeIllustration':
-        return <Thermometer className="w-6 h-6 text-copper" />;
-      case 'PlumbingIllustration':
-        return <Wrench className="w-6 h-6 text-copper" />;
-      default:
-        return <Flame className="w-6 h-6 text-copper" />;
-    }
-  };
-
   return (
-    <div className="space-y-24 pb-16">
+    <div className="space-y-28 pb-20">
       <SEOHead 
-        title={`${COMPANY_DETAILS.shortName} | Heating, Plumbing, AC & Solar Engineers Basildon`}
-        description="Basildon's modern heating, plumbing, air conditioning, and solar energy engineers. Upfront transparent pricing, certified workmanship, and emergency callouts in South Essex."
+        title={`${COMPANY_DETAILS.shortName} | Luxury Heating, Cooling & Solar Engineers Basildon`}
+        description="Basildon's premier heating, plumbing, air conditioning, and solar energy engineers. Upfront transparent pricing, certified trade workmanship, and emergency dispatch in South Essex."
       />
 
-      {/* 1. HERO SECTION WITH OPTIMIZED WEBP LUXURY COPPER PIPEWORK PHOTOGRAPHY */}
-      <section ref={heroRef} className="relative pt-32 pb-16 md:pt-44 md:pb-24 overflow-hidden border-b border-obsidian-border">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-copper/15 rounded-full blur-[140px] pointer-events-none"></div>
-        <div className="absolute top-1/3 right-10 w-[500px] h-[500px] bg-teal/15 rounded-full blur-[120px] pointer-events-none"></div>
+      {/* 1. HERO SECTION: APPLE PRESENTATION EDITORIAL OVERLAY */}
+      <section ref={heroRef} className="relative pt-32 pb-20 md:pt-44 md:pb-28 border-b border-obsidian-border bg-gradient-to-b from-obsidian-dark via-obsidian-card to-obsidian-dark overflow-hidden">
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[750px] bg-copper/15 rounded-full blur-[140px] pointer-events-none"></div>
+        <div className="absolute top-1/3 right-10 w-[550px] h-[550px] bg-teal/15 rounded-full blur-[130px] pointer-events-none"></div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
+            {/* Left Narrative Column */}
             <div className="lg:col-span-7 space-y-6 text-left">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-obsidian-card border border-copper/30 text-xs font-mono text-paper-subtle shadow-md">
-                  <span className="w-2 h-2 rounded-full bg-copper animate-ping"></span>
-                  Basildon HQ (SS14) • Heating, Plumbing & Solar Engineers
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-obsidian-dark border border-copper/40 text-xs font-mono text-paper shadow-md">
+                  <span className="w-2.5 h-2.5 rounded-full bg-copper animate-pulse"></span>
+                  Basildon Dispatch Desk (SS14) • Gas Safe & MCS Certified
                 </span>
-                <span className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-teal/20 text-teal border border-teal/40 text-xs font-mono font-bold">
-                  <Percent className="w-3.5 h-3.5" /> 0% UK VAT on Renewables
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-teal/20 text-teal border border-teal/40 text-xs font-mono font-bold">
+                  <Percent className="w-3.5 h-3.5" /> 0% UK VAT on Solar & Battery
                 </span>
               </div>
 
-              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-paper leading-[1.08]">
-                Heating, Cooling & Solar <br />
-                <span className="text-gradient-copper">Engineered For Essex Homes</span>
+              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-paper leading-[1.06]">
+                Precision Engineering <br />
+                <span className="text-gradient-copper">For South Essex Homes</span>
               </h1>
 
-              <p className="text-base sm:text-lg text-paper-muted max-w-2xl leading-relaxed">
-                Basildon’s modern alternative to traditional trade calls. Upfront fixed pricing, certified Gas Safe & MCS engineering, and 0% APR trade finance options.
+              <p className="text-base sm:text-xl text-paper-muted max-w-2xl leading-relaxed font-light">
+                No high-pressure sales calls. No unvetted sub-contractors. Just certified heating, air conditioning, and solar energy installed with mathematical precision.
               </p>
 
               <div className="flex flex-wrap items-center gap-4 pt-2">
-                <Link to="/quote" className="btn-primary text-sm py-3.5 px-7">
-                  <Calculator className="w-4 h-4" />
-                  <span>Get Instant Fixed Quote</span>
+                <Link to="/quote" className="btn-primary text-sm py-4 px-8 shadow-xl">
+                  <Calculator className="w-4.5 h-4.5" />
+                  <span>Calculate Upfront Fixed Quote</span>
                   <ArrowRight className="w-4 h-4" />
                 </Link>
 
-                <a href={COMPANY_DETAILS.phoneHref} className="btn-secondary text-sm py-3.5 px-6">
+                <a href={COMPANY_DETAILS.phoneHref} className="btn-secondary text-sm py-4 px-7">
                   <Phone className="w-4 h-4 text-copper" />
-                  <span>Call {COMPANY_DETAILS.phone}</span>
+                  <span>Speak to Dispatch: {COMPANY_DETAILS.phone}</span>
                 </a>
               </div>
 
-              <div className="pt-6 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-obsidian-border text-xs text-paper-subtle font-mono">
+              {/* Editorial Stat Highlights */}
+              <div className="pt-8 grid grid-cols-2 sm:grid-cols-4 gap-6 border-t border-obsidian-border text-xs text-paper-subtle font-mono">
                 <div className="space-y-0.5">
-                  <div className="text-xl sm:text-2xl font-extrabold text-paper font-mono">2026</div>
+                  <div className="text-2xl sm:text-3xl font-extrabold text-paper font-mono">2026</div>
                   <div className="font-bold text-copper uppercase tracking-wider">Incorporated</div>
-                  <div className="text-[10px] text-paper-muted">Companies House Reg: 16377721</div>
+                  <div className="text-[10px] text-paper-muted">Reg: 16377721</div>
                 </div>
-                <AnimatedStat endValue={8} label="Towns Covered" subtext="Basildon & South Essex Radius" />
-                <AnimatedStat endValue={100} suffix="%" label="Fixed Quotes" subtext="Zero Unexpected Add-ons" />
-                <AnimatedStat endValue={7500} prefix="£" label="Max Grant Value" subtext="UK BUS Heat Pump Scheme" />
+                <AnimatedStat endValue={8} label="Towns Covered" subtext="Basildon & Radius" />
+                <AnimatedStat endValue={100} suffix="%" label="Fixed Price" subtext="Zero Unexpected Add-ons" />
+                <AnimatedStat endValue={7500} prefix="£" label="Max Grant Value" subtext="UK Heat Pump Grant" />
               </div>
             </div>
 
+            {/* Right Hero Photo Frame Overlay */}
             <div className="lg:col-span-5 relative">
               <PhotoFrame 
-                imageSrc="/images/hero-copper-pipework.webp"
-                imageAlt="Precision Copper Pipework Engineering"
-                badge="Gas Safe & MCS Certified"
-                caption={{ title: "Precision Copper Pipework Engineering", subtitle: "A-Rated Systems • Up to 10 Year Warranty" }}
+                imageSrc="/images/engineer-at-work.webp"
+                imageAlt="Certified Asset Care London Heating Engineer at Work"
+                badge="Gas Safe ID: 16377721"
+                caption={{ title: "Certified Trade Engineering", subtitle: "A-Rated Systems Installed by Uniformed Specialists" }}
                 aspectRatio="aspect-[4/3]"
               />
             </div>
@@ -139,167 +115,194 @@ export default function HomePage() {
       {/* 2. AUTHORIZED BRAND PARTNERSHIP CAROUSEL */}
       <BrandCarousel />
 
-      {/* 3. OUTCOME-FOCUSED SOLUTIONS SECTION WITH WEBP SMART TECH PHOTOGRAPHY */}
-      <section ref={solutionsRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          
-          <div className="lg:col-span-6 space-y-6">
-            <span className="text-xs font-mono font-bold text-copper uppercase tracking-widest block">OUR CORE COMMITMENT</span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-paper leading-tight">
-              Clear Communication. Upfront Fixed Pricing. Professional Workmanship.
+      {/* 3. PHASE 3 NARRATIVE: THE HOMEOWNER PROBLEM VS ASSET CARE SOLUTION */}
+      <section ref={narrativeRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="p-8 sm:p-12 rounded-3xl bg-obsidian-card border border-obsidian-border space-y-10">
+          <div className="text-center max-w-3xl mx-auto space-y-3">
+            <span className="text-xs font-mono font-bold text-copper uppercase tracking-widest block">WHY WE BUILT ASSET CARE</span>
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-paper leading-tight">
+              Tired of Tradesmen Who Don’t Turn Up or Add Hidden Costs?
             </h2>
-            <p className="text-sm text-paper-muted leading-relaxed">
-              Generate your own clean solar electricity with 0% UK VAT, cool your bedroom during summer heatwaves, or upgrade to an A-rated combi boiler with flexible financing options.
+            <p className="text-sm sm:text-base text-paper-muted leading-relaxed">
+              Traditional UK trade calls are broken—vague quotes, unreturned phone calls, and messy work. We engineered Asset Care London to give South Essex homeowners complete peace of mind.
             </p>
+          </div>
 
-            <div className="space-y-4 pt-2">
-              <div className="flex items-start gap-3.5 p-4 rounded-2xl bg-obsidian-card border border-obsidian-border">
-                <FileCheck className="w-5 h-5 text-copper shrink-0 mt-0.5" />
-                <div>
-                  <h3 className="text-sm font-bold text-paper font-mono">Itemized Upfront Quotes</h3>
-                  <p className="text-xs text-paper-muted">Written quote agreed before work starts. The price agreed upfront is the exact price you pay.</p>
-                </div>
-              </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="p-6 rounded-2xl bg-obsidian-dark border border-obsidian-border space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-copper/10 border border-copper/30 flex items-center justify-center text-copper font-bold font-mono">01</div>
+              <h3 className="text-lg font-bold text-paper">Itemized Upfront Quotes</h3>
+              <p className="text-xs text-paper-muted leading-relaxed">
+                We issue a binding written quote before turning a single screw. The price agreed upfront is the exact price you pay.
+              </p>
+            </div>
 
-              <div className="flex items-start gap-3.5 p-4 rounded-2xl bg-obsidian-card border border-obsidian-border">
-                <Clock className="w-5 h-5 text-teal shrink-0 mt-0.5" />
-                <div>
-                  <h3 className="text-sm font-bold text-paper font-mono">Punctual Dispatch Windows</h3>
-                  <p className="text-xs text-paper-muted">We arrive within agreed 4-hour windows with a 30-minute advance arrival SMS notice.</p>
-                </div>
-              </div>
+            <div className="p-6 rounded-2xl bg-obsidian-dark border border-obsidian-border space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-teal/10 border border-teal/30 flex items-center justify-center text-teal font-bold font-mono">02</div>
+              <h3 className="text-lg font-bold text-paper">Punctual Dispatch & SMS Tracking</h3>
+              <p className="text-xs text-paper-muted leading-relaxed">
+                We arrive in agreed 4-hour time slots with a 30-minute advance arrival SMS notice so you never waste a day waiting.
+              </p>
+            </div>
 
-              <div className="flex items-start gap-3.5 p-4 rounded-2xl bg-obsidian-card border border-obsidian-border">
-                <CreditCard className="w-5 h-5 text-copper shrink-0 mt-0.5" />
-                <div>
-                  <h3 className="text-sm font-bold text-paper font-mono">Spread the Cost with Trade Finance</h3>
-                  <p className="text-xs text-paper-muted">Flexible monthly repayment options on all major boiler and solar PV panel installations.</p>
-                </div>
-              </div>
+            <div className="p-6 rounded-2xl bg-obsidian-dark border border-obsidian-border space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-copper/10 border border-copper/30 flex items-center justify-center text-copper font-bold font-mono">03</div>
+              <h3 className="text-lg font-bold text-paper">Clean Floor Protection & Guarantee</h3>
+              <p className="text-xs text-paper-muted leading-relaxed">
+                Our engineers wear boot covers, use protective floor mats, clean up completely, and provide manufacturer warranties.
+              </p>
             </div>
           </div>
-
-          <div className="lg:col-span-6">
-            <PhotoFrame 
-              imageSrc="/images/smart-thermostat-ac.webp"
-              imageAlt="Smart Home Climate Control Technology"
-              badge="13 Active Services"
-              caption={{ title: "Smart Home Climate & Multi-Zone Control", subtitle: "Basildon, Wickford, Billericay & Southend Coverage" }}
-              aspectRatio="aspect-[4/3]"
-            />
-          </div>
-
         </div>
       </section>
 
-      {/* 4. "WHAT HAPPENS NEXT?" 3-STEP PROCESS TIMELINE */}
+      {/* 4. PHASE 4: EDITORIAL SERVICES SHOWCASE WITH LARGE AUTHENTIC PHOTOGRAPHY */}
+      <section ref={servicesRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-obsidian-border pb-6">
+          <div>
+            <span className="text-xs font-mono font-bold text-copper uppercase tracking-widest block">OUR CORE SPECIALISMS</span>
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-paper">
+              Engineered Climate & Power Solutions
+            </h2>
+            <p className="text-xs sm:text-sm text-paper-muted">Real trade photography showing complete system transformations across South Essex homes.</p>
+          </div>
+          <Link to="/services" className="btn-secondary text-xs">
+            View All 13 Core Services <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
+        </div>
+
+        {/* Feature Block 1: Heating & Boilers (Text Left, Photo Right) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center p-8 rounded-3xl bg-obsidian-card border border-obsidian-border">
+          <div className="lg:col-span-6 space-y-4">
+            <span className="text-xs font-mono text-copper font-bold uppercase tracking-wider block">01 • BOILER & HEATING INSTALLATION</span>
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-paper">
+              A-Rated Combi Boilers & System Upgrades
+            </h3>
+            <p className="text-xs sm:text-sm text-paper-muted leading-relaxed">
+              Lower your gas bills with high-efficiency Worcester Bosch or Vaillant combi boilers. Installed with powerflushing, magnetic central heating filters, and up to 10-year manufacturer warranties.
+            </p>
+            <div className="pt-2 flex flex-wrap gap-4 text-xs font-mono text-paper-subtle">
+              <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-copper" /> 10 Year Warranty</span>
+              <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-copper" /> 0% APR Trade Finance</span>
+            </div>
+            <div className="pt-2">
+              <Link to="/services/boiler-installation" className="btn-primary text-xs py-3 px-6 inline-flex">
+                Explore Boiler Installation <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+          </div>
+          <div className="lg:col-span-6">
+            <PhotoFrame 
+              imageSrc="/images/hero-copper-pipework.webp"
+              imageAlt="Precision Copper Pipework Boiler Upgrade"
+              badge="Worcester Bosch & Vaillant Accredited"
+              caption={{ title: "Precision Copper Pipework", subtitle: "Neat, efficient central heating pipework installations" }}
+              aspectRatio="aspect-[16/9]"
+            />
+          </div>
+        </div>
+
+        {/* Feature Block 2: Rooftop Solar & Clean Energy (Photo Left, Text Right) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center p-8 rounded-3xl bg-obsidian-card border border-teal/40">
+          <div className="lg:col-span-6 order-2 lg:order-1">
+            <PhotoFrame 
+              imageSrc="/images/solar-rooftop-engineer.webp"
+              imageAlt="Rooftop Solar PV Installation Specialist"
+              badge="0% UK VAT Relief"
+              caption={{ title: "Rooftop Solar PV Panels", subtitle: "Generate your own clean electricity with 0% UK VAT" }}
+              aspectRatio="aspect-[16/9]"
+            />
+          </div>
+          <div className="lg:col-span-6 order-1 lg:order-2 space-y-4">
+            <span className="text-xs font-mono text-teal font-bold uppercase tracking-wider block">02 • CLEAN RENEWABLE ENERGY</span>
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-paper">
+              Solar PV Panels & Home Battery Storage
+            </h3>
+            <p className="text-xs sm:text-sm text-paper-muted leading-relaxed">
+              Cut grid electricity bills by up to 70% with sleek matte-black solar panels and LFP battery storage. Take advantage of 0% UK VAT on energy relief until March 2027.
+            </p>
+            <div className="pt-2 flex flex-wrap gap-4 text-xs font-mono text-paper-subtle">
+              <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-teal" /> MCS Certified</span>
+              <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-teal" /> 7p/kWh Off-Peak Charging</span>
+            </div>
+            <div className="pt-2">
+              <Link to="/services/solar-pv" className="btn-primary text-xs py-3 px-6 inline-flex bg-teal hover:bg-teal-light text-obsidian font-bold">
+                Explore Solar PV & Batteries <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Feature Block 3: Air Conditioning Climate Control (Text Left, Photo Right) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center p-8 rounded-3xl bg-obsidian-card border border-obsidian-border">
+          <div className="lg:col-span-6 space-y-4">
+            <span className="text-xs font-mono text-copper font-bold uppercase tracking-wider block">03 • AIR CONDITIONING COOLING</span>
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-paper">
+              Multi-Room Split Air Conditioning
+            </h3>
+            <p className="text-xs sm:text-sm text-paper-muted leading-relaxed">
+              Keep your bedrooms and loft office cool during summer heatwaves and warm during winter. Whisper-quiet 19dB inverter technology with smart Wi-Fi phone app controls.
+            </p>
+            <div className="pt-2 flex flex-wrap gap-4 text-xs font-mono text-paper-subtle">
+              <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-copper" /> A+++ Energy Rating</span>
+              <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-copper" /> Concealed Exterior Trunking</span>
+            </div>
+            <div className="pt-2">
+              <Link to="/services/air-conditioning" className="btn-primary text-xs py-3 px-6 inline-flex">
+                Explore Air Conditioning <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+          </div>
+          <div className="lg:col-span-6">
+            <PhotoFrame 
+              imageSrc="/images/luxury-living-ac.webp"
+              imageAlt="Luxury Living Room Air Conditioning Split Unit"
+              badge="Whisper-Quiet 19dB"
+              caption={{ title: "Multi-Zone Climate Control", subtitle: "Sleek wall-mounted split units with smart controls" }}
+              aspectRatio="aspect-[16/9]"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* 5. "WHAT HAPPENS NEXT?" 3-STEP PROCESS TIMELINE */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ProcessTimeline />
       </section>
 
-      {/* 5. FULL-WIDTH RENEWABLE CLEAN ENERGY SPOTLIGHT WITH HIGH-RES WEBP PHOTOGRAPHY */}
-      <section ref={renewablesRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <div className="glass-panel rounded-3xl p-8 border border-teal/40 bg-gradient-to-br from-obsidian-card via-obsidian-dark to-obsidian-card space-y-8">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-obsidian-border pb-6">
-            <div>
-              <span className="text-xs font-mono font-bold text-teal uppercase tracking-widest block flex items-center gap-1.5">
-                <Sparkles className="w-4 h-4 text-teal" /> UK GOVERNMENT 0% VAT RELIEF UNTIL MARCH 2027
-              </span>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-paper">
-                Generate & Store Solar Electricity with 0% UK VAT
-              </h2>
-              <p className="text-xs sm:text-sm text-paper-muted">Active Solar PV, Home Battery Storage, and Smart EV Charger installations with zero VAT charges.</p>
-            </div>
-            <Link to="/services/solar-pv" className="btn-primary text-xs py-2.5 px-5">
-              Explore Solar Solutions <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
+      {/* 6. PHASE 5: WORKMANSHIP SHOWCASE & DEEP CASE STUDIES */}
+      <section ref={caseStudyRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+          <div>
+            <span className="text-xs font-mono font-bold text-copper uppercase tracking-widest block font-mono">WORKMANSHIP SHOWCASE</span>
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-paper">
+              Recent Transformations in South Essex
+            </h2>
+            <p className="text-xs sm:text-sm text-paper-muted">Real before and after transformation case studies with technical specs</p>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <PhotoFrame 
-              imageSrc="/images/solar-pv-array.webp"
-              imageAlt="Matte Black Solar PV Roof Array"
-              badge="0% UK VAT Relief"
-              caption={{ title: "Solar PV Panel Installations", subtitle: "Cut electricity bills by up to 70% with 0% VAT" }}
-              aspectRatio="aspect-square"
-            />
-
-            <PhotoFrame 
-              imageSrc="/images/home-battery-storage.webp"
-              imageAlt="LFP Home Battery Storage Unit"
-              badge="Grid Independent"
-              caption={{ title: "Home Battery Storage Systems", subtitle: "Charge overnight on 7p/kWh off-peak tariffs" }}
-              aspectRatio="aspect-square"
-            />
-
-            <PhotoFrame 
-              imageSrc="/images/ev-wallbox-charger.webp"
-              imageAlt="Smart EV Wallbox Charger Unit"
-              badge="Smart EV Charging"
-              caption={{ title: "Smart EV Wallbox Chargers", subtitle: "7.4kW fast charging with PEN protection" }}
-              aspectRatio="aspect-square"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* 6. CORE SERVICES BENTO GRID */}
-      <section ref={servicesRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <div className="text-center max-w-2xl mx-auto space-y-2">
-          <span className="text-xs font-mono font-bold text-copper uppercase tracking-widest block">FULL SERVICE SCOPE</span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-paper">
-            Everything Your Home Needs to Stay Warm, Cool & Powered
-          </h2>
-          <p className="text-sm text-paper-muted">
-            13 active core services across heating, plumbing, air conditioning, solar PV, and landlord compliance.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {servicesData.slice(0, 9).map((srv) => (
-            <Link
-              key={srv.id}
-              to={`/services/${srv.id}`}
-              className="glass-panel glass-panel-hover rounded-2xl p-6 border border-obsidian-border flex flex-col justify-between space-y-4 group block relative overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-copper focus-visible:ring-offset-2 focus-visible:ring-offset-obsidian-dark"
-            >
-              <div className="space-y-3">
-                <div className="flex justify-between items-start">
-                  <div className="w-12 h-12 rounded-xl bg-obsidian-dark border border-copper/30 flex items-center justify-center text-copper group-hover:border-copper transition-colors">
-                    {renderServiceIcon(srv.illustration)}
-                  </div>
-                  {srv.badge && (
-                    <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-full bg-copper/10 text-copper border border-copper/30">
-                      {srv.badge}
-                    </span>
-                  )}
-                </div>
-                <h3 className="text-xl font-bold text-paper group-hover:text-copper transition-colors">
-                  {srv.title}
-                </h3>
-                <p className="text-xs text-paper-muted leading-relaxed">
-                  {srv.shortDesc}
-                </p>
-              </div>
-
-              <div className="pt-4 border-t border-obsidian-border/50 flex justify-between items-center text-xs font-semibold text-copper">
-                <span>Explore Service Details</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </div>
-            </Link>
-          ))}
-        </div>
-
-        <div className="text-center pt-2">
-          <Link to="/services" className="btn-secondary text-xs py-3 px-6 inline-flex">
-            View All 13 Core Services <ArrowRight className="w-3.5 h-3.5" />
+          <Link to="/projects" className="btn-secondary text-xs">
+            View All Projects Gallery <ArrowRight className="w-3.5 h-3.5" />
           </Link>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {projectsData.map((proj) => (
+            <div key={proj.id} className="space-y-3">
+              <BeforeAfterSlider project={proj} />
+              <div className="p-4 rounded-xl bg-obsidian-card border border-obsidian-border text-xs text-paper-subtle space-y-1">
+                <div className="font-bold text-paper font-mono">Case Study Context: {proj.title}</div>
+                <p className="text-paper-muted text-[11px] leading-relaxed">{proj.description}</p>
+                <div className="text-copper font-mono text-[10px] pt-1">Technical Specs: {proj.specs}</div>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* 7. INTERACTIVE CALCULATORS SECTION */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <div className="text-center max-w-2xl mx-auto space-y-2">
-          <span className="text-xs font-mono font-bold text-copper uppercase tracking-widest block">TRANSPARENT TOOLS</span>
+          <span className="text-xs font-mono font-bold text-copper uppercase tracking-widest block">TRANSPARENT PRICING TOOLS</span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-paper">
             Calculate Your Fixed Quote or Heat Pump Grant Savings
           </h2>
@@ -318,38 +321,66 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 8. VERIFIED STANDARDS & TRUST COMPLIANCE */}
-      <section ref={trustRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <TrustGuarantees />
-      </section>
+      {/* 8. PHASE 9: LOCAL BASILDON & SOUTH ESSEX DISPATCH HIGHLIGHT */}
+      <section ref={basildonRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+        <div className="glass-panel rounded-3xl p-8 sm:p-12 border border-obsidian-border space-y-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            <div className="lg:col-span-6 space-y-6">
+              <div className="space-y-2">
+                <span className="text-xs font-mono font-bold text-teal uppercase tracking-widest block flex items-center gap-2">
+                  <MapPin className="w-4 h-4 text-teal" /> LOCAL BASILDON HQ & DISPATCH RADIUS
+                </span>
+                <h2 className="text-3xl sm:text-4xl font-extrabold text-paper">
+                  Serving Basildon, Billericay & South Essex
+                </h2>
+                <p className="text-xs sm:text-sm text-paper-muted leading-relaxed">
+                  Based at 118 Gordon Road, Basildon (SS14), our certified engineers are strategically dispatched across South Essex with rapid response times and zero travel surcharges.
+                </p>
+              </div>
 
-      {/* 9. WORKMANSHIP SHOWCASE */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
-          <div>
-            <span className="text-xs font-mono font-bold text-copper uppercase tracking-widest block">WORKMANSHIP SHOWCASE</span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-paper">
-              Recent Transformations in South Essex
-            </h2>
-            <p className="text-xs text-paper-muted">Real system upgrades with case study context and technical specs</p>
-          </div>
-          <Link to="/projects" className="btn-secondary text-xs">
-            View All Projects Gallery <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
-        </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                <div className="p-4 rounded-xl bg-obsidian-dark border border-obsidian-border space-y-1">
+                  <span className="font-bold text-copper font-mono block">Registered Office</span>
+                  <span className="text-paper-muted block">118 Gordon Road, Basildon, SS14 1PR</span>
+                </div>
+                <div className="p-4 rounded-xl bg-obsidian-dark border border-obsidian-border space-y-1">
+                  <span className="font-bold text-teal font-mono block">Company Compliance</span>
+                  <span className="text-paper-muted block">Companies House Reg: 16377721</span>
+                </div>
+              </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {projectsData.map((proj) => (
-            <div key={proj.id} className="space-y-3">
-              <BeforeAfterSlider project={proj} />
-              <div className="p-4 rounded-xl bg-obsidian-dark border border-obsidian-border text-xs text-paper-subtle space-y-1">
-                <div className="font-bold text-paper font-mono">Case Study Context: {proj.title}</div>
-                <p className="text-paper-muted text-[11px] leading-relaxed">{proj.description}</p>
-                <div className="text-copper font-mono text-[10px] pt-1">Technical Specs: {proj.specs}</div>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1">
+                {serviceAreasData.map((area) => (
+                  <Link
+                    key={area.slug}
+                    to={`/service-areas/${area.slug}`}
+                    className="p-3 rounded-xl bg-obsidian-dark hover:bg-obsidian-card border border-obsidian-border hover:border-copper text-left transition-all block focus:outline-none focus-visible:ring-2 focus-visible:ring-copper"
+                  >
+                    <div className="text-xs font-bold text-paper">{area.name}</div>
+                    <div className="text-[10px] font-mono text-paper-muted">{area.postcodes}</div>
+                  </Link>
+                ))}
               </div>
             </div>
-          ))}
+
+            <div className="lg:col-span-6">
+              <PhotoFrame 
+                imageSrc="/images/assetcare-van-dispatch.webp"
+                imageAlt="Asset Care London Service Dispatch Van in Basildon"
+                badge="Basildon SS14 HQ"
+                caption={{ title: "Local Dispatch Team & Service Fleet", subtitle: "Serving Basildon, Wickford, Billericay & Southend" }}
+                aspectRatio="aspect-[4/3]"
+              />
+            </div>
+
+          </div>
         </div>
+      </section>
+
+      {/* 9. VERIFIED STANDARDS & TRUST COMPLIANCE */}
+      <section ref={trustRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <TrustGuarantees />
       </section>
 
       {/* 10. REVIEWS & TRANSPARENT DISCLOSURE */}
@@ -395,63 +426,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 11. LOCAL BASILDON & SOUTH ESSEX SPOTLIGHT */}
-      <section ref={basildonRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-        <div className="glass-panel rounded-3xl p-8 border border-obsidian-border space-y-6">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-obsidian-border pb-4">
-            <div>
-              <span className="text-xs font-mono font-bold text-copper uppercase tracking-widest block">LOCAL ESSEX SPOTLIGHT</span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-paper">
-                Why Choose Asset Care in Basildon & South Essex?
-              </h2>
-            </div>
-            <div className="text-xs font-mono text-teal bg-teal/10 px-3 py-1.5 rounded-full border border-teal/30 font-bold">
-              HQ: {COMPANY_DETAILS.street}, {COMPANY_DETAILS.city}, {COMPANY_DETAILS.postcode}
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-paper-subtle leading-relaxed">
-            <div className="p-4 rounded-xl bg-obsidian-dark border border-obsidian-border space-y-2">
-              <h4 className="font-bold text-paper font-mono text-copper">Basildon HQ Proximity</h4>
-              <p className="text-paper-muted">
-                Based at 118 Gordon Road, Basildon (SS14), our engineers are strategically positioned to serve Basildon, Wickford, and Billericay with minimal travel delays.
-              </p>
-            </div>
-
-            <div className="p-4 rounded-xl bg-obsidian-dark border border-obsidian-border space-y-2">
-              <h4 className="font-bold text-paper font-mono text-teal">Essex Housing Stock Expertise</h4>
-              <p className="text-paper-muted">
-                From 1960s Basildon new-town properties to modern Billericay developments, we understand local heating pipework configurations and radiator sizing.
-              </p>
-            </div>
-
-            <div className="p-4 rounded-xl bg-obsidian-dark border border-obsidian-border space-y-2">
-              <h4 className="font-bold text-paper font-mono text-copper">Transparent Local Reputation</h4>
-              <p className="text-paper-muted">
-                Incorporated in April 2026 under Companies House Reg 16377721, we are committed to building long-term trust across South Essex households.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
-            {serviceAreasData.map((area) => (
-              <Link
-                key={area.slug}
-                to={`/service-areas/${area.slug}`}
-                className="p-3.5 rounded-xl bg-obsidian-dark hover:bg-obsidian-card border border-obsidian-border hover:border-copper text-left transition-all flex items-center justify-between group block focus:outline-none focus-visible:ring-2 focus-visible:ring-copper"
-              >
-                <div>
-                  <div className="text-xs font-bold text-paper group-hover:text-copper transition-colors">{area.name}</div>
-                  <div className="text-[10px] font-mono text-paper-muted">{area.postcodes}</div>
-                </div>
-                <MapPin className="w-4 h-4 text-paper-muted group-hover:text-copper transition-colors" />
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 12. ACCESSIBLE FAQ ACCORDION & FINAL CTA */}
+      {/* 11. ACCESSIBLE FAQ ACCORDION & FINAL CTA */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         <div className="text-center space-y-2">
           <span className="text-xs font-mono font-bold text-copper uppercase tracking-widest block">FREQUENTLY ASKED QUESTIONS</span>
