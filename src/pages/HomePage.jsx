@@ -61,20 +61,20 @@ export default function HomePage() {
               <div className="flex flex-wrap items-center gap-2">
                 <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-obsidian-dark border border-copper/40 text-xs font-mono text-paper shadow-md">
                   <span className="w-2.5 h-2.5 rounded-full bg-copper animate-pulse"></span>
-                  Basildon Dispatch Desk (SS14) • Gas Safe & MCS Certified
+                  Nationwide UK Service Coverage • Gas Safe &amp; MCS Certified
                 </span>
                 <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-teal/20 text-teal border border-teal/40 text-xs font-mono font-bold">
-                  <Percent className="w-3.5 h-3.5" /> 0% UK VAT on Solar & Battery
+                  <Percent className="w-3.5 h-3.5" /> 0% UK VAT on Solar &amp; Battery
                 </span>
               </div>
 
               <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-paper leading-[1.06]">
-                Heating, Cooling & Solar <br />
-                <span className="text-gradient-copper">Engineered For Essex Homes</span>
+                Heating, Cooling &amp; Solar <br />
+                <span className="text-gradient-copper">Engineered For UK Homes</span>
               </h1>
 
               <p className="text-base sm:text-xl text-paper-muted max-w-2xl leading-relaxed font-light">
-                No high-pressure sales calls. No unvetted sub-contractors. Just certified heating, air conditioning, and solar energy installed with mathematical precision.
+                No high-pressure sales calls. No unvetted sub-contractors. Just certified heating, air conditioning, and solar energy installed with mathematical precision across the UK.
               </p>
 
               <div className="flex flex-wrap items-center gap-4 pt-2">
@@ -97,7 +97,7 @@ export default function HomePage() {
                   <div className="font-bold text-copper uppercase tracking-wider">Incorporated</div>
                   <div className="text-[10px] text-paper-muted">Reg: {COMPANY_DETAILS.regNumber}</div>
                 </div>
-                <AnimatedStat endValue={8} label="Towns Covered" subtext="Basildon & Radius" />
+                <AnimatedStat endValue={100} suffix="%" label="UK Coverage" subtext="All Regions Served" />
                 <AnimatedStat endValue={100} suffix="%" label="Fixed Price" subtext="Zero Unexpected Add-ons" />
                 <AnimatedStat endValue={7500} prefix="£" label="Max Grant Value" subtext="UK Heat Pump Grant" />
               </div>
@@ -406,13 +406,13 @@ export default function HomePage() {
             <div className="lg:col-span-6 space-y-6">
               <div className="space-y-2">
                 <span className="text-xs font-mono font-bold text-teal uppercase tracking-widest block flex items-center gap-2">
-                  <MapPin className="w-4 h-4 text-teal" /> LOCAL BASILDON HQ & DISPATCH RADIUS
+                  <MapPin className="w-4 h-4 text-teal" /> NATIONWIDE UK COVERAGE &amp; REGIONAL DISPATCH
                 </span>
                 <h2 className="text-3xl sm:text-4xl font-extrabold text-paper">
-                  Serving Basildon, Billericay & South Essex
+                  Serving London, Essex &amp; All UK Regions
                 </h2>
                 <p className="text-xs sm:text-sm text-paper-muted leading-relaxed">
-                  Based at 118 Gordon Road, Basildon (SS14), our certified engineers are strategically dispatched across South Essex with rapid response times and zero travel surcharges.
+                  Headquartered at 118 Gordon Road, Basildon (SS14), our certified engineers deliver heating, plumbing, air conditioning, and solar installations across London, South East, Midlands, and nationwide.
                 </p>
               </div>
 

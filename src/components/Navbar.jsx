@@ -61,10 +61,10 @@ export default function Navbar() {
           <div className="flex items-center gap-3 font-mono">
             <span className="flex items-center gap-1.5 text-copper font-semibold">
               <span className="w-2 h-2 rounded-full bg-copper animate-pulse"></span>
-              Emergency Heating Standby Desk
+              Nationwide UK Heating, Plumbing &amp; Solar Coverage
             </span>
             <span className="text-obsidian-border">|</span>
-            <span>HQ: {COMPANY_DETAILS.address}</span>
+            <span>Reg. HQ: Basildon, SS14</span>
             <span className="text-obsidian-border">|</span>
             <span className="text-teal font-semibold">Companies House Reg: {COMPANY_DETAILS.regNumber}</span>
           </div>

@@ -17,6 +17,8 @@ export const COMPANY_DETAILS = {
   director: "Ahmed Johri",
   incDate: "19 April 2026",
   status: "Active",
+  coverage: "Nationwide UK Coverage (Greater London, South East, Midlands & All UK Regions)",
+  coverageShort: "Nationwide UK Service Coverage",
   baseUrl: "https://assetcarelondon.co.uk",
   companiesHouseUrl: "https://find-and-update.company-information.service.gov.uk/company/17167498"
 };

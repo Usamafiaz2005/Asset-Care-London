@@ -17,7 +17,7 @@ export default function Footer() {
             <BrandLogo />
 
             <p className="text-xs text-paper-muted leading-relaxed">
-              Basildon’s modern heating, plumbing, air conditioning, and solar energy engineers. Transparent fixed pricing, certified workmanship, and future-ready energy architecture across South Essex.
+              Certified UK heating, plumbing, air conditioning, and solar energy engineers. Registered HQ in Basildon, delivering transparent fixed pricing, certified workmanship, and future-ready energy architecture nationwide across the UK.
             </p>
 
             {/* Verified Companies House Box */}

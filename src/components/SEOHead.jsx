@@ -75,7 +75,7 @@ export default function SEOHead({
           "closes": "18:00"
         }
       ],
-      "areaServed": ["Basildon", "Wickford", "Billericay", "Pitsea", "Laindon", "Rayleigh", "Benfleet", "Southend-on-Sea"],
+      "areaServed": ["United Kingdom", "Greater London", "Essex", "Basildon", "Wickford", "Billericay", "Pitsea", "Laindon", "Rayleigh", "Benfleet", "Southend-on-Sea"],
       "priceRange": "££",
       "founder": {
         "@type": "Person",
