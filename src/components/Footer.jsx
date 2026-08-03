@@ -66,16 +66,16 @@ export default function Footer() {
 
           {/* Column 3: Service Areas */}
           <div className="space-y-3">
-            <h4 className="text-paper font-bold text-xs uppercase tracking-wider font-mono text-copper">Service Areas</h4>
+            <h4 className="text-paper font-bold text-xs uppercase tracking-wider font-mono text-copper">UK Service Areas</h4>
             <ul className="space-y-2 text-xs">
-              <li><Link to="/service-areas/basildon" className="hover:text-copper transition-colors">Basildon (HQ - SS14)</Link></li>
-              <li><Link to="/service-areas/wickford" className="hover:text-copper transition-colors">Wickford (SS11, SS12)</Link></li>
-              <li><Link to="/service-areas/billericay" className="hover:text-copper transition-colors">Billericay (CM11, CM12)</Link></li>
-              <li><Link to="/service-areas/pitsea" className="hover:text-copper transition-colors">Pitsea (SS13)</Link></li>
-              <li><Link to="/service-areas/laindon" className="hover:text-copper transition-colors">Laindon (SS15)</Link></li>
-              <li><Link to="/service-areas/rayleigh" className="hover:text-copper transition-colors">Rayleigh (SS6)</Link></li>
-              <li><Link to="/service-areas/benfleet" className="hover:text-copper transition-colors">Benfleet (SS7)</Link></li>
-              <li><Link to="/service-areas/southend-on-sea" className="hover:text-copper transition-colors">Southend-on-Sea</Link></li>
+              <li><Link to="/service-areas/london" className="hover:text-copper transition-colors font-bold text-paper">Greater London</Link></li>
+              <li><Link to="/service-areas/birmingham" className="hover:text-copper transition-colors">Birmingham</Link></li>
+              <li><Link to="/service-areas/manchester" className="hover:text-copper transition-colors">Manchester</Link></li>
+              <li><Link to="/service-areas/leeds" className="hover:text-copper transition-colors">Leeds</Link></li>
+              <li><Link to="/service-areas/bristol" className="hover:text-copper transition-colors">Bristol</Link></li>
+              <li><Link to="/service-areas/cambridge" className="hover:text-copper transition-colors">Cambridge</Link></li>
+              <li><Link to="/service-areas/chelmsford" className="hover:text-copper transition-colors">Chelmsford</Link></li>
+              <li><Link to="/service-areas/basildon" className="hover:text-copper transition-colors">Basildon (Reg. HQ - SS14)</Link></li>
             </ul>
           </div>
 

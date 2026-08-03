@@ -154,16 +154,16 @@ export default function Navbar() {
               </button>
 
               {areasDropdownOpen && (
-                <div className="absolute top-full left-0 w-64 glass-panel rounded-xl p-3 shadow-2xl border border-obsidian-border grid grid-cols-1 gap-1 mt-0 z-50">
+                <div className="absolute top-full left-0 w-72 glass-panel rounded-xl p-3 shadow-2xl border border-obsidian-border grid grid-cols-1 gap-1 mt-0 z-50 max-h-96 overflow-y-auto">
                   {/* Dynamic DRY Mapping over serviceAreasData */}
                   {serviceAreasData.map((area) => (
                     <Link 
                       key={area.slug} 
                       to={`/service-areas/${area.slug}`} 
-                      className="text-left p-2 rounded-lg hover:bg-obsidian-dark text-xs text-paper-subtle flex justify-between items-center"
+                      className="text-left p-2 rounded-lg hover:bg-obsidian-dark text-xs text-paper-subtle flex justify-between items-center transition-colors"
                     >
-                      <span>{area.name} {area.isHQ && '(HQ)'}</span>
-                      <span className="text-copper text-[10px] font-mono">{area.postcodes}</span>
+                      <span className="font-semibold text-paper hover:text-copper">{area.name} {area.isHQ && '(HQ)'}</span>
+                      <span className="text-copper text-[10px] font-mono shrink-0 ml-2">{area.postcodes}</span>
                     </Link>
                   ))}
                 </div>
