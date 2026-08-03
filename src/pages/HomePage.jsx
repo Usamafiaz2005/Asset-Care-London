@@ -131,7 +131,7 @@ export default function HomePage() {
               Tired of Tradesmen Who Don’t Turn Up or Add Hidden Costs?
             </h2>
             <p className="text-sm sm:text-base text-paper-muted leading-relaxed">
-              Traditional UK trade calls are broken—vague quotes, unreturned phone calls, and messy work. We engineered Asset Care London to give South Essex homeowners complete peace of mind.
+              Traditional UK trade calls are broken—vague quotes, unreturned phone calls, and messy work. We engineered Asset Care London to give UK homeowners and landlords complete peace of mind.
             </p>
           </div>
 
@@ -146,7 +146,7 @@ export default function HomePage() {
 
             <div className="p-6 rounded-2xl bg-obsidian-dark border border-obsidian-border space-y-3">
               <div className="w-10 h-10 rounded-xl bg-teal/10 border border-teal/30 flex items-center justify-center text-teal font-bold font-mono">02</div>
-              <h3 className="text-lg font-bold text-paper">Punctual Dispatch & SMS Tracking</h3>
+              <h3 className="text-lg font-bold text-paper">Punctual Dispatch &amp; SMS Tracking</h3>
               <p className="text-xs text-paper-muted leading-relaxed">
                 We arrive in agreed 4-hour time slots with a 30-minute advance arrival SMS notice so you never waste a day waiting.
               </p>
@@ -154,7 +154,7 @@ export default function HomePage() {
 
             <div className="p-6 rounded-2xl bg-obsidian-dark border border-obsidian-border space-y-3">
               <div className="w-10 h-10 rounded-xl bg-copper/10 border border-copper/30 flex items-center justify-center text-copper font-bold font-mono">03</div>
-              <h3 className="text-lg font-bold text-paper">Clean Floor Protection & Guarantee</h3>
+              <h3 className="text-lg font-bold text-paper">Clean Floor Protection &amp; Guarantee</h3>
               <p className="text-xs text-paper-muted leading-relaxed">
                 Our engineers wear boot covers, use protective floor mats, clean up completely, and provide manufacturer warranties.
               </p>
@@ -169,9 +169,9 @@ export default function HomePage() {
           <div>
             <span className="text-xs font-mono font-bold text-copper uppercase tracking-widest block">OUR CORE SPECIALISMS</span>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-paper">
-              Engineered Climate & Power Solutions
+              Engineered Climate &amp; Power Solutions
             </h2>
-            <p className="text-xs sm:text-sm text-paper-muted">Real trade photography showing complete system transformations across South Essex homes.</p>
+            <p className="text-xs sm:text-sm text-paper-muted">Real trade photography showing complete system transformations across UK homes.</p>
           </div>
           <Link to="/services" className="btn-secondary text-xs">
             View All 13 Core Services <ArrowRight className="w-3.5 h-3.5" />
@@ -281,11 +281,11 @@ export default function HomePage() {
       <section ref={caseStudyRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-obsidian-border pb-6">
           <div>
-            <span className="text-xs font-mono font-bold text-copper uppercase tracking-widest block font-mono">WORKMANSHIP SHOWCASE</span>
+            <span className="text-xs font-mono font-bold text-copper uppercase tracking-widest block font-mono">CERTIFIED WORKMANSHIP SHOWCASE</span>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-paper">
-              Recent Transformations in South Essex
+              Recent Transformations Across the UK
             </h2>
-            <p className="text-xs sm:text-sm text-paper-muted">Real before and after transformation case studies with technical specs</p>
+            <p className="text-xs sm:text-sm text-paper-muted">Real before and after system transformations with technical specs and verified performance metrics</p>
           </div>
           <Link to="/projects" className="btn-secondary text-xs">
             View All Projects Gallery <ArrowRight className="w-3.5 h-3.5" />
