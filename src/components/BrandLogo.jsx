@@ -134,7 +134,7 @@ export default function BrandLogo({ className = "", showText = true, size = "nor
             <span className="text-copper font-extrabold tracking-tight">LONDON</span>
           </span>
           <span className={`${subtitleTextClass} font-mono text-teal font-extrabold uppercase leading-tight mt-1`}>
-            ECO-CONSCIOUS • CITY • PARTNERS
+            HEATING • COOLING • SOLAR • PLUMBING
           </span>
         </div>
       )}
