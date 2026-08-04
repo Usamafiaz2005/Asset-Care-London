@@ -41,6 +41,21 @@ export function calculateEstimate(formData) {
       break;
     }
 
+    case 'water-heating-heat-pumps': {
+      let baseMin = 1250;
+      let baseMax = 2800;
+
+      if (propertyType === 'detached' || propertyType === 'commercial') {
+        baseMin += 600;
+        baseMax += 1200;
+      }
+
+      min = baseMin;
+      max = baseMax;
+      summary = `Trianco Aztec Electric Water Heating / LG Therma V R290 Heat Pump Setup`;
+      break;
+    }
+
     case 'solar-pv': {
       let baseMin = 4850;
       let baseMax = 6500;
@@ -89,7 +104,7 @@ export function calculateEstimate(formData) {
 
       min = baseMin;
       max = baseMax;
-      summary = `Silent Inverter Air Conditioning Split System (${propertyType})`;
+      summary = `LG / Daikin Silent Inverter Air Conditioning Split System (${propertyType})`;
       break;
     }
 

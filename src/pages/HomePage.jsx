@@ -202,7 +202,7 @@ export default function HomePage() {
             <PhotoFrame 
               imageSrc="/images/hero-copper-pipework.webp"
               imageAlt="Precision Copper Pipework Boiler Upgrade"
-              badge="Worcester Bosch & Vaillant Accredited"
+              badge="LG, Trianco &amp; Worcester Bosch Accredited"
               caption={{ title: "Precision Copper Pipework", subtitle: "Neat, efficient central heating pipework installations" }}
               aspectRatio="aspect-[16/9]"
             />

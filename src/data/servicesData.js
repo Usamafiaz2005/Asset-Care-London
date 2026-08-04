@@ -11,15 +11,36 @@ export const servicesData = [
     iconName: "Flame",
     illustration: "BoilerIllustration",
     shortDesc: "Complete replacement and new boiler installations with fixed-price quotes and up to 10 years warranty coverage.",
-    fullDesc: "Asset Care London delivers precision A-rated boiler installations across Basildon and South Essex. We install leading high-efficiency combi, system, and conventional boilers with transparent fixed pricing and zero hidden fees. Every installation includes a comprehensive system flush and magnetic filter protection.",
+    fullDesc: "Asset Care London delivers precision A-rated boiler installations across London, Essex, and nationwide. We install leading high-efficiency combi, system, and conventional boilers from Worcester Bosch, Vaillant, Viessmann, LG, and Trianco with transparent fixed pricing and zero hidden fees. Every installation includes a comprehensive system flush and magnetic filter protection.",
     benefits: [
       "Fixed-price upfront quote before work starts",
-      "Gas Safe certified installation team",
+      "Gas Safe & MCS certified installation team",
       "Up to 10-year manufacturer warranty options",
       "Saves up to £340/year on energy bills vs old G-rated boilers",
       "Clean, respectful installation with full cleanup"
     ],
     features: ["System Magnetic Filter", "Programmable Controls", "Powerflush Included", "Old Boiler Disposal", "Building Control CP12 Cert"]
+  },
+  {
+    id: "water-heating-heat-pumps",
+    title: "Water Heating & LG Heat Pumps",
+    tagline: "Trianco electric water heating & LG Therma V R290 eco heat pumps.",
+    category: "Renewable & Electric",
+    status: "active",
+    badge: "Eco & Electric",
+    priceRange: "From £1,250 inc. VAT",
+    warranty: "Up to 7 Year Warranty",
+    iconName: "Zap",
+    illustration: "SmartHomeIllustration",
+    shortDesc: "Certified installation of Trianco electric water heaters, unvented cylinders, and LG Therma V air source heat pumps.",
+    fullDesc: "Asset Care London is an accredited installer for Trianco water heating systems and LG Therma V R290 monobloc heat pumps. From compact Trianco Aztec electric flow boilers and unvented hot water cylinders to £7,500 government-subsidized LG heat pump conversions, we deliver clean, high-efficiency water heating across the UK.",
+    benefits: [
+      "Eligible for £7,500 UK Boiler Upgrade Scheme heat pump grants",
+      "Trianco Aztec electric boilers ideal for off-grid & gas-free homes",
+      "LG Therma V ultra-quiet 65°C high-temperature heat pumps",
+      "Continuous mains-pressure hot water delivery"
+    ],
+    features: ["LG Therma V R290 Heat Pumps", "Trianco Aztec Electric Boilers", "Unvented Hot Water Cylinders", "0% UK VAT Energy Saving", "Smart Wi-Fi App Control"]
   },
   {
     id: "solar-pv",
@@ -32,105 +53,41 @@ export const servicesData = [
     warranty: "25 Year Panel Performance Guarantee",
     iconName: "Sun",
     illustration: "SolarPVIllustration",
-    shortDesc: "Generate clean solar electricity for your Essex home with high-efficiency roof arrays and smart inverter setups.",
+    shortDesc: "Generate clean solar electricity for your UK home with high-efficiency roof arrays and smart inverter setups.",
     fullDesc: "Lower your household electricity bills and protect your family from grid price volatility with professionally designed Solar PV systems. Asset Care London installs high-efficiency monocrystalline solar panels tailored to your roof orientation, enabling you to generate free, zero-carbon electricity every day.",
     benefits: [
       "Cut annual household electricity bills by up to 70%",
       "25-year linear performance guarantee on solar panels",
       "Earn money by selling excess power back to the grid via SEG tariffs",
-      "Increases property value and EPC energy rating"
+      "0% UK VAT until March 2027"
     ],
-    features: ["Monocrystalline Solar Panels", "Smart Micro-Inverters", "SEG Export Meter Guidance", "Roof Array Design", "Live Generation App"]
-  },
-  {
-    id: "battery-storage",
-    title: "Home Battery Storage Systems",
-    tagline: "Store free solar power and charge during cheap off-peak night tariffs.",
-    category: "Renewable Energy",
-    status: "active",
-    badge: "Grid Independent",
-    priceRange: "From £2,950 inc. VAT",
-    warranty: "10 Year Battery Cell Warranty",
-    iconName: "Battery",
-    illustration: "BatteryStorageIllustration",
-    shortDesc: "Store excess solar electricity or charge on low-cost night electricity tariffs to power your home 24/7.",
-    fullDesc: "Maximize your energy independence with home battery storage. Asset Care London installs high-capacity lithium iron phosphate (LFP) battery systems that store unused daytime solar generation or charge overnight on cheap off-peak electricity tariffs (like Octopus Go), discharging automatically during expensive peak hours.",
-    benefits: [
-      "Use your solar power at night instead of exporting to the grid",
-      "Charge at 7p/kWh overnight and save hundreds annually",
-      "Optional emergency power supply (EPS) during grid power cuts",
-      "Compact wall-mounted design suitable for garages or utility rooms"
-    ],
-    features: ["LFP Battery Chemistry", "Smart Tariff Auto-Charging", "Emergency Backup Power", "Mobile App Monitoring", "10-Year Warranty"]
-  },
-  {
-    id: "ev-chargers",
-    title: "Smart EV Charger Installation",
-    tagline: "Fast, safe 7.4kW home electric vehicle wallbox chargers.",
-    category: "Renewable Energy",
-    status: "active",
-    badge: "Smart EV Charging",
-    priceRange: "From £850 inc. VAT",
-    warranty: "3 Year Manufacturer Warranty",
-    iconName: "Zap",
-    illustration: "EVChargerIllustration",
-    shortDesc: "Dedicated 7.4kW smart home EV wallbox chargers for fast, safe electric vehicle charging overnight.",
-    fullDesc: "Charge your electric vehicle up to 3x faster than a standard 3-pin plug with a dedicated smart home EV charger. Asset Care London installs sleek 7.4kW wallbox chargers with integrated PEN fault protection, solar matching capability, and scheduled night charging.",
-    benefits: [
-      "Charge overnight on cheap EV tariffs (e.g. 7p/kWh)",
-      "Solar integration to charge your vehicle using 100% free solar power",
-      "Built-in earthing protection (no messy ground rod needed)",
-      "Weatherproof IP65 enclosure suitable for outdoor driveways"
-    ],
-    features: ["7.4kW Fast Charging", "Integrated PEN Protection", "Solar Matching Mode", "Scheduled Charging App", "Dynamic Load Balancing"]
+    features: ["Tier-1 Black Solar Panels", "G99 Grid Connection", "Smart Inverter & Monitoring", "Bird Guarding Mesh", "MCS Compliance Certificate"]
   },
   {
     id: "air-conditioning",
     title: "Air Conditioning Installation",
-    tagline: "High-efficiency cooling & heating split systems for homes and shops.",
-    category: "Cooling & Air",
+    tagline: "Year-round heating & cooling for bedrooms, lounges & offices.",
+    category: "Climate Control",
     status: "active",
-    badge: "Seasonal Cooling & Heating",
+    badge: "Year-Round Comfort",
     priceRange: "From £1,250 inc. VAT",
-    warranty: "Up to 5 Year Warranty",
+    warranty: "5 Year Parts & Labour Warranty",
     iconName: "Wind",
-    illustration: "AirConIllustration",
-    shortDesc: "Silent, energy-efficient split-system air conditioning providing year-round climate control (cooling & heating).",
-    fullDesc: "Stay cool during summer heatwaves and warm in winter with modern split-system air conditioning. Explicitly named under our core SIC 43220 installation scope, Asset Care London installs ultra-quiet Daikin, Mitsubishi, and Panasonic units for bedrooms, home offices, and light commercial spaces.",
+    illustration: "ACIllustration",
+    shortDesc: "Whisper-quiet split system air conditioning supplying summer cooling and rapid winter heating with LG and Daikin technology.",
+    fullDesc: "Enjoy perfect climate control in every season. We install A+++ energy rated split-system air conditioning from leading manufacturers like LG Electronics, Daikin, and Mitsubishi Electric. Ultra-quiet operation (19dB), built-in Wi-Fi app control, and rapid air purification.",
     benefits: [
-      "Dual cooling in summer & low-cost heating in winter",
-      "Whisper-quiet operation (< 19dB night mode)",
-      "Wi-Fi smart app control from anywhere",
-      "Drastically improved indoor air quality with HEPA filtration"
+      "Provides both ice-cool summer air and energy-efficient winter heating",
+      "Whisper-quiet 19dB sleep mode for peaceful night sleep",
+      "Advanced air filtration traps dust, allergens, and pollen",
+      "Smart Wi-Fi app control to pre-cool your home remotely"
     ],
-    features: ["Single & Multi-Split Units", "Inverter Technology", "Wi-Fi App Control", "Air Purification Filters", "Wall & Ceiling Cassettes"]
-  },
-  {
-    id: "heat-pumps",
-    title: "Air Source Heat Pumps (Consultation & Grant Advisory)",
-    tagline: "Future-ready zero-carbon heating consultation & UK £7,500 grant guidance.",
-    category: "Renewables (Grant Advisory)",
-    status: "consultation-only",
-    badge: "£7,500 BUS Grant Eligible",
-    ctaLabel: "Request Grant Advisory Survey",
-    priceRange: "Grant Supported (£7,500 BUS Grant)",
-    warranty: "7 Year Manufacturer Warranty Target",
-    iconName: "Zap",
-    illustration: "HeatPumpIllustration",
-    shortDesc: "Heat-pump-ready system surveys and guidance on securing the £7,500 UK Boiler Upgrade Scheme (BUS) grant.",
-    fullDesc: "Prepare your home for the future of heating. Air source heat pumps extract clean thermal energy from outdoor air to heat your home at up to 400% efficiency. Asset Care London offers heat-pump-ready heating system surveys, radiator sizing, and guidance on securing the £7,500 UK Boiler Upgrade Scheme (BUS) grant as full accreditation is finalized.",
-    benefits: [
-      "Guidance on securing £7,500 UK Boiler Upgrade Scheme grant",
-      "Heat-loss and radiator sizing assessment for low-temp heating",
-      "Dramatically reduces household carbon footprint",
-      "Quiet, long-life heating solution (20+ year lifespan)"
-    ],
-    features: ["Heat Loss Calculations", "Low-Temp Radiator Sizing", "BUS Grant Guidance", "Smart Buffer Cylinder Setup", "Weather Compensation"]
+    features: ["Inverter Technology", "Wi-Fi App Control", "A+++ Energy Efficiency", "Allergen Air Filter", "Minimalist Wall Units"]
   },
   {
     id: "boiler-repair",
     title: "Boiler Repair & Diagnosis",
-    tagline: "Rapid response boiler diagnostic & repair across South Essex.",
+    tagline: "Rapid response boiler diagnostic & repair across the UK.",
     category: "Core Heating",
     status: "active",
     badge: "Rapid Response",
@@ -139,10 +96,10 @@ export const servicesData = [
     iconName: "Wrench",
     illustration: "BoilerIllustration",
     shortDesc: "Fast, reliable boiler repairs with transparent diagnostic pricing and genuine replacement parts.",
-    fullDesc: "No hot water or heating? Asset Care London provides fast, transparent diagnostic and repair services for all major boiler brands. Our engineers arrive equipped with advanced diagnostic tools to resolve faults quickly and get your home warm again.",
+    fullDesc: "No hot water or heating? Asset Care London provides fast, transparent diagnostic and repair services for all major boiler and water heating brands (Worcester Bosch, Vaillant, LG, Trianco, Ideal, Baxi). Our engineers arrive equipped with advanced diagnostic tools to resolve faults quickly.",
     benefits: [
       "Transparent diagnostic fee agreed upfront",
-      "All major brands repaired (Worcester Bosch, Vaillant, Ideal, Baxi)",
+      "All major brands repaired (Worcester Bosch, Vaillant, LG, Trianco, Ideal)",
       "Stocked parts for same-day resolution where possible",
       "12-month warranty on all replaced components",
       "Honest assessment — we repair wherever viable"
@@ -223,7 +180,7 @@ export const servicesData = [
     warranty: "Digital Certificate Issued Same Day",
     iconName: "ShieldCheck",
     illustration: "BoilerIllustration",
-    shortDesc: "Comprehensive annual CP12 Gas Safety inspections for landlords, letting agents, and homeowners across Basildon.",
+    shortDesc: "Comprehensive annual CP12 Gas Safety inspections for landlords, letting agents, and homeowners.",
     fullDesc: "Protect your tenants and fulfill your legal obligations with official CP12 Gas Safety Certificates from Asset Care London. Our certified engineers inspect all gas appliances, flues, and pipework safety cut-offs, issuing instant digital certificates upon completion.",
     benefits: [
       "Instant digital CP12 certificate emailed directly",
@@ -265,10 +222,10 @@ export const servicesData = [
     warranty: "Immediate Safety Remediation",
     iconName: "AlertTriangle",
     illustration: "BoilerIllustration",
-    shortDesc: "Urgent 24/7 emergency response across Basildon and South Essex for major leaks, gas safety, and boiler breakdowns.",
-    fullDesc: "When emergency strikes, Asset Care London is on standby. We provide rapid emergency response for water leaks, gas isolation issues, burst pipes, and complete winter heating breakdowns across Basildon, Wickford, Billericay, and Southend.",
+    shortDesc: "Urgent 24/7 emergency response for major leaks, gas safety, and boiler breakdowns.",
+    fullDesc: "When emergency strikes, Asset Care London is on standby. We provide rapid emergency response for water leaks, gas isolation issues, burst pipes, and complete winter heating breakdowns across London, Essex, and nationwide.",
     benefits: [
-      "Priority response dispatch across South Essex",
+      "Priority response dispatch across the UK",
       "Immediate phone triage with clear safety instructions",
       "Upfront emergency rates with no hidden fees",
       "Safe containment and repair"
