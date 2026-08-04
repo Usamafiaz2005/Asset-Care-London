@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 240" fill="none">
+  <!-- Brand Theme Colors: Copper (#D68A3C), Slate Teal (#3E7C7A), Paper Off-White (#F6F4F0), Dark Slate (#1E2730) -->
+  <defs>
+    <linearGradient id="copperGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E8A053" />
+      <stop offset="60%" stop-color="#D68A3C" />
+      <stop offset="100%" stop-color="#B8732A" />
+    </linearGradient>
+    <linearGradient id="tealGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#529E9B" />
+      <stop offset="70%" stop-color="#3E7C7A" />
+      <stop offset="100%" stop-color="#2A5957" />
+    </linearGradient>
+    <filter id="subtleGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#D68A3C" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- EMBLEM SYMBOL -->
+  <g transform="translate(180, 5)" filter="url(#subtleGlow)">
+    <!-- Outer Contour Arch Frame -->
+    <path d="M 70,5 C 50,20 20,40 10,75 C 0,110 20,125 35,130 L 105,130 C 120,125 140,110 130,75 C 120,40 90,20 70,5 Z" 
+          fill="none" stroke="url(#tealGrad)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Inner Contour Frame Ribbon -->
+    <path d="M 70,14 C 53,28 28,45 18,78 C 10,105 26,122 38,124" 
+          fill="none" stroke="url(#copperGrad)" stroke-width="3" stroke-linecap="round"/>
+    <path d="M 70,14 C 87,28 112,45 122,78 C 130,105 114,122 102,124" 
+          fill="none" stroke="url(#copperGrad)" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- Radiant Sun (Top Center) -->
+    <circle cx="70" cy="38" r="7" fill="url(#copperGrad)"/>
+    <!-- Sun Rays -->
+    <line x1="70" y1="26" x2="70" y2="22" stroke="url(#copperGrad)" stroke-width="2" stroke-linecap="round"/>
+    <line x1="61" y1="30" x2="57" y2="27" stroke="url(#copperGrad)" stroke-width="2" stroke-linecap="round"/>
+    <line x1="79" y1="30" x2="83" y2="27" stroke="url(#copperGrad)" stroke-width="2" stroke-linecap="round"/>
+    <line x1="56" y1="38" x2="52" y2="38" stroke="url(#copperGrad)" stroke-width="2" stroke-linecap="round"/>
+    <line x1="84" y1="38" x2="88" y2="38" stroke="url(#copperGrad)" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- Stylized Monogram "A" Left Arch -->
+    <path d="M 28,122 C 30,95 45,60 62,45 C 65,42 67,45 64,52 C 52,75 42,98 38,122" 
+          fill="url(#tealGrad)"/>
+    <path d="M 40,122 C 45,95 58,72 70,55 C 72,52 75,54 73,60 C 62,80 50,102 48,122" 
+          fill="url(#copperGrad)"/>
+
+    <!-- Eco Leaf Swoosh (Crossing A bar) -->
+    <path d="M 35,92 Q 55,85 72,72 Q 80,60 88,52 C 86,65 72,82 50,94 Z" 
+          fill="url(#tealGrad)"/>
+    <!-- Leaf Center Vein -->
+    <path d="M 40,90 Q 58,82 76,68" fill="none" stroke="#F6F4F0" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/>
+
+    <!-- City Skyline & London Gherkin Building Silhouettes (Right) -->
+    <!-- Building 1 (Grid Windows) -->
+    <rect x="68" y="78" width="14" height="44" fill="url(#tealGrad)" rx="1"/>
+    <rect x="71" y="82" width="3" height="4" fill="#0D1117" opacity="0.7"/>
+    <rect x="76" y="82" width="3" height="4" fill="#0D1117" opacity="0.7"/>
+    <rect x="71" y="89" width="3" height="4" fill="#0D1117" opacity="0.7"/>
+    <rect x="76" y="89" width="3" height="4" fill="#0D1117" opacity="0.7"/>
+    <rect x="71" y="96" width="3" height="4" fill="#0D1117" opacity="0.7"/>
+    <rect x="76" y="96" width="3" height="4" fill="#0D1117" opacity="0.7"/>
+    <rect x="71" y="103" width="3" height="4" fill="#0D1117" opacity="0.7"/>
+    <rect x="76" y="103" width="3" height="4" fill="#0D1117" opacity="0.7"/>
+
+    <!-- Building 2 (Mid Tower) -->
+    <rect x="84" y="68" width="12" height="54" fill="#3E7C7A" rx="1" opacity="0.85"/>
+    <line x1="87" y1="72" x2="93" y2="72" stroke="#F6F4F0" stroke-width="1" opacity="0.6"/>
+    <line x1="87" y1="78" x2="93" y2="78" stroke="#F6F4F0" stroke-width="1" opacity="0.6"/>
+    <line x1="87" y1="84" x2="93" y2="84" stroke="#F6F4F0" stroke-width="1" opacity="0.6"/>
+    <line x1="87" y1="90" x2="93" y2="90" stroke="#F6F4F0" stroke-width="1" opacity="0.6"/>
+    <line x1="87" y1="96" x2="93" y2="96" stroke="#F6F4F0" stroke-width="1" opacity="0.6"/>
+    <line x1="87" y1="102" x2="93" y2="102" stroke="#F6F4F0" stroke-width="1" opacity="0.6"/>
+
+    <!-- London Gherkin (30 St Mary Axe) Tower (Rightmost) -->
+    <path d="M 98,122 C 96,95 98,72 106,62 C 114,72 116,95 114,122 Z" fill="url(#copperGrad)"/>
+    <!-- Diagonal Spiral Lattice overlay on Gherkin -->
+    <path d="M 99,115 L 112,85" stroke="#0D1117" stroke-width="1.2" opacity="0.5"/>
+    <path d="M 99,100 L 113,72" stroke="#0D1117" stroke-width="1.2" opacity="0.5"/>
+    <path d="M 113,115 L 100,85" stroke="#0D1117" stroke-width="1.2" opacity="0.5"/>
+    <path d="M 113,100 L 99,72" stroke="#0D1117" stroke-width="1.2" opacity="0.5"/>
+
+    <!-- Base Horizon Line -->
+    <line x1="20" y1="124" x2="120" y2="124" stroke="url(#copperGrad)" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- BRAND NAME TEXT (Theme Colors) -->
+  <text x="250" y="175" text-anchor="middle" font-family="'Space Grotesk', system-ui, sans-serif" font-weight="800" font-size="28" letter-spacing="-0.5">
+    <tspan fill="#F6F4F0">Assetcare</tspan><tspan fill="#D68A3C">london</tspan>
+  </text>
+  
+  <!-- TAGLINE SUBTITLE -->
+  <text x="250" y="202" text-anchor="middle" font-family="'Space Grotesk', monospace" font-weight="700" font-size="11" letter-spacing="3" fill="#3E7C7A">
+    ECO-CONSCIOUS • CITY • PARTNERS
+  </text>
+</svg>
