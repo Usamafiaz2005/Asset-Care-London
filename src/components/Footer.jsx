@@ -14,7 +14,7 @@ export default function Footer() {
           
           {/* Column 1: Brand & Verified Companies House Details */}
           <div className="lg:col-span-2 space-y-4">
-            <BrandLogo />
+            <BrandLogo size="large" />
 
             <p className="text-xs text-paper-muted leading-relaxed">
               Certified UK heating, plumbing, air conditioning, and solar energy engineers. Registered HQ in Basildon, delivering transparent fixed pricing, certified workmanship, and future-ready energy architecture nationwide across the UK.
