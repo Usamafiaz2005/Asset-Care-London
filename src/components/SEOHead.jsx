@@ -50,7 +50,7 @@ export default function SEOHead({
       "@context": "https://schema.org",
       "@type": "HeatingAndAirConditioningContractor",
       "name": COMPANY_DETAILS.name,
-      "image": `${COMPANY_DETAILS.baseUrl}/images/company-logo.png`,
+      "image": `${COMPANY_DETAILS.baseUrl}/images/company-logo.svg`,
       "telephone": COMPANY_DETAILS.phone,
       "email": COMPANY_DETAILS.email,
       "address": {
